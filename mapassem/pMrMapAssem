@@ -20,3 +20,8 @@ spades.py --rna -t 16 \
 --pe2-1 ~/data/genome/mrubgenomeRNA/mrub_rnaseq_2_S2_R1_001.fastq.gz \
 --pe2-2 ~/data/genome/mrubgenomeRNA/mrub_rnaseq_2_S2_R2_001.fastq.gz \
 -o ~/data/genome/mrubgenomeRNA/assembely
+
+#Transdecoder to predict reading frames
+TransDecoder.LongOrfs --genetic_code Mesodinium -t ~/data/genome/mrubgenomeRNA/assembely/transcripts.fasta
+TransDecoder.Predict --genetic_code Mesodinium -t ~/data/genome/mrubgenomeRNA/assembely/transcripts.fasta
+
