@@ -1,6 +1,6 @@
 #!/bin/sh 
 #maps reads to G. cryophila 
-
+#unmapped reads from M. rubrum assembeled 
 for sample in $(cat ~/data/Mchameleon/jgi/smajor/jgiMrubrum/Mesrubnscritpome_2_FD/Filtered_Raw_Data/samples)
 do
 
