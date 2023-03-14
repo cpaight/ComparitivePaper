@@ -1,16 +1,19 @@
 #!/bin/sh 
-#uses bbmap to map reads to S. major nulcleotide transcriptome
-#unmapped reads are M. pulex  
-for sample in $(cat ~/data/Mpulex/raw_data/Mpsamples)
+#uses bbmap to map reads to T. amphioxeia nulcleotide transcriptome
+#unmapped reads are temperate M. rubrum  
+
+for sample in $(cat /home/cpaight/cpaightNAS/cpaight/data/temperateMrubrum/mtempRubrum/Mr2A1/samples)
 do
 
-    bbmap.sh in=~/data/Mpulex/raw_data/${sample}_R1_001.fastq.gz  \
-    in2=~/data/Mpulex/raw_data/${sample}_R2_001.fastq.gz   \
+    echo "On sample: $sample"
+
+    bbmap.sh in=~/temperateMrubrum/mtempRubrum/Mr2A1/${sample}_R1_001.fastq.gz  \
+    in2=~/data/temperateMrubrum/mtempRubrum/Mr2A1/${sample}_R2_001.fastq.gz  \
     unpigz=t pigz=t slow k=12 pairedonly=t \
-    ref=~/data/Mchameleon/raw_data/mapping/algaefianl/AlgaeDeco/algaeDecoCDS/SMnulc.fasta \
-    outm=~/data/Mpulex/SM/${sample}.fq \
-    outu=~/data/Mpulex/unmapped/${sample}.fq \
-    printunmappedcount=t covk=1 nfilter=10 interleaved=f maxindel=20 threads=24 minid=0.90 ambiguous=all maxsites2=20000 physcov=t \
+    ref=~/data/temperateMrubrum/cryptophyte/transcripts.fasta \
+    outm=~/data/temperateMrubrum/mtempRubrum/Mr2A1/mapped/${sample}.fq \
+    outu=~/data/temperateMrubrum/mtempRubrum/Mr2A1/unmapped/${sample}.fq \
+    printunmappedcount=t \
 
 done
 
