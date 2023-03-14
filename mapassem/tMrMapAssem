@@ -17,15 +17,26 @@ do
 
 done
 
-# first M. pulex assembly with spades
-spades.py --rna -t 16 \
---s1 ~/data/Mpulex/unmapped/MP3_S95_L002.fq \
---s2 ~/data/Mpulex/unmapped/MP4_S96_L002.fq \
---s3 ~/data/Mpulex/unmapped/MP5_S97_L002.fq \
---s4 ~/data/Mpulex/unmapped/MP6_S98_L002.fq \
---s5 ~/data/Mpulex/unmapped/MP7_S99_L002.fq \
--o ~/data/Mpulex/unmapped/assem
+# first temperate M. rubrum assembly with spades
+spades.py --rna -t 32 \
+--pe1-1 ~/data/temperateMrubrum/mtempRubrum/Mr2A1/128930-5_S4_L001_R1_001.fastq.gz \
+--pe2-1 ~/data/temperateMrubrum/mtempRubrum/Mr2A1/128930-5_S4_L002_R1_001.fastq.gz \
+--pe3-1 ~/data/temperateMrubrum/mtempRubrum/Mr2A1/128930-5_S4_L003_R1_001.fastq.gz \
+--pe4-1 ~/cpaight/data/temperateMrubrum/mtempRubrum/Mr2A1/128930-5_S4_L004_R1_001.fastq.gz \
+--pe5-1 ~/data/temperateMrubrum/mtempRubrum/Mr2A1/128930-6_S5_L001_R1_001.fastq.gz \
+--pe6-1 ~/data/temperateMrubrum/mtempRubrum/Mr2A1/128930-6_S5_L002_R1_001.fastq.gz \
+--pe7-1 ~/data/temperateMrubrum/mtempRubrum/Mr2A1/128930-6_S5_L003_R1_001.fastq.gz \
+--pe8-1 ~/data/temperateMrubrum/mtempRubrum/Mr2A1/128930-6_S5_L004_R1_001.fastq.gz \
+--pe1-2 ~/data/temperateMrubrum/mtempRubrum/Mr2A1/128930-5_S4_L001_R2_001.fastq.gz \
+--pe2-2 ~/data/temperateMrubrum/mtempRubrum/Mr2A1/128930-5_S4_L002_R2_001.fastq.gz \
+--pe3-2 ~/data/temperateMrubrum/mtempRubrum/Mr2A1/128930-5_S4_L003_R2_001.fastq.gz \
+--pe4-2 ~/data/temperateMrubrum/mtempRubrum/Mr2A1/128930-5_S4_L004_R2_001.fastq.gz \
+--pe5-2 ~/data/temperateMrubrum/mtempRubrum/Mr2A1/128930-6_S5_L001_R2_001.fastq.gz \
+--pe6-2 ~/data/temperateMrubrum/mtempRubrum/Mr2A1/128930-6_S5_L002_R2_001.fastq.gz \
+--pe7-2 ~/data/temperateMrubrum/mtempRubrum/Mr2A1/128930-6_S5_L003_R2_001.fastq.gz \
+--pe8-2 ~/data/temperateMrubrum/mtempRubrum/Mr2A1/128930-6_S5_L004_R2_001.fastq.gz \
+-o ~/data/temperateMrubrum/mtempRubrum/Mr2A1/all/
 
 #Transdecoder to predict reading frames
-TransDecoder.LongOrfs --genetic_code Mesodinium -t ~/data/Mpulex/unmapped/assem/transcripts.fasta
-TransDecoder.Predict --genetic_code Mesodinium -t ~/data/Mpulex/unmapped/assem/transcripts.fasta
+TransDecoder.LongOrfs --genetic_code Mesodinium -t ~/data/temperateMrubrum/mtempRubrum/Mr2A1/all/transcripts.fasta
+TransDecoder.Predict --genetic_code Mesodinium -t ~/data/temperateMrubrum/mtempRubrum/Mr2A1/all/transcripts.fasta
