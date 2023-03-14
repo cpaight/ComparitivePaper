@@ -1,0 +1,1224 @@
+java -ea -Xmx100266m -Xms100266m -cp /usr/share/java/bbmap.jar align2.BBMap build=1 overwrite=true fastareadlen=500 in=~/data/Mchameleon/jgi/mapping/mc7/52663.3.414974.ACCTCTGT-ACCTCTGT.filter_mc.fq slow k=12 ref=~/data/Mchameleon/raw_data/mapping/Mchameleon/assembly/transcripts.fasta outm=~/data/Mchameleon/jgi/mapping/mc8/52663.3.414974.ACCTCTGT-ACCTCTGT.filter_mc2.fq outu=~/data/Mchameleon/jgi/mapping/bad/52663.3.414974.ACCTCTGT-ACCTCTGT.filter_bad.fq printunmappedcount=t covk=1 nfilter=10 interleaved=f maxindel=20 threads=24 minid=0.90 ambiguous=all maxsites2=20000 physcov=t
+Executing align2.BBMap [tipsearch=150, minhits=1, minratio=0.45, build=1, overwrite=true, fastareadlen=500, in=~/data/Mchameleon/jgi/mapping/mc7/52663.3.414974.ACCTCTGT-ACCTCTGT.filter_mc.fq, k=12, ref=~/data/Mchameleon/raw_data/mapping/Mchameleon/assembly/transcripts.fasta, outm=~/data/Mchameleon/jgi/mapping/mc8/52663.3.414974.ACCTCTGT-ACCTCTGT.filter_mc2.fq, outu=~/data/Mchameleon/jgi/mapping/bad/52663.3.414974.ACCTCTGT-ACCTCTGT.filter_bad.fq, printunmappedcount=t, covk=1, nfilter=10, interleaved=f, maxindel=20, threads=24, minid=0.90, ambiguous=all, maxsites2=20000, physcov=t]
+Version 38.95
+
+Set MINIMUM_ALIGNMENT_SCORE_RATIO to 0.450
+Set INTERLEAVED to false
+Set threads to 24
+Retaining all best sites for ambiguous mappings.
+Writing reference.
+Executing dna.FastaToChromArrays2 [~/data/Mchameleon/raw_data/mapping/Mchameleon/assembly/transcripts.fasta, 1, writeinthread=false, genscaffoldinfo=true, retain, waitforwriting=false, gz=true, maxlen=536670912, writechroms=true, minscaf=1, midpad=300, startpad=8000, stoppad=8000, nodisk=false]
+
+Set genScaffoldInfo=true
+Writing chunk 1
+Set genome to 1
+
+Loaded Reference:	0.418 seconds.
+Loading index for chunk 1-1, build 1
+No index available; generating from reference genome: /home/cpaight/scripts/ref/index/1/chr1_index_k12_c2_b1.block
+Indexing threads started for block 0-1
+Indexing threads finished for block 0-1
+Generated Index:	13.405 seconds.
+Analyzed Index:   	1.016 seconds.
+Started output stream:	0.009 seconds.
+Started output stream:	0.005 seconds.
+Cleared Memory:    	0.797 seconds.
+Processing reads in single-ended mode.
+Started read stream.
+Started 24 mapping threads.
+Detecting finished threads: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23
+
+   ------------------   Results   ------------------   
+
+Genome:                	1
+Key Length:            	12
+Max Indel:             	20
+Minimum Score Ratio:  	0.45
+Mapping Mode:         	normal
+Reads Used:           	24076080	(3489138426 bases)
+
+Mapping:          	821.767 seconds.
+Reads/sec:       	29297.94
+kBases/sec:      	4245.90
+
+unmapped:        	 25.2370% 	  6076086 	 25.3749% 	   885364254
+
+
+Read 1 data:      	pct reads	num reads 	pct bases	   num bases
+
+mapped:          	 74.7630% 	 17999994 	 74.6251% 	  2603774172
+unambiguous:     	 58.6138% 	 14111895 	 58.5432% 	  2042653481
+ambiguous:       	 16.1492% 	  3888099 	 16.0819% 	   561120691
+low-Q discards:  	  0.0000% 	        0 	  0.0000% 	           0
+
+perfect best site:	 42.0863% 	 10132724 	 41.8675% 	  1460814539
+semiperfect site:	 42.8407% 	 10314369 	 42.6247% 	  1487234621
+
+Match Rate:      	      NA 	       NA 	 98.9352% 	  2576779382
+Error Rate:      	 35.0023% 	  7686297 	  0.9698% 	    25258438
+Sub Rate:        	 34.3403% 	  7540939 	  0.8923% 	    23240077
+Del Rate:        	  1.4455% 	   317424 	  0.0284% 	      738669
+Ins Rate:        	  1.9027% 	   417817 	  0.0491% 	     1279692
+N Rate:          	  1.4838% 	   325832 	  0.0950% 	     2475021
+
+Total time:     	840.746 seconds.
+java -ea -Xmx100318m -Xms100318m -cp /usr/share/java/bbmap.jar align2.BBMap build=1 overwrite=true fastareadlen=500 in=~/data/Mchameleon/jgi/mapping/mc7/52663.3.414974.ATGCCTGT-ATGCCTGT.filter_mc.fq slow k=12 ref=~/data/Mchameleon/raw_data/mapping/Mchameleon/assembly/transcripts.fasta outm=~/data/Mchameleon/jgi/mapping/mc8/52663.3.414974.ATGCCTGT-ATGCCTGT.filter_mc2.fq outu=~/data/Mchameleon/jgi/mapping/bad/52663.3.414974.ATGCCTGT-ATGCCTGT.filter_bad.fq printunmappedcount=t covk=1 nfilter=10 interleaved=f maxindel=20 threads=24 minid=0.90 ambiguous=all maxsites2=20000 physcov=t
+Executing align2.BBMap [tipsearch=150, minhits=1, minratio=0.45, build=1, overwrite=true, fastareadlen=500, in=~/data/Mchameleon/jgi/mapping/mc7/52663.3.414974.ATGCCTGT-ATGCCTGT.filter_mc.fq, k=12, ref=~/data/Mchameleon/raw_data/mapping/Mchameleon/assembly/transcripts.fasta, outm=~/data/Mchameleon/jgi/mapping/mc8/52663.3.414974.ATGCCTGT-ATGCCTGT.filter_mc2.fq, outu=~/data/Mchameleon/jgi/mapping/bad/52663.3.414974.ATGCCTGT-ATGCCTGT.filter_bad.fq, printunmappedcount=t, covk=1, nfilter=10, interleaved=f, maxindel=20, threads=24, minid=0.90, ambiguous=all, maxsites2=20000, physcov=t]
+Version 38.95
+
+Set MINIMUM_ALIGNMENT_SCORE_RATIO to 0.450
+Set INTERLEAVED to false
+Set threads to 24
+Retaining all best sites for ambiguous mappings.
+NOTE:	Ignoring reference file because it already appears to have been processed.
+NOTE:	If you wish to regenerate the index, please manually delete ref/genome/1/summary.txt
+Set genome to 1
+
+Loaded Reference:	1.709 seconds.
+Loading index for chunk 1-1, build 1
+Generated Index:	0.813 seconds.
+Analyzed Index:   	0.900 seconds.
+Started output stream:	0.011 seconds.
+Started output stream:	0.002 seconds.
+Cleared Memory:    	0.776 seconds.
+Processing reads in single-ended mode.
+Started read stream.
+Started 24 mapping threads.
+Detecting finished threads: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23
+
+   ------------------   Results   ------------------   
+
+Genome:                	1
+Key Length:            	12
+Max Indel:             	20
+Minimum Score Ratio:  	0.45
+Mapping Mode:         	normal
+Reads Used:           	42126782	(6135965700 bases)
+
+Mapping:          	1222.274 seconds.
+Reads/sec:       	34465.90
+kBases/sec:      	5020.12
+
+unmapped:        	 22.7699% 	  9592236 	 22.8987% 	  1405054078
+
+
+Read 1 data:      	pct reads	num reads 	pct bases	   num bases
+
+mapped:          	 77.2301% 	 32534546 	 77.1013% 	  4730911622
+unambiguous:     	 59.9359% 	 25249077 	 59.8799% 	  3674210121
+ambiguous:       	 17.2942% 	  7285469 	 17.2214% 	  1056701501
+low-Q discards:  	  0.0000% 	        0 	  0.0000% 	           0
+
+perfect best site:	 44.3392% 	 18678671 	 44.1513% 	  2709111012
+semiperfect site:	 45.1170% 	 19006350 	 44.9313% 	  2756971992
+
+Match Rate:      	      NA 	       NA 	 98.9689% 	  4683411012
+Error Rate:      	 34.5717% 	 13530334 	  0.9371% 	    44343680
+Sub Rate:        	 33.9119% 	 13272084 	  0.8612% 	    40751927
+Del Rate:        	  1.3819% 	   540823 	  0.0273% 	     1291718
+Ins Rate:        	  1.9608% 	   767412 	  0.0486% 	     2300035
+N Rate:          	  1.4851% 	   581215 	  0.0940% 	     4448648
+
+Total time:     	1226.567 seconds.
+java -ea -Xmx100286m -Xms100286m -cp /usr/share/java/bbmap.jar align2.BBMap build=1 overwrite=true fastareadlen=500 in=~/data/Mchameleon/jgi/mapping/mc7/52663.3.414974.ATGGTCCA-ATGGTCCA.filter_mc.fq slow k=12 ref=~/data/Mchameleon/raw_data/mapping/Mchameleon/assembly/transcripts.fasta outm=~/data/Mchameleon/jgi/mapping/mc8/52663.3.414974.ATGGTCCA-ATGGTCCA.filter_mc2.fq outu=~/data/Mchameleon/jgi/mapping/bad/52663.3.414974.ATGGTCCA-ATGGTCCA.filter_bad.fq printunmappedcount=t covk=1 nfilter=10 interleaved=f maxindel=20 threads=24 minid=0.90 ambiguous=all maxsites2=20000 physcov=t
+Executing align2.BBMap [tipsearch=150, minhits=1, minratio=0.45, build=1, overwrite=true, fastareadlen=500, in=~/data/Mchameleon/jgi/mapping/mc7/52663.3.414974.ATGGTCCA-ATGGTCCA.filter_mc.fq, k=12, ref=~/data/Mchameleon/raw_data/mapping/Mchameleon/assembly/transcripts.fasta, outm=~/data/Mchameleon/jgi/mapping/mc8/52663.3.414974.ATGGTCCA-ATGGTCCA.filter_mc2.fq, outu=~/data/Mchameleon/jgi/mapping/bad/52663.3.414974.ATGGTCCA-ATGGTCCA.filter_bad.fq, printunmappedcount=t, covk=1, nfilter=10, interleaved=f, maxindel=20, threads=24, minid=0.90, ambiguous=all, maxsites2=20000, physcov=t]
+Version 38.95
+
+Set MINIMUM_ALIGNMENT_SCORE_RATIO to 0.450
+Set INTERLEAVED to false
+Set threads to 24
+Retaining all best sites for ambiguous mappings.
+NOTE:	Ignoring reference file because it already appears to have been processed.
+NOTE:	If you wish to regenerate the index, please manually delete ref/genome/1/summary.txt
+Set genome to 1
+
+Loaded Reference:	1.699 seconds.
+Loading index for chunk 1-1, build 1
+Generated Index:	0.744 seconds.
+Analyzed Index:   	0.861 seconds.
+Started output stream:	0.012 seconds.
+Started output stream:	0.001 seconds.
+Cleared Memory:    	0.799 seconds.
+Processing reads in single-ended mode.
+Started read stream.
+Started 24 mapping threads.
+Detecting finished threads: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23
+
+   ------------------   Results   ------------------   
+
+Genome:                	1
+Key Length:            	12
+Max Indel:             	20
+Minimum Score Ratio:  	0.45
+Mapping Mode:         	normal
+Reads Used:           	22026371	(3200025659 bases)
+
+Mapping:          	617.087 seconds.
+Reads/sec:       	35694.14
+kBases/sec:      	5185.70
+
+unmapped:        	 22.8752% 	  5038568 	 23.0053% 	   736175393
+
+
+Read 1 data:      	pct reads	num reads 	pct bases	   num bases
+
+mapped:          	 77.1248% 	 16987803 	 76.9947% 	  2463850266
+unambiguous:     	 59.8724% 	 13187725 	 59.7994% 	  1913595544
+ambiguous:       	 17.2524% 	  3800078 	 17.1953% 	   550254722
+low-Q discards:  	  0.0000% 	        0 	  0.0000% 	           0
+
+perfect best site:	 43.4993% 	  9581320 	 43.3384% 	  1386838392
+semiperfect site:	 44.2675% 	  9750531 	 44.1101% 	  1411534237
+
+Match Rate:      	      NA 	       NA 	 98.9397% 	  2438388675
+Error Rate:      	 35.4632% 	  7238520 	  0.9668% 	    23826586
+Sub Rate:        	 34.8132% 	  7105854 	  0.8903% 	    21941662
+Del Rate:        	  1.3864% 	   282979 	  0.0272% 	      670196
+Ins Rate:        	  1.9827% 	   404698 	  0.0493% 	     1214728
+N Rate:          	  1.4922% 	   304587 	  0.0935% 	     2305201
+
+Total time:     	621.349 seconds.
+java -ea -Xmx100332m -Xms100332m -cp /usr/share/java/bbmap.jar align2.BBMap build=1 overwrite=true fastareadlen=500 in=~/data/Mchameleon/jgi/mapping/mc7/52663.3.414974.CACGTTGT-CACGTTGT.filter_mc.fq slow k=12 ref=~/data/Mchameleon/raw_data/mapping/Mchameleon/assembly/transcripts.fasta outm=~/data/Mchameleon/jgi/mapping/mc8/52663.3.414974.CACGTTGT-CACGTTGT.filter_mc2.fq outu=~/data/Mchameleon/jgi/mapping/bad/52663.3.414974.CACGTTGT-CACGTTGT.filter_bad.fq printunmappedcount=t covk=1 nfilter=10 interleaved=f maxindel=20 threads=24 minid=0.90 ambiguous=all maxsites2=20000 physcov=t
+Executing align2.BBMap [tipsearch=150, minhits=1, minratio=0.45, build=1, overwrite=true, fastareadlen=500, in=~/data/Mchameleon/jgi/mapping/mc7/52663.3.414974.CACGTTGT-CACGTTGT.filter_mc.fq, k=12, ref=~/data/Mchameleon/raw_data/mapping/Mchameleon/assembly/transcripts.fasta, outm=~/data/Mchameleon/jgi/mapping/mc8/52663.3.414974.CACGTTGT-CACGTTGT.filter_mc2.fq, outu=~/data/Mchameleon/jgi/mapping/bad/52663.3.414974.CACGTTGT-CACGTTGT.filter_bad.fq, printunmappedcount=t, covk=1, nfilter=10, interleaved=f, maxindel=20, threads=24, minid=0.90, ambiguous=all, maxsites2=20000, physcov=t]
+Version 38.95
+
+Set MINIMUM_ALIGNMENT_SCORE_RATIO to 0.450
+Set INTERLEAVED to false
+Set threads to 24
+Retaining all best sites for ambiguous mappings.
+NOTE:	Ignoring reference file because it already appears to have been processed.
+NOTE:	If you wish to regenerate the index, please manually delete ref/genome/1/summary.txt
+Set genome to 1
+
+Loaded Reference:	1.693 seconds.
+Loading index for chunk 1-1, build 1
+Generated Index:	0.683 seconds.
+Analyzed Index:   	0.883 seconds.
+Started output stream:	0.010 seconds.
+Started output stream:	0.002 seconds.
+Cleared Memory:    	0.794 seconds.
+Processing reads in single-ended mode.
+Started read stream.
+Started 24 mapping threads.
+Detecting finished threads: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23
+
+   ------------------   Results   ------------------   
+
+Genome:                	1
+Key Length:            	12
+Max Indel:             	20
+Minimum Score Ratio:  	0.45
+Mapping Mode:         	normal
+Reads Used:           	30152149	(4380002265 bases)
+
+Mapping:          	852.149 seconds.
+Reads/sec:       	35383.68
+kBases/sec:      	5139.95
+
+unmapped:        	 21.8162% 	  6578053 	 21.9364% 	   960815555
+
+
+Read 1 data:      	pct reads	num reads 	pct bases	   num bases
+
+mapped:          	 78.1838% 	 23574096 	 78.0636% 	  3419186710
+unambiguous:     	 60.5394% 	 18253942 	 60.4847% 	  2649230140
+ambiguous:       	 17.6444% 	  5320154 	 17.5789% 	   769956570
+low-Q discards:  	  0.0000% 	        0 	  0.0000% 	           0
+
+perfect best site:	 44.8308% 	 13517461 	 44.6260% 	  1954620130
+semiperfect site:	 45.5966% 	 13748342 	 45.3941% 	  1988263953
+
+Match Rate:      	      NA 	       NA 	 98.9784% 	  3385146843
+Error Rate:      	 35.0512% 	  9827132 	  0.9303% 	    31816731
+Sub Rate:        	 34.3585% 	  9632928 	  0.8577% 	    29334874
+Del Rate:        	  1.3844% 	   388140 	  0.0263% 	      901082
+Ins Rate:        	  1.9189% 	   537998 	  0.0462% 	     1580775
+N Rate:          	  1.4709% 	   412383 	  0.0913% 	     3124218
+
+Total time:     	856.300 seconds.
+java -ea -Xmx100243m -Xms100243m -cp /usr/share/java/bbmap.jar align2.BBMap build=1 overwrite=true fastareadlen=500 in=~/data/Mchameleon/jgi/mapping/mc7/52663.3.414974.CACTGACA-CACTGACA.filter_mc.fq slow k=12 ref=~/data/Mchameleon/raw_data/mapping/Mchameleon/assembly/transcripts.fasta outm=~/data/Mchameleon/jgi/mapping/mc8/52663.3.414974.CACTGACA-CACTGACA.filter_mc2.fq outu=~/data/Mchameleon/jgi/mapping/bad/52663.3.414974.CACTGACA-CACTGACA.filter_bad.fq printunmappedcount=t covk=1 nfilter=10 interleaved=f maxindel=20 threads=24 minid=0.90 ambiguous=all maxsites2=20000 physcov=t
+Executing align2.BBMap [tipsearch=150, minhits=1, minratio=0.45, build=1, overwrite=true, fastareadlen=500, in=~/data/Mchameleon/jgi/mapping/mc7/52663.3.414974.CACTGACA-CACTGACA.filter_mc.fq, k=12, ref=~/data/Mchameleon/raw_data/mapping/Mchameleon/assembly/transcripts.fasta, outm=~/data/Mchameleon/jgi/mapping/mc8/52663.3.414974.CACTGACA-CACTGACA.filter_mc2.fq, outu=~/data/Mchameleon/jgi/mapping/bad/52663.3.414974.CACTGACA-CACTGACA.filter_bad.fq, printunmappedcount=t, covk=1, nfilter=10, interleaved=f, maxindel=20, threads=24, minid=0.90, ambiguous=all, maxsites2=20000, physcov=t]
+Version 38.95
+
+Set MINIMUM_ALIGNMENT_SCORE_RATIO to 0.450
+Set INTERLEAVED to false
+Set threads to 24
+Retaining all best sites for ambiguous mappings.
+NOTE:	Ignoring reference file because it already appears to have been processed.
+NOTE:	If you wish to regenerate the index, please manually delete ref/genome/1/summary.txt
+Set genome to 1
+
+Loaded Reference:	1.685 seconds.
+Loading index for chunk 1-1, build 1
+Generated Index:	0.734 seconds.
+Analyzed Index:   	0.897 seconds.
+Started output stream:	0.012 seconds.
+Started output stream:	0.001 seconds.
+Cleared Memory:    	0.787 seconds.
+Processing reads in single-ended mode.
+Started read stream.
+Started 24 mapping threads.
+Detecting finished threads: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23
+
+   ------------------   Results   ------------------   
+
+Genome:                	1
+Key Length:            	12
+Max Indel:             	20
+Minimum Score Ratio:  	0.45
+Mapping Mode:         	normal
+Reads Used:           	51928293	(7592908350 bases)
+
+Mapping:          	1503.645 seconds.
+Reads/sec:       	34534.95
+kBases/sec:      	5049.67
+
+unmapped:        	 21.7764% 	 11308136 	 21.8718% 	  1660705318
+
+
+Read 1 data:      	pct reads	num reads 	pct bases	   num bases
+
+mapped:          	 78.2236% 	 40620157 	 78.1282% 	  5932203032
+unambiguous:     	 60.6142% 	 31475939 	 60.5739% 	  4599318890
+ambiguous:       	 17.6093% 	  9144218 	 17.5543% 	  1332884142
+low-Q discards:  	  0.0000% 	        0 	  0.0000% 	           0
+
+perfect best site:	 44.7549% 	 23240443 	 44.5886% 	  3385573194
+semiperfect site:	 45.5030% 	 23628920 	 45.3384% 	  3442499446
+
+Match Rate:      	      NA 	       NA 	 98.9835% 	  5873430314
+Error Rate:      	 35.1353% 	 16993267 	  0.9268% 	    54995321
+Sub Rate:        	 34.4445% 	 16659159 	  0.8552% 	    50747031
+Del Rate:        	  1.3759% 	   665450 	  0.0260% 	     1543754
+Ins Rate:        	  1.8936% 	   915846 	  0.0456% 	     2704536
+N Rate:          	  1.4422% 	   697515 	  0.0897% 	     5321151
+
+Total time:     	1507.838 seconds.
+java -ea -Xmx100282m -Xms100282m -cp /usr/share/java/bbmap.jar align2.BBMap build=1 overwrite=true fastareadlen=500 in=~/data/Mchameleon/jgi/mapping/mc7/52663.3.414974.CAGAGTGT-CAGAGTGT.filter_mc.fq slow k=12 ref=~/data/Mchameleon/raw_data/mapping/Mchameleon/assembly/transcripts.fasta outm=~/data/Mchameleon/jgi/mapping/mc8/52663.3.414974.CAGAGTGT-CAGAGTGT.filter_mc2.fq outu=~/data/Mchameleon/jgi/mapping/bad/52663.3.414974.CAGAGTGT-CAGAGTGT.filter_bad.fq printunmappedcount=t covk=1 nfilter=10 interleaved=f maxindel=20 threads=24 minid=0.90 ambiguous=all maxsites2=20000 physcov=t
+Executing align2.BBMap [tipsearch=150, minhits=1, minratio=0.45, build=1, overwrite=true, fastareadlen=500, in=~/data/Mchameleon/jgi/mapping/mc7/52663.3.414974.CAGAGTGT-CAGAGTGT.filter_mc.fq, k=12, ref=~/data/Mchameleon/raw_data/mapping/Mchameleon/assembly/transcripts.fasta, outm=~/data/Mchameleon/jgi/mapping/mc8/52663.3.414974.CAGAGTGT-CAGAGTGT.filter_mc2.fq, outu=~/data/Mchameleon/jgi/mapping/bad/52663.3.414974.CAGAGTGT-CAGAGTGT.filter_bad.fq, printunmappedcount=t, covk=1, nfilter=10, interleaved=f, maxindel=20, threads=24, minid=0.90, ambiguous=all, maxsites2=20000, physcov=t]
+Version 38.95
+
+Set MINIMUM_ALIGNMENT_SCORE_RATIO to 0.450
+Set INTERLEAVED to false
+Set threads to 24
+Retaining all best sites for ambiguous mappings.
+NOTE:	Ignoring reference file because it already appears to have been processed.
+NOTE:	If you wish to regenerate the index, please manually delete ref/genome/1/summary.txt
+Set genome to 1
+
+Loaded Reference:	1.724 seconds.
+Loading index for chunk 1-1, build 1
+Generated Index:	0.761 seconds.
+Analyzed Index:   	0.876 seconds.
+Started output stream:	0.011 seconds.
+Started output stream:	0.001 seconds.
+Cleared Memory:    	0.795 seconds.
+Processing reads in single-ended mode.
+Started read stream.
+Started 24 mapping threads.
+Detecting finished threads: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23
+
+   ------------------   Results   ------------------   
+
+Genome:                	1
+Key Length:            	12
+Max Indel:             	20
+Minimum Score Ratio:  	0.45
+Mapping Mode:         	normal
+Reads Used:           	15782828	(2274321673 bases)
+
+Mapping:          	483.196 seconds.
+Reads/sec:       	32663.42
+kBases/sec:      	4706.83
+
+unmapped:        	 24.3017% 	  3835495 	 24.4367% 	   555768123
+
+
+Read 1 data:      	pct reads	num reads 	pct bases	   num bases
+
+mapped:          	 75.6983% 	 11947333 	 75.5633% 	  1718553550
+unambiguous:     	 59.3004% 	  9359280 	 59.2263% 	  1346995927
+ambiguous:       	 16.3979% 	  2588053 	 16.3371% 	   371557623
+low-Q discards:  	  0.0000% 	        0 	  0.0000% 	           0
+
+perfect best site:	 43.7608% 	  6906699 	 43.5425% 	   990295855
+semiperfect site:	 44.5729% 	  7034863 	 44.3585% 	  1008855420
+
+Match Rate:      	      NA 	       NA 	 98.9659% 	  1701210763
+Error Rate:      	 34.1251% 	  4913043 	  0.9358% 	    16086217
+Sub Rate:        	 33.5171% 	  4825515 	  0.8626% 	    14828061
+Del Rate:        	  1.2522% 	   180287 	  0.0252% 	      433433
+Ins Rate:        	  1.8920% 	   272396 	  0.0480% 	      824723
+N Rate:          	  1.5337% 	   220816 	  0.0983% 	     1690003
+
+Total time:     	487.465 seconds.
+java -ea -Xmx100252m -Xms100252m -cp /usr/share/java/bbmap.jar align2.BBMap build=1 overwrite=true fastareadlen=500 in=~/data/Mchameleon/jgi/mapping/mc7/52663.3.414974.CATACCAC-CATACCAC.filter_mc.fq slow k=12 ref=~/data/Mchameleon/raw_data/mapping/Mchameleon/assembly/transcripts.fasta outm=~/data/Mchameleon/jgi/mapping/mc8/52663.3.414974.CATACCAC-CATACCAC.filter_mc2.fq outu=~/data/Mchameleon/jgi/mapping/bad/52663.3.414974.CATACCAC-CATACCAC.filter_bad.fq printunmappedcount=t covk=1 nfilter=10 interleaved=f maxindel=20 threads=24 minid=0.90 ambiguous=all maxsites2=20000 physcov=t
+Executing align2.BBMap [tipsearch=150, minhits=1, minratio=0.45, build=1, overwrite=true, fastareadlen=500, in=~/data/Mchameleon/jgi/mapping/mc7/52663.3.414974.CATACCAC-CATACCAC.filter_mc.fq, k=12, ref=~/data/Mchameleon/raw_data/mapping/Mchameleon/assembly/transcripts.fasta, outm=~/data/Mchameleon/jgi/mapping/mc8/52663.3.414974.CATACCAC-CATACCAC.filter_mc2.fq, outu=~/data/Mchameleon/jgi/mapping/bad/52663.3.414974.CATACCAC-CATACCAC.filter_bad.fq, printunmappedcount=t, covk=1, nfilter=10, interleaved=f, maxindel=20, threads=24, minid=0.90, ambiguous=all, maxsites2=20000, physcov=t]
+Version 38.95
+
+Set MINIMUM_ALIGNMENT_SCORE_RATIO to 0.450
+Set INTERLEAVED to false
+Set threads to 24
+Retaining all best sites for ambiguous mappings.
+NOTE:	Ignoring reference file because it already appears to have been processed.
+NOTE:	If you wish to regenerate the index, please manually delete ref/genome/1/summary.txt
+Set genome to 1
+
+Loaded Reference:	1.708 seconds.
+Loading index for chunk 1-1, build 1
+Generated Index:	0.693 seconds.
+Analyzed Index:   	0.889 seconds.
+Started output stream:	0.011 seconds.
+Started output stream:	0.002 seconds.
+Cleared Memory:    	0.775 seconds.
+Processing reads in single-ended mode.
+Started read stream.
+Started 24 mapping threads.
+Detecting finished threads: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23
+
+   ------------------   Results   ------------------   
+
+Genome:                	1
+Key Length:            	12
+Max Indel:             	20
+Minimum Score Ratio:  	0.45
+Mapping Mode:         	normal
+Reads Used:           	22708874	(3274538521 bases)
+
+Mapping:          	651.486 seconds.
+Reads/sec:       	34857.03
+kBases/sec:      	5026.26
+
+unmapped:        	 22.8318% 	  5184838 	 23.0502% 	   754787587
+
+
+Read 1 data:      	pct reads	num reads 	pct bases	   num bases
+
+mapped:          	 77.1682% 	 17524036 	 76.9498% 	  2519750934
+unambiguous:     	 59.7015% 	 13557532 	 59.5638% 	  1950438200
+ambiguous:       	 17.4668% 	  3966504 	 17.3860% 	   569312734
+low-Q discards:  	  0.0000% 	        0 	  0.0000% 	           0
+
+perfect best site:	 44.8768% 	 10191008 	 44.6306% 	  1461446334
+semiperfect site:	 45.6217% 	 10360167 	 45.3795% 	  1485970303
+
+Match Rate:      	      NA 	       NA 	 98.9755% 	  2494618727
+Error Rate:      	 33.9380% 	  7164736 	  0.9340% 	    23541446
+Sub Rate:        	 33.2912% 	  7028183 	  0.8594% 	    21661912
+Del Rate:        	  1.3522% 	   285470 	  0.0274% 	      690810
+Ins Rate:        	  1.8781% 	   396488 	  0.0472% 	     1188724
+N Rate:          	  1.4193% 	   299631 	  0.0905% 	     2281571
+
+Total time:     	655.680 seconds.
+java -ea -Xmx100062m -Xms100062m -cp /usr/share/java/bbmap.jar align2.BBMap build=1 overwrite=true fastareadlen=500 in=~/data/Mchameleon/jgi/mapping/mc7/52663.3.414974.CCAAGCAA-CCAAGCAA.filter_mc.fq slow k=12 ref=~/data/Mchameleon/raw_data/mapping/Mchameleon/assembly/transcripts.fasta outm=~/data/Mchameleon/jgi/mapping/mc8/52663.3.414974.CCAAGCAA-CCAAGCAA.filter_mc2.fq outu=~/data/Mchameleon/jgi/mapping/bad/52663.3.414974.CCAAGCAA-CCAAGCAA.filter_bad.fq printunmappedcount=t covk=1 nfilter=10 interleaved=f maxindel=20 threads=24 minid=0.90 ambiguous=all maxsites2=20000 physcov=t
+Executing align2.BBMap [tipsearch=150, minhits=1, minratio=0.45, build=1, overwrite=true, fastareadlen=500, in=~/data/Mchameleon/jgi/mapping/mc7/52663.3.414974.CCAAGCAA-CCAAGCAA.filter_mc.fq, k=12, ref=~/data/Mchameleon/raw_data/mapping/Mchameleon/assembly/transcripts.fasta, outm=~/data/Mchameleon/jgi/mapping/mc8/52663.3.414974.CCAAGCAA-CCAAGCAA.filter_mc2.fq, outu=~/data/Mchameleon/jgi/mapping/bad/52663.3.414974.CCAAGCAA-CCAAGCAA.filter_bad.fq, printunmappedcount=t, covk=1, nfilter=10, interleaved=f, maxindel=20, threads=24, minid=0.90, ambiguous=all, maxsites2=20000, physcov=t]
+Version 38.95
+
+Set MINIMUM_ALIGNMENT_SCORE_RATIO to 0.450
+Set INTERLEAVED to false
+Set threads to 24
+Retaining all best sites for ambiguous mappings.
+NOTE:	Ignoring reference file because it already appears to have been processed.
+NOTE:	If you wish to regenerate the index, please manually delete ref/genome/1/summary.txt
+Set genome to 1
+
+Loaded Reference:	1.680 seconds.
+Loading index for chunk 1-1, build 1
+Generated Index:	0.704 seconds.
+Analyzed Index:   	0.922 seconds.
+Started output stream:	0.020 seconds.
+Started output stream:	0.001 seconds.
+Cleared Memory:    	0.769 seconds.
+Processing reads in single-ended mode.
+Started read stream.
+Started 24 mapping threads.
+Detecting finished threads: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23
+
+   ------------------   Results   ------------------   
+
+Genome:                	1
+Key Length:            	12
+Max Indel:             	20
+Minimum Score Ratio:  	0.45
+Mapping Mode:         	normal
+Reads Used:           	34673795	(5059335355 bases)
+
+Mapping:          	1020.855 seconds.
+Reads/sec:       	33965.46
+kBases/sec:      	4955.98
+
+unmapped:        	 22.9732% 	  7965668 	 23.0994% 	  1168677818
+
+
+Read 1 data:      	pct reads	num reads 	pct bases	   num bases
+
+mapped:          	 77.0268% 	 26708127 	 76.9006% 	  3890657537
+unambiguous:     	 59.8276% 	 20744496 	 59.7670% 	  3023813169
+ambiguous:       	 17.1992% 	  5963631 	 17.1336% 	   866844368
+low-Q discards:  	  0.0000% 	        0 	  0.0000% 	           0
+
+perfect best site:	 44.3842% 	 15389690 	 44.1923% 	  2235835332
+semiperfect site:	 45.1442% 	 15653220 	 44.9541% 	  2274377890
+
+Match Rate:      	      NA 	       NA 	 98.9714% 	  3851699349
+Error Rate:      	 34.3897% 	 11056458 	  0.9364% 	    36443100
+Sub Rate:        	 33.7067% 	 10836883 	  0.8603% 	    33482268
+Del Rate:        	  1.3960% 	   448832 	  0.0275% 	     1070674
+Ins Rate:        	  1.9731% 	   634373 	  0.0486% 	     1890158
+N Rate:          	  1.4603% 	   469503 	  0.0921% 	     3585762
+
+Total time:     	1025.080 seconds.
+java -ea -Xmx100212m -Xms100212m -cp /usr/share/java/bbmap.jar align2.BBMap build=1 overwrite=true fastareadlen=500 in=~/data/Mchameleon/jgi/mapping/mc7/52663.3.414974.CGAACTGT-CGAACTGT.filter_mc.fq slow k=12 ref=~/data/Mchameleon/raw_data/mapping/Mchameleon/assembly/transcripts.fasta outm=~/data/Mchameleon/jgi/mapping/mc8/52663.3.414974.CGAACTGT-CGAACTGT.filter_mc2.fq outu=~/data/Mchameleon/jgi/mapping/bad/52663.3.414974.CGAACTGT-CGAACTGT.filter_bad.fq printunmappedcount=t covk=1 nfilter=10 interleaved=f maxindel=20 threads=24 minid=0.90 ambiguous=all maxsites2=20000 physcov=t
+Executing align2.BBMap [tipsearch=150, minhits=1, minratio=0.45, build=1, overwrite=true, fastareadlen=500, in=~/data/Mchameleon/jgi/mapping/mc7/52663.3.414974.CGAACTGT-CGAACTGT.filter_mc.fq, k=12, ref=~/data/Mchameleon/raw_data/mapping/Mchameleon/assembly/transcripts.fasta, outm=~/data/Mchameleon/jgi/mapping/mc8/52663.3.414974.CGAACTGT-CGAACTGT.filter_mc2.fq, outu=~/data/Mchameleon/jgi/mapping/bad/52663.3.414974.CGAACTGT-CGAACTGT.filter_bad.fq, printunmappedcount=t, covk=1, nfilter=10, interleaved=f, maxindel=20, threads=24, minid=0.90, ambiguous=all, maxsites2=20000, physcov=t]
+Version 38.95
+
+Set MINIMUM_ALIGNMENT_SCORE_RATIO to 0.450
+Set INTERLEAVED to false
+Set threads to 24
+Retaining all best sites for ambiguous mappings.
+NOTE:	Ignoring reference file because it already appears to have been processed.
+NOTE:	If you wish to regenerate the index, please manually delete ref/genome/1/summary.txt
+Set genome to 1
+
+Loaded Reference:	1.732 seconds.
+Loading index for chunk 1-1, build 1
+Generated Index:	0.745 seconds.
+Analyzed Index:   	0.824 seconds.
+Started output stream:	0.011 seconds.
+Started output stream:	0.002 seconds.
+Cleared Memory:    	0.785 seconds.
+Processing reads in single-ended mode.
+Started read stream.
+Started 24 mapping threads.
+Detecting finished threads: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23
+
+   ------------------   Results   ------------------   
+
+Genome:                	1
+Key Length:            	12
+Max Indel:             	20
+Minimum Score Ratio:  	0.45
+Mapping Mode:         	normal
+Reads Used:           	20719212	(3005247247 bases)
+
+Mapping:          	609.288 seconds.
+Reads/sec:       	34005.63
+kBases/sec:      	4932.39
+
+unmapped:        	 22.0731% 	  4573379 	 22.2094% 	   667447467
+
+
+Read 1 data:      	pct reads	num reads 	pct bases	   num bases
+
+mapped:          	 77.9269% 	 16145833 	 77.7906% 	  2337799780
+unambiguous:     	 60.4449% 	 12523706 	 60.3807% 	  1814590104
+ambiguous:       	 17.4820% 	  3622127 	 17.4099% 	   523209676
+low-Q discards:  	  0.0000% 	        0 	  0.0000% 	           0
+
+perfect best site:	 44.9906% 	  9321699 	 44.7659% 	  1345326240
+semiperfect site:	 45.7518% 	  9479418 	 45.5291% 	  1368260596
+
+Match Rate:      	      NA 	       NA 	 98.9849% 	  2314670733
+Error Rate:      	 34.6890% 	  6667270 	  0.9239% 	    21604381
+Sub Rate:        	 34.0058% 	  6535948 	  0.8518% 	    19918117
+Del Rate:        	  1.3657% 	   262497 	  0.0260% 	      608382
+Ins Rate:        	  1.8901% 	   363270 	  0.0461% 	     1077882
+N Rate:          	  1.4677% 	   282092 	  0.0912% 	     2133048
+
+Total time:     	613.502 seconds.
+java -ea -Xmx100237m -Xms100237m -cp /usr/share/java/bbmap.jar align2.BBMap build=1 overwrite=true fastareadlen=500 in=~/data/Mchameleon/jgi/mapping/mc7/52663.3.414974.CGACCATT-CGACCATT.filter_mc.fq slow k=12 ref=~/data/Mchameleon/raw_data/mapping/Mchameleon/assembly/transcripts.fasta outm=~/data/Mchameleon/jgi/mapping/mc8/52663.3.414974.CGACCATT-CGACCATT.filter_mc2.fq outu=~/data/Mchameleon/jgi/mapping/bad/52663.3.414974.CGACCATT-CGACCATT.filter_bad.fq printunmappedcount=t covk=1 nfilter=10 interleaved=f maxindel=20 threads=24 minid=0.90 ambiguous=all maxsites2=20000 physcov=t
+Executing align2.BBMap [tipsearch=150, minhits=1, minratio=0.45, build=1, overwrite=true, fastareadlen=500, in=~/data/Mchameleon/jgi/mapping/mc7/52663.3.414974.CGACCATT-CGACCATT.filter_mc.fq, k=12, ref=~/data/Mchameleon/raw_data/mapping/Mchameleon/assembly/transcripts.fasta, outm=~/data/Mchameleon/jgi/mapping/mc8/52663.3.414974.CGACCATT-CGACCATT.filter_mc2.fq, outu=~/data/Mchameleon/jgi/mapping/bad/52663.3.414974.CGACCATT-CGACCATT.filter_bad.fq, printunmappedcount=t, covk=1, nfilter=10, interleaved=f, maxindel=20, threads=24, minid=0.90, ambiguous=all, maxsites2=20000, physcov=t]
+Version 38.95
+
+Set MINIMUM_ALIGNMENT_SCORE_RATIO to 0.450
+Set INTERLEAVED to false
+Set threads to 24
+Retaining all best sites for ambiguous mappings.
+NOTE:	Ignoring reference file because it already appears to have been processed.
+NOTE:	If you wish to regenerate the index, please manually delete ref/genome/1/summary.txt
+Set genome to 1
+
+Loaded Reference:	1.708 seconds.
+Loading index for chunk 1-1, build 1
+Generated Index:	0.705 seconds.
+Analyzed Index:   	0.916 seconds.
+Started output stream:	0.012 seconds.
+Started output stream:	0.002 seconds.
+Cleared Memory:    	0.778 seconds.
+Processing reads in single-ended mode.
+Started read stream.
+Started 24 mapping threads.
+Detecting finished threads: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23
+
+   ------------------   Results   ------------------   
+
+Genome:                	1
+Key Length:            	12
+Max Indel:             	20
+Minimum Score Ratio:  	0.45
+Mapping Mode:         	normal
+Reads Used:           	29910639	(4347732157 bases)
+
+Mapping:          	898.197 seconds.
+Reads/sec:       	33300.77
+kBases/sec:      	4840.51
+
+unmapped:        	 22.3588% 	  6687655 	 22.4860% 	   977629652
+
+
+Read 1 data:      	pct reads	num reads 	pct bases	   num bases
+
+mapped:          	 77.6412% 	 23222984 	 77.5140% 	  3370102505
+unambiguous:     	 60.1394% 	 17988073 	 60.0822% 	  2612214250
+ambiguous:       	 17.5018% 	  5234911 	 17.4318% 	   757888255
+low-Q discards:  	  0.0000% 	        0 	  0.0000% 	           0
+
+perfect best site:	 45.0960% 	 13488496 	 44.8925% 	  1951805421
+semiperfect site:	 45.8559% 	 13715786 	 45.6547% 	  1984943493
+
+Match Rate:      	      NA 	       NA 	 98.9951% 	  3337100944
+Error Rate:      	 34.2760% 	  9508452 	  0.9136% 	    30796503
+Sub Rate:        	 33.6243% 	  9327658 	  0.8421% 	    28385628
+Del Rate:        	  1.3362% 	   370679 	  0.0259% 	      872012
+Ins Rate:        	  1.8551% 	   514610 	  0.0457% 	     1538863
+N Rate:          	  1.4550% 	   403631 	  0.0913% 	     3077070
+
+Total time:     	902.397 seconds.
+java -ea -Xmx100339m -Xms100339m -cp /usr/share/java/bbmap.jar align2.BBMap build=1 overwrite=true fastareadlen=500 in=~/data/Mchameleon/jgi/mapping/mc7/52663.3.414974.CTTGCTGT-CTTGCTGT.filter_mc.fq slow k=12 ref=~/data/Mchameleon/raw_data/mapping/Mchameleon/assembly/transcripts.fasta outm=~/data/Mchameleon/jgi/mapping/mc8/52663.3.414974.CTTGCTGT-CTTGCTGT.filter_mc2.fq outu=~/data/Mchameleon/jgi/mapping/bad/52663.3.414974.CTTGCTGT-CTTGCTGT.filter_bad.fq printunmappedcount=t covk=1 nfilter=10 interleaved=f maxindel=20 threads=24 minid=0.90 ambiguous=all maxsites2=20000 physcov=t
+Executing align2.BBMap [tipsearch=150, minhits=1, minratio=0.45, build=1, overwrite=true, fastareadlen=500, in=~/data/Mchameleon/jgi/mapping/mc7/52663.3.414974.CTTGCTGT-CTTGCTGT.filter_mc.fq, k=12, ref=~/data/Mchameleon/raw_data/mapping/Mchameleon/assembly/transcripts.fasta, outm=~/data/Mchameleon/jgi/mapping/mc8/52663.3.414974.CTTGCTGT-CTTGCTGT.filter_mc2.fq, outu=~/data/Mchameleon/jgi/mapping/bad/52663.3.414974.CTTGCTGT-CTTGCTGT.filter_bad.fq, printunmappedcount=t, covk=1, nfilter=10, interleaved=f, maxindel=20, threads=24, minid=0.90, ambiguous=all, maxsites2=20000, physcov=t]
+Version 38.95
+
+Set MINIMUM_ALIGNMENT_SCORE_RATIO to 0.450
+Set INTERLEAVED to false
+Set threads to 24
+Retaining all best sites for ambiguous mappings.
+NOTE:	Ignoring reference file because it already appears to have been processed.
+NOTE:	If you wish to regenerate the index, please manually delete ref/genome/1/summary.txt
+Set genome to 1
+
+Loaded Reference:	1.686 seconds.
+Loading index for chunk 1-1, build 1
+Generated Index:	0.698 seconds.
+Analyzed Index:   	0.877 seconds.
+Started output stream:	0.011 seconds.
+Started output stream:	0.002 seconds.
+Cleared Memory:    	0.796 seconds.
+Processing reads in single-ended mode.
+Started read stream.
+Started 24 mapping threads.
+Detecting finished threads: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23
+
+   ------------------   Results   ------------------   
+
+Genome:                	1
+Key Length:            	12
+Max Indel:             	20
+Minimum Score Ratio:  	0.45
+Mapping Mode:         	normal
+Reads Used:           	26992029	(3939704820 bases)
+
+Mapping:          	782.698 seconds.
+Reads/sec:       	34485.89
+kBases/sec:      	5033.49
+
+unmapped:        	 23.1216% 	  6240985 	 23.2301% 	   915195918
+
+
+Read 1 data:      	pct reads	num reads 	pct bases	   num bases
+
+mapped:          	 76.8784% 	 20751044 	 76.7699% 	  3024508902
+unambiguous:     	 60.0940% 	 16220588 	 60.0415% 	  2365458037
+ambiguous:       	 16.7844% 	  4530456 	 16.7284% 	   659050865
+low-Q discards:  	  0.0000% 	        0 	  0.0000% 	           0
+
+perfect best site:	 44.3564% 	 11972705 	 44.1783% 	  1740493876
+semiperfect site:	 45.1267% 	 12180599 	 44.9503% 	  1770909940
+
+Match Rate:      	      NA 	       NA 	 98.9967% 	  2994868408
+Error Rate:      	 34.3802% 	  8571293 	  0.9106% 	    27547942
+Sub Rate:        	 33.7810% 	  8421910 	  0.8405% 	    25426114
+Del Rate:        	  1.2188% 	   303870 	  0.0235% 	      711667
+Ins Rate:        	  1.8637% 	   464627 	  0.0466% 	     1410161
+N Rate:          	  1.4692% 	   366277 	  0.0927% 	     2804219
+
+Total time:     	786.861 seconds.
+java -ea -Xmx100243m -Xms100243m -cp /usr/share/java/bbmap.jar align2.BBMap build=1 overwrite=true fastareadlen=500 in=~/data/Mchameleon/jgi/mapping/mc7/52663.3.414974.GAAGTACC-GAAGTACC.filter_mc.fq slow k=12 ref=~/data/Mchameleon/raw_data/mapping/Mchameleon/assembly/transcripts.fasta outm=~/data/Mchameleon/jgi/mapping/mc8/52663.3.414974.GAAGTACC-GAAGTACC.filter_mc2.fq outu=~/data/Mchameleon/jgi/mapping/bad/52663.3.414974.GAAGTACC-GAAGTACC.filter_bad.fq printunmappedcount=t covk=1 nfilter=10 interleaved=f maxindel=20 threads=24 minid=0.90 ambiguous=all maxsites2=20000 physcov=t
+Executing align2.BBMap [tipsearch=150, minhits=1, minratio=0.45, build=1, overwrite=true, fastareadlen=500, in=~/data/Mchameleon/jgi/mapping/mc7/52663.3.414974.GAAGTACC-GAAGTACC.filter_mc.fq, k=12, ref=~/data/Mchameleon/raw_data/mapping/Mchameleon/assembly/transcripts.fasta, outm=~/data/Mchameleon/jgi/mapping/mc8/52663.3.414974.GAAGTACC-GAAGTACC.filter_mc2.fq, outu=~/data/Mchameleon/jgi/mapping/bad/52663.3.414974.GAAGTACC-GAAGTACC.filter_bad.fq, printunmappedcount=t, covk=1, nfilter=10, interleaved=f, maxindel=20, threads=24, minid=0.90, ambiguous=all, maxsites2=20000, physcov=t]
+Version 38.95
+
+Set MINIMUM_ALIGNMENT_SCORE_RATIO to 0.450
+Set INTERLEAVED to false
+Set threads to 24
+Retaining all best sites for ambiguous mappings.
+NOTE:	Ignoring reference file because it already appears to have been processed.
+NOTE:	If you wish to regenerate the index, please manually delete ref/genome/1/summary.txt
+Set genome to 1
+
+Loaded Reference:	1.692 seconds.
+Loading index for chunk 1-1, build 1
+Generated Index:	0.704 seconds.
+Analyzed Index:   	0.882 seconds.
+Started output stream:	0.010 seconds.
+Started output stream:	0.001 seconds.
+Cleared Memory:    	0.806 seconds.
+Processing reads in single-ended mode.
+Started read stream.
+Started 24 mapping threads.
+Detecting finished threads: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23
+
+   ------------------   Results   ------------------   
+
+Genome:                	1
+Key Length:            	12
+Max Indel:             	20
+Minimum Score Ratio:  	0.45
+Mapping Mode:         	normal
+Reads Used:           	38377751	(5563144161 bases)
+
+Mapping:          	1148.005 seconds.
+Reads/sec:       	33429.95
+kBases/sec:      	4845.92
+
+unmapped:        	 22.9752% 	  8817384 	 23.1233% 	  1286381327
+
+
+Read 1 data:      	pct reads	num reads 	pct bases	   num bases
+
+mapped:          	 77.0248% 	 29560367 	 76.8767% 	  4276762834
+unambiguous:     	 59.7647% 	 22936331 	 59.6942% 	  3320873725
+ambiguous:       	 17.2601% 	  6624036 	 17.1825% 	   955889109
+low-Q discards:  	  0.0000% 	        0 	  0.0000% 	           0
+
+perfect best site:	 44.2378% 	 16977483 	 44.0162% 	  2448686885
+semiperfect site:	 45.0033% 	 17271265 	 44.7846% 	  2491432376
+
+Match Rate:      	      NA 	       NA 	 98.9665% 	  4233715044
+Error Rate:      	 34.5540% 	 12291051 	  0.9405% 	    40233863
+Sub Rate:        	 33.8920% 	 12055563 	  0.8648% 	    36995122
+Del Rate:        	  1.3758% 	   489374 	  0.0272% 	     1164160
+Ins Rate:        	  1.9545% 	   695226 	  0.0485% 	     2074581
+N Rate:          	  1.4690% 	   522547 	  0.0930% 	     3978087
+
+Total time:     	1152.214 seconds.
+java -ea -Xmx100283m -Xms100283m -cp /usr/share/java/bbmap.jar align2.BBMap build=1 overwrite=true fastareadlen=500 in=~/data/Mchameleon/jgi/mapping/mc7/52663.3.414974.GGATACCA-GGATACCA.filter_mc.fq slow k=12 ref=~/data/Mchameleon/raw_data/mapping/Mchameleon/assembly/transcripts.fasta outm=~/data/Mchameleon/jgi/mapping/mc8/52663.3.414974.GGATACCA-GGATACCA.filter_mc2.fq outu=~/data/Mchameleon/jgi/mapping/bad/52663.3.414974.GGATACCA-GGATACCA.filter_bad.fq printunmappedcount=t covk=1 nfilter=10 interleaved=f maxindel=20 threads=24 minid=0.90 ambiguous=all maxsites2=20000 physcov=t
+Executing align2.BBMap [tipsearch=150, minhits=1, minratio=0.45, build=1, overwrite=true, fastareadlen=500, in=~/data/Mchameleon/jgi/mapping/mc7/52663.3.414974.GGATACCA-GGATACCA.filter_mc.fq, k=12, ref=~/data/Mchameleon/raw_data/mapping/Mchameleon/assembly/transcripts.fasta, outm=~/data/Mchameleon/jgi/mapping/mc8/52663.3.414974.GGATACCA-GGATACCA.filter_mc2.fq, outu=~/data/Mchameleon/jgi/mapping/bad/52663.3.414974.GGATACCA-GGATACCA.filter_bad.fq, printunmappedcount=t, covk=1, nfilter=10, interleaved=f, maxindel=20, threads=24, minid=0.90, ambiguous=all, maxsites2=20000, physcov=t]
+Version 38.95
+
+Set MINIMUM_ALIGNMENT_SCORE_RATIO to 0.450
+Set INTERLEAVED to false
+Set threads to 24
+Retaining all best sites for ambiguous mappings.
+NOTE:	Ignoring reference file because it already appears to have been processed.
+NOTE:	If you wish to regenerate the index, please manually delete ref/genome/1/summary.txt
+Set genome to 1
+
+Loaded Reference:	1.690 seconds.
+Loading index for chunk 1-1, build 1
+Generated Index:	0.699 seconds.
+Analyzed Index:   	0.865 seconds.
+Started output stream:	0.012 seconds.
+Started output stream:	0.001 seconds.
+Cleared Memory:    	0.783 seconds.
+Processing reads in single-ended mode.
+Started read stream.
+Started 24 mapping threads.
+Detecting finished threads: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23
+
+   ------------------   Results   ------------------   
+
+Genome:                	1
+Key Length:            	12
+Max Indel:             	20
+Minimum Score Ratio:  	0.45
+Mapping Mode:         	normal
+Reads Used:           	20738364	(3015167337 bases)
+
+Mapping:          	574.915 seconds.
+Reads/sec:       	36072.06
+kBases/sec:      	5244.55
+
+unmapped:        	 23.2948% 	  4830969 	 23.4032% 	   705646046
+
+
+Read 1 data:      	pct reads	num reads 	pct bases	   num bases
+
+mapped:          	 76.7052% 	 15907395 	 76.5968% 	  2309521291
+unambiguous:     	 60.0445% 	 12452242 	 59.9866% 	  1808697117
+ambiguous:       	 16.6607% 	  3455153 	 16.6102% 	   500824174
+low-Q discards:  	  0.0000% 	        0 	  0.0000% 	           0
+
+perfect best site:	 44.2410% 	  9174856 	 44.0612% 	  1328519486
+semiperfect site:	 45.0449% 	  9341577 	 44.8684% 	  1352857821
+
+Match Rate:      	      NA 	       NA 	 98.9903% 	  2286749785
+Error Rate:      	 34.4452% 	  6566494 	  0.9133% 	    21098358
+Sub Rate:        	 33.8324% 	  6449657 	  0.8419% 	    19448240
+Del Rate:        	  1.2429% 	   236934 	  0.0240% 	      554484
+Ins Rate:        	  1.8957% 	   361382 	  0.0474% 	     1095634
+N Rate:          	  1.5271% 	   291112 	  0.0964% 	     2227632
+
+Total time:     	579.077 seconds.
+java -ea -Xmx100252m -Xms100252m -cp /usr/share/java/bbmap.jar align2.BBMap build=1 overwrite=true fastareadlen=500 in=~/data/Mchameleon/jgi/mapping/mc7/52663.3.414974.GTCTAGGT-GTCTAGGT.filter_mc.fq slow k=12 ref=~/data/Mchameleon/raw_data/mapping/Mchameleon/assembly/transcripts.fasta outm=~/data/Mchameleon/jgi/mapping/mc8/52663.3.414974.GTCTAGGT-GTCTAGGT.filter_mc2.fq outu=~/data/Mchameleon/jgi/mapping/bad/52663.3.414974.GTCTAGGT-GTCTAGGT.filter_bad.fq printunmappedcount=t covk=1 nfilter=10 interleaved=f maxindel=20 threads=24 minid=0.90 ambiguous=all maxsites2=20000 physcov=t
+Executing align2.BBMap [tipsearch=150, minhits=1, minratio=0.45, build=1, overwrite=true, fastareadlen=500, in=~/data/Mchameleon/jgi/mapping/mc7/52663.3.414974.GTCTAGGT-GTCTAGGT.filter_mc.fq, k=12, ref=~/data/Mchameleon/raw_data/mapping/Mchameleon/assembly/transcripts.fasta, outm=~/data/Mchameleon/jgi/mapping/mc8/52663.3.414974.GTCTAGGT-GTCTAGGT.filter_mc2.fq, outu=~/data/Mchameleon/jgi/mapping/bad/52663.3.414974.GTCTAGGT-GTCTAGGT.filter_bad.fq, printunmappedcount=t, covk=1, nfilter=10, interleaved=f, maxindel=20, threads=24, minid=0.90, ambiguous=all, maxsites2=20000, physcov=t]
+Version 38.95
+
+Set MINIMUM_ALIGNMENT_SCORE_RATIO to 0.450
+Set INTERLEAVED to false
+Set threads to 24
+Retaining all best sites for ambiguous mappings.
+NOTE:	Ignoring reference file because it already appears to have been processed.
+NOTE:	If you wish to regenerate the index, please manually delete ref/genome/1/summary.txt
+Set genome to 1
+
+Loaded Reference:	1.711 seconds.
+Loading index for chunk 1-1, build 1
+Generated Index:	0.712 seconds.
+Analyzed Index:   	0.901 seconds.
+Started output stream:	0.010 seconds.
+Started output stream:	0.001 seconds.
+Cleared Memory:    	0.794 seconds.
+Processing reads in single-ended mode.
+Started read stream.
+Started 24 mapping threads.
+Detecting finished threads: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23
+
+   ------------------   Results   ------------------   
+
+Genome:                	1
+Key Length:            	12
+Max Indel:             	20
+Minimum Score Ratio:  	0.45
+Mapping Mode:         	normal
+Reads Used:           	10915534	(1582607048 bases)
+
+Mapping:          	337.731 seconds.
+Reads/sec:       	32320.21
+kBases/sec:      	4686.00
+
+unmapped:        	 25.1872% 	  2749317 	 25.3365% 	   400977220
+
+
+Read 1 data:      	pct reads	num reads 	pct bases	   num bases
+
+mapped:          	 74.8128% 	  8166217 	 74.6635% 	  1181629828
+unambiguous:     	 58.4340% 	  6378381 	 58.3630% 	   923657126
+ambiguous:       	 16.3788% 	  1787836 	 16.3005% 	   257972702
+low-Q discards:  	  0.0000% 	        0 	  0.0000% 	           0
+
+perfect best site:	 42.0422% 	  4589133 	 41.8264% 	   661947645
+semiperfect site:	 42.8076% 	  4672675 	 42.5951% 	   674113466
+
+Match Rate:      	      NA 	       NA 	 98.9123% 	  1169121627
+Error Rate:      	 34.8543% 	  3494007 	  0.9907% 	    11709286
+Sub Rate:        	 34.2318% 	  3431605 	  0.9086% 	    10738923
+Del Rate:        	  1.4019% 	   140539 	  0.0295% 	      348454
+Ins Rate:        	  2.0318% 	   203681 	  0.0526% 	      621909
+N Rate:          	  1.5081% 	   151178 	  0.0971% 	     1147369
+
+Total time:     	341.958 seconds.
+java -ea -Xmx100242m -Xms100242m -cp /usr/share/java/bbmap.jar align2.BBMap build=1 overwrite=true fastareadlen=500 in=~/data/Mchameleon/jgi/mapping/mc7/52663.3.414974.GTTCAACC-GTTCAACC.filter_mc.fq slow k=12 ref=~/data/Mchameleon/raw_data/mapping/Mchameleon/assembly/transcripts.fasta outm=~/data/Mchameleon/jgi/mapping/mc8/52663.3.414974.GTTCAACC-GTTCAACC.filter_mc2.fq outu=~/data/Mchameleon/jgi/mapping/bad/52663.3.414974.GTTCAACC-GTTCAACC.filter_bad.fq printunmappedcount=t covk=1 nfilter=10 interleaved=f maxindel=20 threads=24 minid=0.90 ambiguous=all maxsites2=20000 physcov=t
+Executing align2.BBMap [tipsearch=150, minhits=1, minratio=0.45, build=1, overwrite=true, fastareadlen=500, in=~/data/Mchameleon/jgi/mapping/mc7/52663.3.414974.GTTCAACC-GTTCAACC.filter_mc.fq, k=12, ref=~/data/Mchameleon/raw_data/mapping/Mchameleon/assembly/transcripts.fasta, outm=~/data/Mchameleon/jgi/mapping/mc8/52663.3.414974.GTTCAACC-GTTCAACC.filter_mc2.fq, outu=~/data/Mchameleon/jgi/mapping/bad/52663.3.414974.GTTCAACC-GTTCAACC.filter_bad.fq, printunmappedcount=t, covk=1, nfilter=10, interleaved=f, maxindel=20, threads=24, minid=0.90, ambiguous=all, maxsites2=20000, physcov=t]
+Version 38.95
+
+Set MINIMUM_ALIGNMENT_SCORE_RATIO to 0.450
+Set INTERLEAVED to false
+Set threads to 24
+Retaining all best sites for ambiguous mappings.
+NOTE:	Ignoring reference file because it already appears to have been processed.
+NOTE:	If you wish to regenerate the index, please manually delete ref/genome/1/summary.txt
+Set genome to 1
+
+Loaded Reference:	1.700 seconds.
+Loading index for chunk 1-1, build 1
+Generated Index:	0.693 seconds.
+Analyzed Index:   	0.875 seconds.
+Started output stream:	0.014 seconds.
+Started output stream:	0.001 seconds.
+Cleared Memory:    	0.806 seconds.
+Processing reads in single-ended mode.
+Started read stream.
+Started 24 mapping threads.
+Detecting finished threads: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23
+
+   ------------------   Results   ------------------   
+
+Genome:                	1
+Key Length:            	12
+Max Indel:             	20
+Minimum Score Ratio:  	0.45
+Mapping Mode:         	normal
+Reads Used:           	13062383	(1928533133 bases)
+
+Mapping:          	365.268 seconds.
+Reads/sec:       	35761.11
+kBases/sec:      	5279.78
+
+unmapped:        	 24.1629% 	  3156253 	 24.1824% 	   466366291
+
+
+Read 1 data:      	pct reads	num reads 	pct bases	   num bases
+
+mapped:          	 75.8371% 	  9906130 	 75.8176% 	  1462166842
+unambiguous:     	 59.3505% 	  7752593 	 59.3571% 	  1144722132
+ambiguous:       	 16.4866% 	  2153537 	 16.4604% 	   317444710
+low-Q discards:  	  0.0000% 	        0 	  0.0000% 	           0
+
+perfect best site:	 41.6369% 	  5438769 	 41.5859% 	   801998722
+semiperfect site:	 42.4302% 	  5542393 	 42.3810% 	   817332062
+
+Match Rate:      	      NA 	       NA 	 98.8627% 	  1445933905
+Error Rate:      	 36.4364% 	  4363996 	  1.0389% 	    15194266
+Sub Rate:        	 35.8267% 	  4290978 	  0.9556% 	    13975896
+Del Rate:        	  1.3234% 	   158509 	  0.0274% 	      401012
+Ins Rate:        	  2.2051% 	   264102 	  0.0559% 	      817358
+N Rate:          	  1.5505% 	   185700 	  0.0984% 	     1439683
+
+Total time:     	369.448 seconds.
+java -ea -Xmx100197m -Xms100197m -cp /usr/share/java/bbmap.jar align2.BBMap build=1 overwrite=true fastareadlen=500 in=~/data/Mchameleon/jgi/mapping/mc7/52663.3.414974.TAACCGGT-TAACCGGT.filter_mc.fq slow k=12 ref=~/data/Mchameleon/raw_data/mapping/Mchameleon/assembly/transcripts.fasta outm=~/data/Mchameleon/jgi/mapping/mc8/52663.3.414974.TAACCGGT-TAACCGGT.filter_mc2.fq outu=~/data/Mchameleon/jgi/mapping/bad/52663.3.414974.TAACCGGT-TAACCGGT.filter_bad.fq printunmappedcount=t covk=1 nfilter=10 interleaved=f maxindel=20 threads=24 minid=0.90 ambiguous=all maxsites2=20000 physcov=t
+Executing align2.BBMap [tipsearch=150, minhits=1, minratio=0.45, build=1, overwrite=true, fastareadlen=500, in=~/data/Mchameleon/jgi/mapping/mc7/52663.3.414974.TAACCGGT-TAACCGGT.filter_mc.fq, k=12, ref=~/data/Mchameleon/raw_data/mapping/Mchameleon/assembly/transcripts.fasta, outm=~/data/Mchameleon/jgi/mapping/mc8/52663.3.414974.TAACCGGT-TAACCGGT.filter_mc2.fq, outu=~/data/Mchameleon/jgi/mapping/bad/52663.3.414974.TAACCGGT-TAACCGGT.filter_bad.fq, printunmappedcount=t, covk=1, nfilter=10, interleaved=f, maxindel=20, threads=24, minid=0.90, ambiguous=all, maxsites2=20000, physcov=t]
+Version 38.95
+
+Set MINIMUM_ALIGNMENT_SCORE_RATIO to 0.450
+Set INTERLEAVED to false
+Set threads to 24
+Retaining all best sites for ambiguous mappings.
+NOTE:	Ignoring reference file because it already appears to have been processed.
+NOTE:	If you wish to regenerate the index, please manually delete ref/genome/1/summary.txt
+Set genome to 1
+
+Loaded Reference:	1.754 seconds.
+Loading index for chunk 1-1, build 1
+Generated Index:	0.714 seconds.
+Analyzed Index:   	0.879 seconds.
+Started output stream:	0.012 seconds.
+Started output stream:	0.001 seconds.
+Cleared Memory:    	0.797 seconds.
+Processing reads in single-ended mode.
+Started read stream.
+Started 24 mapping threads.
+Detecting finished threads: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23
+
+   ------------------   Results   ------------------   
+
+Genome:                	1
+Key Length:            	12
+Max Indel:             	20
+Minimum Score Ratio:  	0.45
+Mapping Mode:         	normal
+Reads Used:           	10526041	(1510642288 bases)
+
+Mapping:          	378.572 seconds.
+Reads/sec:       	27804.56
+kBases/sec:      	3990.37
+
+unmapped:        	 28.6911% 	  3020042 	 28.8118% 	   435242795
+
+
+Read 1 data:      	pct reads	num reads 	pct bases	   num bases
+
+mapped:          	 71.3089% 	  7505999 	 71.1882% 	  1075399493
+unambiguous:     	 55.6245% 	  5855053 	 55.5803% 	   839620035
+ambiguous:       	 15.6844% 	  1650946 	 15.6079% 	   235779458
+low-Q discards:  	  0.0000% 	        0 	  0.0000% 	           0
+
+perfect best site:	 38.7328% 	  4077035 	 38.5836% 	   582860683
+semiperfect site:	 39.4514% 	  4152675 	 39.3078% 	   593800591
+
+Match Rate:      	      NA 	       NA 	 98.8466% 	  1063334815
+Error Rate:      	 35.9919% 	  3354093 	  1.0573% 	    11374056
+Sub Rate:        	 35.4111% 	  3299962 	  0.9706% 	    10441486
+Del Rate:        	  1.4557% 	   135654 	  0.0319% 	      343028
+Ins Rate:        	  2.0403% 	   190133 	  0.0548% 	      589542
+N Rate:          	  1.4756% 	   137510 	  0.0961% 	     1033650
+
+Total time:     	382.845 seconds.
+java -ea -Xmx100233m -Xms100233m -cp /usr/share/java/bbmap.jar align2.BBMap build=1 overwrite=true fastareadlen=500 in=~/data/Mchameleon/jgi/mapping/mc7/52663.3.414974.TAGTGACC-TAGTGACC.filter_mc.fq slow k=12 ref=~/data/Mchameleon/raw_data/mapping/Mchameleon/assembly/transcripts.fasta outm=~/data/Mchameleon/jgi/mapping/mc8/52663.3.414974.TAGTGACC-TAGTGACC.filter_mc2.fq outu=~/data/Mchameleon/jgi/mapping/bad/52663.3.414974.TAGTGACC-TAGTGACC.filter_bad.fq printunmappedcount=t covk=1 nfilter=10 interleaved=f maxindel=20 threads=24 minid=0.90 ambiguous=all maxsites2=20000 physcov=t
+Executing align2.BBMap [tipsearch=150, minhits=1, minratio=0.45, build=1, overwrite=true, fastareadlen=500, in=~/data/Mchameleon/jgi/mapping/mc7/52663.3.414974.TAGTGACC-TAGTGACC.filter_mc.fq, k=12, ref=~/data/Mchameleon/raw_data/mapping/Mchameleon/assembly/transcripts.fasta, outm=~/data/Mchameleon/jgi/mapping/mc8/52663.3.414974.TAGTGACC-TAGTGACC.filter_mc2.fq, outu=~/data/Mchameleon/jgi/mapping/bad/52663.3.414974.TAGTGACC-TAGTGACC.filter_bad.fq, printunmappedcount=t, covk=1, nfilter=10, interleaved=f, maxindel=20, threads=24, minid=0.90, ambiguous=all, maxsites2=20000, physcov=t]
+Version 38.95
+
+Set MINIMUM_ALIGNMENT_SCORE_RATIO to 0.450
+Set INTERLEAVED to false
+Set threads to 24
+Retaining all best sites for ambiguous mappings.
+NOTE:	Ignoring reference file because it already appears to have been processed.
+NOTE:	If you wish to regenerate the index, please manually delete ref/genome/1/summary.txt
+Set genome to 1
+
+Loaded Reference:	1.690 seconds.
+Loading index for chunk 1-1, build 1
+Generated Index:	0.699 seconds.
+Analyzed Index:   	0.908 seconds.
+Started output stream:	0.011 seconds.
+Started output stream:	0.023 seconds.
+Cleared Memory:    	0.819 seconds.
+Processing reads in single-ended mode.
+Started read stream.
+Started 24 mapping threads.
+Detecting finished threads: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23
+
+   ------------------   Results   ------------------   
+
+Genome:                	1
+Key Length:            	12
+Max Indel:             	20
+Minimum Score Ratio:  	0.45
+Mapping Mode:         	normal
+Reads Used:           	19281164	(2794002518 bases)
+
+Mapping:          	540.404 seconds.
+Reads/sec:       	35679.17
+kBases/sec:      	5170.21
+
+unmapped:        	 22.2793% 	  4295701 	 22.4340% 	   626805410
+
+
+Read 1 data:      	pct reads	num reads 	pct bases	   num bases
+
+mapped:          	 77.7207% 	 14985463 	 77.5660% 	  2167197108
+unambiguous:     	 60.4133% 	 11648386 	 60.3404% 	  1685913658
+ambiguous:       	 17.3074% 	  3337077 	 17.2256% 	   481283450
+low-Q discards:  	  0.0000% 	        0 	  0.0000% 	           0
+
+perfect best site:	 44.1462% 	  8511909 	 43.8922% 	  1226348803
+semiperfect site:	 44.9053% 	  8658262 	 44.6539% 	  1247630475
+
+Match Rate:      	      NA 	       NA 	 98.9555% 	  2145138386
+Error Rate:      	 35.3192% 	  6328038 	  0.9523% 	    20642895
+Sub Rate:        	 34.6237% 	  6203427 	  0.8775% 	    19021655
+Del Rate:        	  1.4249% 	   255290 	  0.0269% 	      583502
+Ins Rate:        	  1.9548% 	   350239 	  0.0479% 	     1037738
+N Rate:          	  1.4806% 	   265270 	  0.0922% 	     1999329
+
+Total time:     	544.633 seconds.
+java -ea -Xmx100310m -Xms100310m -cp /usr/share/java/bbmap.jar align2.BBMap build=1 overwrite=true fastareadlen=500 in=~/data/Mchameleon/jgi/mapping/mc7/52663.3.414974.TCGGTTAC-TCGGTTAC.filter_mc.fq slow k=12 ref=~/data/Mchameleon/raw_data/mapping/Mchameleon/assembly/transcripts.fasta outm=~/data/Mchameleon/jgi/mapping/mc8/52663.3.414974.TCGGTTAC-TCGGTTAC.filter_mc2.fq outu=~/data/Mchameleon/jgi/mapping/bad/52663.3.414974.TCGGTTAC-TCGGTTAC.filter_bad.fq printunmappedcount=t covk=1 nfilter=10 interleaved=f maxindel=20 threads=24 minid=0.90 ambiguous=all maxsites2=20000 physcov=t
+Executing align2.BBMap [tipsearch=150, minhits=1, minratio=0.45, build=1, overwrite=true, fastareadlen=500, in=~/data/Mchameleon/jgi/mapping/mc7/52663.3.414974.TCGGTTAC-TCGGTTAC.filter_mc.fq, k=12, ref=~/data/Mchameleon/raw_data/mapping/Mchameleon/assembly/transcripts.fasta, outm=~/data/Mchameleon/jgi/mapping/mc8/52663.3.414974.TCGGTTAC-TCGGTTAC.filter_mc2.fq, outu=~/data/Mchameleon/jgi/mapping/bad/52663.3.414974.TCGGTTAC-TCGGTTAC.filter_bad.fq, printunmappedcount=t, covk=1, nfilter=10, interleaved=f, maxindel=20, threads=24, minid=0.90, ambiguous=all, maxsites2=20000, physcov=t]
+Version 38.95
+
+Set MINIMUM_ALIGNMENT_SCORE_RATIO to 0.450
+Set INTERLEAVED to false
+Set threads to 24
+Retaining all best sites for ambiguous mappings.
+NOTE:	Ignoring reference file because it already appears to have been processed.
+NOTE:	If you wish to regenerate the index, please manually delete ref/genome/1/summary.txt
+Set genome to 1
+
+Loaded Reference:	1.672 seconds.
+Loading index for chunk 1-1, build 1
+Generated Index:	0.720 seconds.
+Analyzed Index:   	0.834 seconds.
+Started output stream:	0.012 seconds.
+Started output stream:	0.001 seconds.
+Cleared Memory:    	0.786 seconds.
+Processing reads in single-ended mode.
+Started read stream.
+Started 24 mapping threads.
+Detecting finished threads: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23
+
+   ------------------   Results   ------------------   
+
+Genome:                	1
+Key Length:            	12
+Max Indel:             	20
+Minimum Score Ratio:  	0.45
+Mapping Mode:         	normal
+Reads Used:           	27094892	(3961746235 bases)
+
+Mapping:          	791.577 seconds.
+Reads/sec:       	34229.00
+kBases/sec:      	5004.88
+
+unmapped:        	 22.1851% 	  6011039 	 22.2710% 	   882320351
+
+
+Read 1 data:      	pct reads	num reads 	pct bases	   num bases
+
+mapped:          	 77.8149% 	 21083853 	 77.7290% 	  3079425884
+unambiguous:     	 60.2094% 	 16313664 	 60.1787% 	  2384125820
+ambiguous:       	 17.6055% 	  4770189 	 17.5503% 	   695300064
+low-Q discards:  	  0.0000% 	        0 	  0.0000% 	           0
+
+perfect best site:	 44.3890% 	 12027159 	 44.2363% 	  1752530732
+semiperfect site:	 45.1444% 	 12231835 	 44.9936% 	  1782532774
+
+Match Rate:      	      NA 	       NA 	 98.9677% 	  3048441574
+Error Rate:      	 35.1646% 	  8853443 	  0.9411% 	    28987117
+Sub Rate:        	 34.4950% 	  8684864 	  0.8683% 	    26744617
+Del Rate:        	  1.3733% 	   345748 	  0.0264% 	      812368
+Ins Rate:        	  1.9144% 	   482002 	  0.0464% 	     1430132
+N Rate:          	  1.4672% 	   369388 	  0.0912% 	     2809561
+
+Total time:     	795.680 seconds.
+java -ea -Xmx100220m -Xms100220m -cp /usr/share/java/bbmap.jar align2.BBMap build=1 overwrite=true fastareadlen=500 in=~/data/Mchameleon/jgi/mapping/mc7/52663.3.414974.TGGATCAC-TGGATCAC.filter_mc.fq slow k=12 ref=~/data/Mchameleon/raw_data/mapping/Mchameleon/assembly/transcripts.fasta outm=~/data/Mchameleon/jgi/mapping/mc8/52663.3.414974.TGGATCAC-TGGATCAC.filter_mc2.fq outu=~/data/Mchameleon/jgi/mapping/bad/52663.3.414974.TGGATCAC-TGGATCAC.filter_bad.fq printunmappedcount=t covk=1 nfilter=10 interleaved=f maxindel=20 threads=24 minid=0.90 ambiguous=all maxsites2=20000 physcov=t
+Executing align2.BBMap [tipsearch=150, minhits=1, minratio=0.45, build=1, overwrite=true, fastareadlen=500, in=~/data/Mchameleon/jgi/mapping/mc7/52663.3.414974.TGGATCAC-TGGATCAC.filter_mc.fq, k=12, ref=~/data/Mchameleon/raw_data/mapping/Mchameleon/assembly/transcripts.fasta, outm=~/data/Mchameleon/jgi/mapping/mc8/52663.3.414974.TGGATCAC-TGGATCAC.filter_mc2.fq, outu=~/data/Mchameleon/jgi/mapping/bad/52663.3.414974.TGGATCAC-TGGATCAC.filter_bad.fq, printunmappedcount=t, covk=1, nfilter=10, interleaved=f, maxindel=20, threads=24, minid=0.90, ambiguous=all, maxsites2=20000, physcov=t]
+Version 38.95
+
+Set MINIMUM_ALIGNMENT_SCORE_RATIO to 0.450
+Set INTERLEAVED to false
+Set threads to 24
+Retaining all best sites for ambiguous mappings.
+NOTE:	Ignoring reference file because it already appears to have been processed.
+NOTE:	If you wish to regenerate the index, please manually delete ref/genome/1/summary.txt
+Set genome to 1
+
+Loaded Reference:	1.701 seconds.
+Loading index for chunk 1-1, build 1
+Generated Index:	0.755 seconds.
+Analyzed Index:   	0.895 seconds.
+Started output stream:	0.012 seconds.
+Started output stream:	0.001 seconds.
+Cleared Memory:    	0.793 seconds.
+Processing reads in single-ended mode.
+Started read stream.
+Started 24 mapping threads.
+Detecting finished threads: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23
+
+   ------------------   Results   ------------------   
+
+Genome:                	1
+Key Length:            	12
+Max Indel:             	20
+Minimum Score Ratio:  	0.45
+Mapping Mode:         	normal
+Reads Used:           	20687140	(3022338046 bases)
+
+Mapping:          	618.456 seconds.
+Reads/sec:       	33449.65
+kBases/sec:      	4886.91
+
+unmapped:        	 23.0344% 	  4765162 	 23.1225% 	   698841327
+
+
+Read 1 data:      	pct reads	num reads 	pct bases	   num bases
+
+mapped:          	 76.9656% 	 15921978 	 76.8775% 	  2323496719
+unambiguous:     	 60.1306% 	 12439292 	 60.0902% 	  1816127894
+ambiguous:       	 16.8350% 	  3482686 	 16.7873% 	   507368825
+low-Q discards:  	  0.0000% 	        0 	  0.0000% 	           0
+
+perfect best site:	 44.2717% 	  9158547 	 44.1060% 	  1333031402
+semiperfect site:	 45.0378% 	  9317036 	 44.8735% 	  1356227409
+
+Match Rate:      	      NA 	       NA 	 98.9765% 	  2300284684
+Error Rate:      	 34.5986% 	  6605536 	  0.9310% 	    21635966
+Sub Rate:        	 33.9661% 	  6484779 	  0.8594% 	    19973320
+Del Rate:        	  1.2918% 	   246623 	  0.0247% 	      574606
+Ins Rate:        	  1.8820% 	   359304 	  0.0468% 	     1088040
+N Rate:          	  1.4845% 	   283426 	  0.0925% 	     2150675
+
+Total time:     	622.710 seconds.
+java -ea -Xmx100248m -Xms100248m -cp /usr/share/java/bbmap.jar align2.BBMap build=1 overwrite=true fastareadlen=500 in=~/data/Mchameleon/jgi/mapping/mc7/52663.3.414974.TGGCATGT-TGGCATGT.filter_mc.fq slow k=12 ref=~/data/Mchameleon/raw_data/mapping/Mchameleon/assembly/transcripts.fasta outm=~/data/Mchameleon/jgi/mapping/mc8/52663.3.414974.TGGCATGT-TGGCATGT.filter_mc2.fq outu=~/data/Mchameleon/jgi/mapping/bad/52663.3.414974.TGGCATGT-TGGCATGT.filter_bad.fq printunmappedcount=t covk=1 nfilter=10 interleaved=f maxindel=20 threads=24 minid=0.90 ambiguous=all maxsites2=20000 physcov=t
+Executing align2.BBMap [tipsearch=150, minhits=1, minratio=0.45, build=1, overwrite=true, fastareadlen=500, in=~/data/Mchameleon/jgi/mapping/mc7/52663.3.414974.TGGCATGT-TGGCATGT.filter_mc.fq, k=12, ref=~/data/Mchameleon/raw_data/mapping/Mchameleon/assembly/transcripts.fasta, outm=~/data/Mchameleon/jgi/mapping/mc8/52663.3.414974.TGGCATGT-TGGCATGT.filter_mc2.fq, outu=~/data/Mchameleon/jgi/mapping/bad/52663.3.414974.TGGCATGT-TGGCATGT.filter_bad.fq, printunmappedcount=t, covk=1, nfilter=10, interleaved=f, maxindel=20, threads=24, minid=0.90, ambiguous=all, maxsites2=20000, physcov=t]
+Version 38.95
+
+Set MINIMUM_ALIGNMENT_SCORE_RATIO to 0.450
+Set INTERLEAVED to false
+Set threads to 24
+Retaining all best sites for ambiguous mappings.
+NOTE:	Ignoring reference file because it already appears to have been processed.
+NOTE:	If you wish to regenerate the index, please manually delete ref/genome/1/summary.txt
+Set genome to 1
+
+Loaded Reference:	1.715 seconds.
+Loading index for chunk 1-1, build 1
+Generated Index:	0.736 seconds.
+Analyzed Index:   	0.903 seconds.
+Started output stream:	0.011 seconds.
+Started output stream:	0.022 seconds.
+Cleared Memory:    	0.788 seconds.
+Processing reads in single-ended mode.
+Started read stream.
+Started 24 mapping threads.
+Detecting finished threads: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23
+
+   ------------------   Results   ------------------   
+
+Genome:                	1
+Key Length:            	12
+Max Indel:             	20
+Minimum Score Ratio:  	0.45
+Mapping Mode:         	normal
+Reads Used:           	37991486	(5536208991 bases)
+
+Mapping:          	1047.276 seconds.
+Reads/sec:       	36276.47
+kBases/sec:      	5286.29
+
+unmapped:        	 21.1817% 	  8047230 	 21.2945% 	  1178909316
+
+
+Read 1 data:      	pct reads	num reads 	pct bases	   num bases
+
+mapped:          	 78.8183% 	 29944256 	 78.7055% 	  4357299675
+unambiguous:     	 60.8640% 	 23123123 	 60.8011% 	  3366074602
+ambiguous:       	 17.9544% 	  6821133 	 17.9044% 	   991225073
+low-Q discards:  	  0.0000% 	        0 	  0.0000% 	           0
+
+perfect best site:	 45.1663% 	 17159352 	 44.9917% 	  2490832065
+semiperfect site:	 45.9190% 	 17445302 	 45.7470% 	  2532649629
+
+Match Rate:      	      NA 	       NA 	 98.9798% 	  4313974629
+Error Rate:      	 35.2262% 	 12500550 	  0.9307% 	    40566059
+Sub Rate:        	 34.5313% 	 12253978 	  0.8593% 	    37453834
+Del Rate:        	  1.3848% 	   491407 	  0.0261% 	     1138885
+Ins Rate:        	  1.9005% 	   674425 	  0.0453% 	     1973340
+N Rate:          	  1.4462% 	   513198 	  0.0894% 	     3897872
+
+Total time:     	1051.544 seconds.
+java -ea -Xmx100248m -Xms100248m -cp /usr/share/java/bbmap.jar align2.BBMap build=1 overwrite=true fastareadlen=500 in=~/data/Mchameleon/jgi/mapping/mc7/52663.3.414974.TTGTCGGT-TTGTCGGT.filter_mc.fq slow k=12 ref=~/data/Mchameleon/raw_data/mapping/Mchameleon/assembly/transcripts.fasta outm=~/data/Mchameleon/jgi/mapping/mc8/52663.3.414974.TTGTCGGT-TTGTCGGT.filter_mc2.fq outu=~/data/Mchameleon/jgi/mapping/bad/52663.3.414974.TTGTCGGT-TTGTCGGT.filter_bad.fq printunmappedcount=t covk=1 nfilter=10 interleaved=f maxindel=20 threads=24 minid=0.90 ambiguous=all maxsites2=20000 physcov=t
+Executing align2.BBMap [tipsearch=150, minhits=1, minratio=0.45, build=1, overwrite=true, fastareadlen=500, in=~/data/Mchameleon/jgi/mapping/mc7/52663.3.414974.TTGTCGGT-TTGTCGGT.filter_mc.fq, k=12, ref=~/data/Mchameleon/raw_data/mapping/Mchameleon/assembly/transcripts.fasta, outm=~/data/Mchameleon/jgi/mapping/mc8/52663.3.414974.TTGTCGGT-TTGTCGGT.filter_mc2.fq, outu=~/data/Mchameleon/jgi/mapping/bad/52663.3.414974.TTGTCGGT-TTGTCGGT.filter_bad.fq, printunmappedcount=t, covk=1, nfilter=10, interleaved=f, maxindel=20, threads=24, minid=0.90, ambiguous=all, maxsites2=20000, physcov=t]
+Version 38.95
+
+Set MINIMUM_ALIGNMENT_SCORE_RATIO to 0.450
+Set INTERLEAVED to false
+Set threads to 24
+Retaining all best sites for ambiguous mappings.
+NOTE:	Ignoring reference file because it already appears to have been processed.
+NOTE:	If you wish to regenerate the index, please manually delete ref/genome/1/summary.txt
+Set genome to 1
+
+Loaded Reference:	1.742 seconds.
+Loading index for chunk 1-1, build 1
+Generated Index:	0.703 seconds.
+Analyzed Index:   	0.910 seconds.
+Started output stream:	0.011 seconds.
+Started output stream:	0.001 seconds.
+Cleared Memory:    	0.824 seconds.
+Processing reads in single-ended mode.
+Started read stream.
+Started 24 mapping threads.
+Detecting finished threads: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23
+
+   ------------------   Results   ------------------   
+
+Genome:                	1
+Key Length:            	12
+Max Indel:             	20
+Minimum Score Ratio:  	0.45
+Mapping Mode:         	normal
+Reads Used:           	20746029	(3003465261 bases)
+
+Mapping:          	565.671 seconds.
+Reads/sec:       	36675.05
+kBases/sec:      	5309.56
+
+unmapped:        	 22.1363% 	  4592407 	 22.3075% 	   669999265
+
+
+Read 1 data:      	pct reads	num reads 	pct bases	   num bases
+
+mapped:          	 77.8637% 	 16153622 	 77.6925% 	  2333465996
+unambiguous:     	 60.3439% 	 12518973 	 60.2426% 	  1809366444
+ambiguous:       	 17.5197% 	  3634649 	 17.4498% 	   524099552
+low-Q discards:  	  0.0000% 	        0 	  0.0000% 	           0
+
+perfect best site:	 43.8980% 	  9107085 	 43.6709% 	  1311640950
+semiperfect site:	 44.6477% 	  9262635 	 44.4245% 	  1334274189
+
+Match Rate:      	      NA 	       NA 	 98.9451% 	  2309436971
+Error Rate:      	 35.6852% 	  6892100 	  0.9639% 	    22498148
+Sub Rate:        	 35.0843% 	  6776051 	  0.8912% 	    20800921
+Del Rate:        	  1.2789% 	   246997 	  0.0254% 	      593765
+Ins Rate:        	  1.9146% 	   369777 	  0.0473% 	     1103462
+N Rate:          	  1.4541% 	   280849 	  0.0910% 	     2124642
+
+Total time:     	569.966 seconds.

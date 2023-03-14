@@ -1,0 +1,50 @@
+Command line: /home/cpaight/anaconda3/bin/spades.py	--rna	-t	16	--merged	~/data/Mchameleon/jgi/mapping/mc8/MCjgi.fastq	-o	~/data/Mchameleon/jgi/mapping/mc8/merged	
+
+System information:
+  SPAdes version: 3.13.0
+  Python version: 3.7.9
+  OS: Linux-5.15.0-43-generic-x86_64-with-debian-bookworm-sid
+
+Output dir: ~/data/Mchameleon/jgi/mapping/mc8/merged
+Mode: read error correction and assembling
+Debug mode is turned OFF
+
+Dataset parameters:
+  RNA-seq mode
+  Reads:
+    Library number: 1, library type: paired-end
+      orientation: fr
+      left reads: not specified
+      right reads: not specified
+      interlaced reads: not specified
+      single reads: not specified
+      merged reads: ['~/data/Mchameleon/jgi/mapping/mc8/MCjgi.fastq']
+Read error correction parameters:
+  Iterations: 1
+  PHRED offset will be auto-detected
+  Corrected reads will be compressed
+Assembly parameters:
+  k: auto
+  Repeat resolution is enabled
+  Mismatch careful mode is turned OFF
+  MismatchCorrector will be SKIPPED
+  Coverage cutoff is turned OFF
+Other parameters:
+  Dir for temp files: ~/data/Mchameleon/jgi/mapping/mc8/merged/tmp
+  Threads: 16
+  Memory limit (in Gb): 250
+
+
+======= SPAdes pipeline started. Log can be found here: ~/data/Mchameleon/jgi/mapping/mc8/merged/spades.log
+
+Files with merged reads were ignored.
+Traceback (most recent call last):
+  File "/home/cpaight/anaconda3/bin/spades.py", line 1093, in <module>
+    main(sys.argv)
+  File "/home/cpaight/anaconda3/bin/spades.py", line 725, in main
+    k_values = rna_k_values(support, options_storage, dataset_data, log)
+  File "/home/cpaight/anaconda3/bin/spades.py", line 561, in rna_k_values
+    rna_rl = support.get_reads_length(dataset_data, log, ['merged reads'])
+  File "/home/cpaight/anaconda3/share/spades-3.13.0-0/share/spades/spades_pipeline/support.py", line 609, in get_reads_length
+    avg_len = sum(max_reads_lenghts) / len(max_reads_lenghts)
+ZeroDivisionError: division by zero
