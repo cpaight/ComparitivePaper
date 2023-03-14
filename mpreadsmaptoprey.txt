@@ -1,0 +1,423 @@
+On sample: MP3_S95_L002
+java -Djava.library.path=/home/cpaight/anaconda3/envs/bbmap/opt/bbmap-38.18/jni/ -ea -Xmx92538m -cp /home/cpaight/anaconda3/envs/bbmap/opt/bbmap-38.18/current/ align2.BBMap build=1 overwrite=true fastareadlen=500 in=/home/cpaight/cpaightNAS/cpaight/data/herterotroph/rawreads/MP3_S95_L002_R1_001.fastq.gz in2=/home/cpaight/cpaightNAS/cpaight/data/herterotroph/rawreads/MP3_S95_L002_R2_001.fastq.gz unpigz=t pigz=t slow k=12 pairedonly=t ref=/home/cpaight/cpaightNAS/cpaight/data/Mchameleon/raw_data/mapping/SM.fasta outm=/home/cpaight/cpaightNAS/cpaight/data/herterotroph/mapped/MP3_S95_L002.fq outu=/home/cpaight/cpaightNAS/cpaight/data/herterotroph/unmapped/MP3_S95_L002.fq printunmappedcount=t
+Executing align2.BBMap [tipsearch=150, minhits=1, minratio=0.45, build=1, overwrite=true, fastareadlen=500, in=/home/cpaight/cpaightNAS/cpaight/data/herterotroph/rawreads/MP3_S95_L002_R1_001.fastq.gz, in2=/home/cpaight/cpaightNAS/cpaight/data/herterotroph/rawreads/MP3_S95_L002_R2_001.fastq.gz, unpigz=t, pigz=t, k=12, pairedonly=t, ref=/home/cpaight/cpaightNAS/cpaight/data/Mchameleon/raw_data/mapping/SM.fasta, outm=/home/cpaight/cpaightNAS/cpaight/data/herterotroph/mapped/MP3_S95_L002.fq, outu=/home/cpaight/cpaightNAS/cpaight/data/herterotroph/unmapped/MP3_S95_L002.fq, printunmappedcount=t]
+Version 38.18
+
+Set MINIMUM_ALIGNMENT_SCORE_RATIO to 0.450
+Retaining first best site only for ambiguous mappings.
+Writing reference.
+Executing dna.FastaToChromArrays2 [/home/cpaight/cpaightNAS/cpaight/data/Mchameleon/raw_data/mapping/SM.fasta, 1, writeinthread=false, genscaffoldinfo=true, retain, waitforwriting=false, gz=true, maxlen=536670912, writechroms=true, minscaf=1, midpad=300, startpad=8000, stoppad=8000, nodisk=false]
+
+Set genScaffoldInfo=true
+Writing chunk 1
+Waiting for writing to finish.
+Finished.
+Set genome to 1
+
+Loaded Reference:	0.252 seconds.
+Loading index for chunk 1-1, build 1
+No index available; generating from reference genome: /home/cpaight/scripts/ref/index/1/chr1_index_k12_c4_b1.block
+Indexing threads started for block 0-1
+Indexing threads finished for block 0-1
+Generated Index:	4.976 seconds.
+Analyzed Index:   	0.646 seconds.
+Started output stream:	0.060 seconds.
+Started output stream:	0.001 seconds.
+Cleared Memory:    	0.369 seconds.
+Processing reads in paired-ended mode.
+Started read stream.
+Started 36 mapping threads.
+Detecting finished threads: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35
+
+   ------------------   Results   ------------------   
+
+Genome:                	1
+Key Length:            	12
+Max Indel:             	16000
+Minimum Score Ratio:  	0.45
+Mapping Mode:         	normal
+Reads Used:           	81042762	(12237457062 bases)
+
+Mapping:          	7750.494 seconds.
+Reads/sec:       	10456.46
+kBases/sec:      	1578.93
+
+
+Pairing data:   	pct pairs	num pairs 	pct bases	   num bases
+
+mated pairs:     	  1.1732% 	   475380 	  1.1732% 	   143564760
+bad pairs:       	  0.0000% 	        0 	  0.0000% 	           0
+insert size avg: 	  222.06
+unmapped:        	 98.8268% 	 80092002 	 98.8268% 	 12093892302
+
+
+Read 1 data:      	pct reads	num reads 	pct bases	   num bases
+
+mapped:          	  1.1732% 	   475380 	  1.1732% 	    71782380
+unambiguous:     	  0.7764% 	   314598 	  0.7764% 	    47504298
+ambiguous:       	  0.3968% 	   160782 	  0.3968% 	    24278082
+low-Q discards:  	  0.0000% 	        0 	  0.0000% 	           0
+
+perfect best site:	  0.0021% 	      849 	  0.0021% 	      128199
+semiperfect site:	  0.0069% 	     2809 	  0.0069% 	      424159
+rescued:         	  0.2183% 	    88446
+
+Match Rate:      	      NA 	       NA 	 18.5422% 	    57816552
+Error Rate:      	 32.4414% 	   473980 	 81.1585% 	   253060602
+Sub Rate:        	 32.4332% 	   473860 	  4.0287% 	    12561812
+Del Rate:        	  6.3488% 	    92758 	 76.9788% 	   240027819
+Ins Rate:        	  4.1393% 	    60477 	  0.1510% 	      470971
+N Rate:          	  3.5422% 	    51753 	  0.2992% 	      933045
+
+
+Read 2 data:      	pct reads	num reads 	pct bases	   num bases
+
+mapped:          	  1.1732% 	   475380 	  1.1732% 	    71782380
+unambiguous:     	  0.7853% 	   318208 	  0.7853% 	    48049408
+ambiguous:       	  0.3879% 	   157172 	  0.3879% 	    23732972
+low-Q discards:  	  0.0004% 	      161 	  0.0004% 	       24311
+
+perfect best site:	  0.0021% 	      837 	  0.0021% 	      126387
+semiperfect site:	  0.0057% 	     2324 	  0.0057% 	      350924
+rescued:         	  0.2302% 	    93288
+
+Match Rate:      	      NA 	       NA 	 25.6067% 	    57696624
+Error Rate:      	 38.5602% 	   473306 	 73.9701% 	   166668159
+Sub Rate:        	 38.5491% 	   473169 	  5.6532% 	    12737643
+Del Rate:        	  7.7356% 	    94950 	 68.1418% 	   153535827
+Ins Rate:        	  5.3483% 	    65647 	  0.1752% 	      394689
+N Rate:          	  4.6215% 	    56727 	  0.4231% 	      953424
+
+Total time:     	7759.880 seconds.
+On sample: MP4_S96_L002
+java -Djava.library.path=/home/cpaight/anaconda3/envs/bbmap/opt/bbmap-38.18/jni/ -ea -Xmx92588m -cp /home/cpaight/anaconda3/envs/bbmap/opt/bbmap-38.18/current/ align2.BBMap build=1 overwrite=true fastareadlen=500 in=/home/cpaight/cpaightNAS/cpaight/data/herterotroph/rawreads/MP4_S96_L002_R1_001.fastq.gz in2=/home/cpaight/cpaightNAS/cpaight/data/herterotroph/rawreads/MP4_S96_L002_R2_001.fastq.gz unpigz=t pigz=t slow k=12 pairedonly=t ref=/home/cpaight/cpaightNAS/cpaight/data/Mchameleon/raw_data/mapping/SM.fasta outm=/home/cpaight/cpaightNAS/cpaight/data/herterotroph/mapped/MP4_S96_L002.fq outu=/home/cpaight/cpaightNAS/cpaight/data/herterotroph/unmapped/MP4_S96_L002.fq printunmappedcount=t
+Executing align2.BBMap [tipsearch=150, minhits=1, minratio=0.45, build=1, overwrite=true, fastareadlen=500, in=/home/cpaight/cpaightNAS/cpaight/data/herterotroph/rawreads/MP4_S96_L002_R1_001.fastq.gz, in2=/home/cpaight/cpaightNAS/cpaight/data/herterotroph/rawreads/MP4_S96_L002_R2_001.fastq.gz, unpigz=t, pigz=t, k=12, pairedonly=t, ref=/home/cpaight/cpaightNAS/cpaight/data/Mchameleon/raw_data/mapping/SM.fasta, outm=/home/cpaight/cpaightNAS/cpaight/data/herterotroph/mapped/MP4_S96_L002.fq, outu=/home/cpaight/cpaightNAS/cpaight/data/herterotroph/unmapped/MP4_S96_L002.fq, printunmappedcount=t]
+Version 38.18
+
+Set MINIMUM_ALIGNMENT_SCORE_RATIO to 0.450
+Retaining first best site only for ambiguous mappings.
+NOTE:	Ignoring reference file because it already appears to have been processed.
+NOTE:	If you wish to regenerate the index, please manually delete ref/genome/1/summary.txt
+Set genome to 1
+
+Loaded Reference:	0.719 seconds.
+Loading index for chunk 1-1, build 1
+Generated Index:	0.344 seconds.
+Analyzed Index:   	0.585 seconds.
+Started output stream:	0.028 seconds.
+Started output stream:	0.001 seconds.
+Cleared Memory:    	0.280 seconds.
+Processing reads in paired-ended mode.
+Started read stream.
+Started 36 mapping threads.
+Detecting finished threads: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35
+
+   ------------------   Results   ------------------   
+
+Genome:                	1
+Key Length:            	12
+Max Indel:             	16000
+Minimum Score Ratio:  	0.45
+Mapping Mode:         	normal
+Reads Used:           	60443462	(9126962762 bases)
+
+Mapping:          	6365.398 seconds.
+Reads/sec:       	9495.63
+kBases/sec:      	1433.84
+
+
+Pairing data:   	pct pairs	num pairs 	pct bases	   num bases
+
+mated pairs:     	  1.0109% 	   305499 	  1.0109% 	    92260698
+bad pairs:       	  0.0000% 	        0 	  0.0000% 	           0
+insert size avg: 	  223.37
+unmapped:        	 98.9891% 	 59832464 	 98.9891% 	  9034702064
+
+
+Read 1 data:      	pct reads	num reads 	pct bases	   num bases
+
+mapped:          	  1.0109% 	   305499 	  1.0109% 	    46130349
+unambiguous:     	  0.6523% 	   197139 	  0.6523% 	    29767989
+ambiguous:       	  0.3585% 	   108360 	  0.3585% 	    16362360
+low-Q discards:  	  0.0000% 	        0 	  0.0000% 	           0
+
+perfect best site:	  0.0048% 	     1453 	  0.0048% 	      219403
+semiperfect site:	  0.0091% 	     2751 	  0.0091% 	      415401
+rescued:         	  0.1888% 	    57057
+
+Match Rate:      	      NA 	       NA 	 18.9002% 	    37314703
+Error Rate:      	 32.8445% 	   303401 	 80.8373% 	   159597421
+Sub Rate:        	 32.8260% 	   303230 	  4.0625% 	     8020534
+Del Rate:        	  6.1019% 	    56366 	 76.6346% 	   151299991
+Ins Rate:        	  3.9466% 	    36457 	  0.1402% 	      276896
+N Rate:          	  3.2672% 	    30181 	  0.2625% 	      518216
+
+
+Read 2 data:      	pct reads	num reads 	pct bases	   num bases
+
+mapped:          	  1.0109% 	   305499 	  1.0109% 	    46130349
+unambiguous:     	  0.6650% 	   200978 	  0.6650% 	    30347678
+ambiguous:       	  0.3458% 	   104521 	  0.3458% 	    15782671
+low-Q discards:  	  0.0004% 	      116 	  0.0004% 	       17516
+
+perfect best site:	  0.0055% 	     1660 	  0.0055% 	      250660
+semiperfect site:	  0.0102% 	     3088 	  0.0102% 	      466288
+rescued:         	  0.2058% 	    62199
+
+Match Rate:      	      NA 	       NA 	 26.3948% 	    37236776
+Error Rate:      	 33.2298% 	   302737 	 73.1968% 	   103263269
+Sub Rate:        	 33.2171% 	   302621 	  5.7287% 	     8081788
+Del Rate:        	  6.5107% 	    59315 	 67.3011% 	    94945869
+Ins Rate:        	  4.3468% 	    39601 	  0.1670% 	      235612
+N Rate:          	  3.6721% 	    33454 	  0.4084% 	      576173
+
+Total time:     	6367.512 seconds.
+On sample: MP5_S97_L002
+java -Djava.library.path=/home/cpaight/anaconda3/envs/bbmap/opt/bbmap-38.18/jni/ -ea -Xmx92480m -cp /home/cpaight/anaconda3/envs/bbmap/opt/bbmap-38.18/current/ align2.BBMap build=1 overwrite=true fastareadlen=500 in=/home/cpaight/cpaightNAS/cpaight/data/herterotroph/rawreads/MP5_S97_L002_R1_001.fastq.gz in2=/home/cpaight/cpaightNAS/cpaight/data/herterotroph/rawreads/MP5_S97_L002_R2_001.fastq.gz unpigz=t pigz=t slow k=12 pairedonly=t ref=/home/cpaight/cpaightNAS/cpaight/data/Mchameleon/raw_data/mapping/SM.fasta outm=/home/cpaight/cpaightNAS/cpaight/data/herterotroph/mapped/MP5_S97_L002.fq outu=/home/cpaight/cpaightNAS/cpaight/data/herterotroph/unmapped/MP5_S97_L002.fq printunmappedcount=t
+Executing align2.BBMap [tipsearch=150, minhits=1, minratio=0.45, build=1, overwrite=true, fastareadlen=500, in=/home/cpaight/cpaightNAS/cpaight/data/herterotroph/rawreads/MP5_S97_L002_R1_001.fastq.gz, in2=/home/cpaight/cpaightNAS/cpaight/data/herterotroph/rawreads/MP5_S97_L002_R2_001.fastq.gz, unpigz=t, pigz=t, k=12, pairedonly=t, ref=/home/cpaight/cpaightNAS/cpaight/data/Mchameleon/raw_data/mapping/SM.fasta, outm=/home/cpaight/cpaightNAS/cpaight/data/herterotroph/mapped/MP5_S97_L002.fq, outu=/home/cpaight/cpaightNAS/cpaight/data/herterotroph/unmapped/MP5_S97_L002.fq, printunmappedcount=t]
+Version 38.18
+
+Set MINIMUM_ALIGNMENT_SCORE_RATIO to 0.450
+Retaining first best site only for ambiguous mappings.
+NOTE:	Ignoring reference file because it already appears to have been processed.
+NOTE:	If you wish to regenerate the index, please manually delete ref/genome/1/summary.txt
+Set genome to 1
+
+Loaded Reference:	0.754 seconds.
+Loading index for chunk 1-1, build 1
+Generated Index:	0.349 seconds.
+Analyzed Index:   	0.580 seconds.
+Started output stream:	0.025 seconds.
+Started output stream:	0.001 seconds.
+Cleared Memory:    	0.258 seconds.
+Processing reads in paired-ended mode.
+Started read stream.
+Started 36 mapping threads.
+Detecting finished threads: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35
+
+   ------------------   Results   ------------------   
+
+Genome:                	1
+Key Length:            	12
+Max Indel:             	16000
+Minimum Score Ratio:  	0.45
+Mapping Mode:         	normal
+Reads Used:           	67975394	(10264284494 bases)
+
+Mapping:          	5239.491 seconds.
+Reads/sec:       	12973.66
+kBases/sec:      	1959.02
+
+
+Pairing data:   	pct pairs	num pairs 	pct bases	   num bases
+
+mated pairs:     	  1.0586% 	   359795 	  1.0586% 	   108658090
+bad pairs:       	  0.0000% 	        0 	  0.0000% 	           0
+insert size avg: 	  221.22
+unmapped:        	 98.9414% 	 67255804 	 98.9414% 	 10155626404
+
+
+Read 1 data:      	pct reads	num reads 	pct bases	   num bases
+
+mapped:          	  1.0586% 	   359795 	  1.0586% 	    54329045
+unambiguous:     	  0.6750% 	   229417 	  0.6750% 	    34641967
+ambiguous:       	  0.3836% 	   130378 	  0.3836% 	    19687078
+low-Q discards:  	  0.0000% 	        0 	  0.0000% 	           0
+
+perfect best site:	  0.0052% 	     1773 	  0.0052% 	      267723
+semiperfect site:	  0.0102% 	     3453 	  0.0102% 	      521403
+rescued:         	  0.1995% 	    67815
+
+Match Rate:      	      NA 	       NA 	 21.8407% 	    44000508
+Error Rate:      	 39.1536% 	   357303 	 77.8604% 	   156858547
+Sub Rate:        	 39.1335% 	   357120 	  4.6788% 	     9425949
+Del Rate:        	  7.4001% 	    67531 	 73.0325% 	   147132348
+Ins Rate:        	  4.4432% 	    40547 	  0.1490% 	      300250
+N Rate:          	  3.9399% 	    35954 	  0.2990% 	      602338
+
+
+Read 2 data:      	pct reads	num reads 	pct bases	   num bases
+
+mapped:          	  1.0586% 	   359795 	  1.0586% 	    54329045
+unambiguous:     	  0.6894% 	   234300 	  0.6894% 	    35379300
+ambiguous:       	  0.3692% 	   125495 	  0.3692% 	    18949745
+low-Q discards:  	  0.0004% 	      134 	  0.0004% 	       20234
+
+perfect best site:	  0.0056% 	     1888 	  0.0056% 	      285088
+semiperfect site:	  0.0092% 	     3140 	  0.0092% 	      474140
+rescued:         	  0.2058% 	    69948
+
+Match Rate:      	      NA 	       NA 	 26.0290% 	    43795079
+Error Rate:      	 39.3366% 	   356900 	 73.5732% 	   123790501
+Sub Rate:        	 39.3265% 	   356809 	  5.6890% 	     9572047
+Del Rate:        	  7.8015% 	    70783 	 67.7103% 	   113925743
+Ins Rate:        	  5.3849% 	    48857 	  0.1740% 	      292711
+N Rate:          	  4.3451% 	    39423 	  0.3977% 	      669208
+
+Total time:     	5241.610 seconds.
+On sample: MP6_S98_L002
+java -Djava.library.path=/home/cpaight/anaconda3/envs/bbmap/opt/bbmap-38.18/jni/ -ea -Xmx92614m -cp /home/cpaight/anaconda3/envs/bbmap/opt/bbmap-38.18/current/ align2.BBMap build=1 overwrite=true fastareadlen=500 in=/home/cpaight/cpaightNAS/cpaight/data/herterotroph/rawreads/MP6_S98_L002_R1_001.fastq.gz in2=/home/cpaight/cpaightNAS/cpaight/data/herterotroph/rawreads/MP6_S98_L002_R2_001.fastq.gz unpigz=t pigz=t slow k=12 pairedonly=t ref=/home/cpaight/cpaightNAS/cpaight/data/Mchameleon/raw_data/mapping/SM.fasta outm=/home/cpaight/cpaightNAS/cpaight/data/herterotroph/mapped/MP6_S98_L002.fq outu=/home/cpaight/cpaightNAS/cpaight/data/herterotroph/unmapped/MP6_S98_L002.fq printunmappedcount=t
+Executing align2.BBMap [tipsearch=150, minhits=1, minratio=0.45, build=1, overwrite=true, fastareadlen=500, in=/home/cpaight/cpaightNAS/cpaight/data/herterotroph/rawreads/MP6_S98_L002_R1_001.fastq.gz, in2=/home/cpaight/cpaightNAS/cpaight/data/herterotroph/rawreads/MP6_S98_L002_R2_001.fastq.gz, unpigz=t, pigz=t, k=12, pairedonly=t, ref=/home/cpaight/cpaightNAS/cpaight/data/Mchameleon/raw_data/mapping/SM.fasta, outm=/home/cpaight/cpaightNAS/cpaight/data/herterotroph/mapped/MP6_S98_L002.fq, outu=/home/cpaight/cpaightNAS/cpaight/data/herterotroph/unmapped/MP6_S98_L002.fq, printunmappedcount=t]
+Version 38.18
+
+Set MINIMUM_ALIGNMENT_SCORE_RATIO to 0.450
+Retaining first best site only for ambiguous mappings.
+NOTE:	Ignoring reference file because it already appears to have been processed.
+NOTE:	If you wish to regenerate the index, please manually delete ref/genome/1/summary.txt
+Set genome to 1
+
+Loaded Reference:	0.716 seconds.
+Loading index for chunk 1-1, build 1
+Generated Index:	0.320 seconds.
+Analyzed Index:   	0.650 seconds.
+Started output stream:	0.034 seconds.
+Started output stream:	0.001 seconds.
+Cleared Memory:    	0.256 seconds.
+Processing reads in paired-ended mode.
+Started read stream.
+Started 36 mapping threads.
+Detecting finished threads: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35
+
+   ------------------   Results   ------------------   
+
+Genome:                	1
+Key Length:            	12
+Max Indel:             	16000
+Minimum Score Ratio:  	0.45
+Mapping Mode:         	normal
+Reads Used:           	64657692	(9763311492 bases)
+
+Mapping:          	6434.637 seconds.
+Reads/sec:       	10048.38
+kBases/sec:      	1517.31
+
+
+Pairing data:   	pct pairs	num pairs 	pct bases	   num bases
+
+mated pairs:     	  1.0242% 	   331114 	  1.0242% 	    99996428
+bad pairs:       	  0.0000% 	        0 	  0.0000% 	           0
+insert size avg: 	  222.31
+unmapped:        	 98.9758% 	 63995464 	 98.9758% 	  9663315064
+
+
+Read 1 data:      	pct reads	num reads 	pct bases	   num bases
+
+mapped:          	  1.0242% 	   331114 	  1.0242% 	    49998214
+unambiguous:     	  0.6968% 	   225280 	  0.6968% 	    34017280
+ambiguous:       	  0.3274% 	   105834 	  0.3274% 	    15980934
+low-Q discards:  	  0.0000% 	        0 	  0.0000% 	           0
+
+perfect best site:	  0.0057% 	     1835 	  0.0057% 	      277085
+semiperfect site:	  0.0090% 	     2916 	  0.0090% 	      440316
+rescued:         	  0.1994% 	    64468
+
+Match Rate:      	      NA 	       NA 	 17.5528% 	    40392347
+Error Rate:      	 30.9581% 	   328870 	 82.1969% 	   189151062
+Sub Rate:        	 30.9429% 	   328709 	  3.7811% 	     8701029
+Del Rate:        	  5.4006% 	    57371 	 78.2729% 	   180121307
+Ins Rate:        	  3.9102% 	    41538 	  0.1429% 	      328726
+N Rate:          	  3.3301% 	    35376 	  0.2504% 	      576112
+
+
+Read 2 data:      	pct reads	num reads 	pct bases	   num bases
+
+mapped:          	  1.0242% 	   331114 	  1.0242% 	    49998214
+unambiguous:     	  0.7058% 	   228189 	  0.7058% 	    34456539
+ambiguous:       	  0.3184% 	   102925 	  0.3184% 	    15541675
+low-Q discards:  	  0.0005% 	      150 	  0.0005% 	       22650
+
+perfect best site:	  0.0061% 	     1973 	  0.0061% 	      297923
+semiperfect site:	  0.0110% 	     3547 	  0.0110% 	      535597
+rescued:         	  0.2015% 	    65143
+
+Match Rate:      	      NA 	       NA 	 25.7264% 	    40155190
+Error Rate:      	 36.0317% 	   327491 	 73.7695% 	   115143574
+Sub Rate:        	 36.0150% 	   327339 	  5.6257% 	     8780881
+Del Rate:        	  6.7773% 	    61599 	 67.9674% 	   106087295
+Ins Rate:        	  4.9101% 	    44628 	  0.1764% 	      275398
+N Rate:          	  4.6651% 	    42401 	  0.5040% 	      786745
+
+Total time:     	6436.764 seconds.
+On sample: MP7_S99_L002
+java -Djava.library.path=/home/cpaight/anaconda3/envs/bbmap/opt/bbmap-38.18/jni/ -ea -Xmx92655m -cp /home/cpaight/anaconda3/envs/bbmap/opt/bbmap-38.18/current/ align2.BBMap build=1 overwrite=true fastareadlen=500 in=/home/cpaight/cpaightNAS/cpaight/data/herterotroph/rawreads/MP7_S99_L002_R1_001.fastq.gz in2=/home/cpaight/cpaightNAS/cpaight/data/herterotroph/rawreads/MP7_S99_L002_R2_001.fastq.gz unpigz=t pigz=t slow k=12 pairedonly=t ref=/home/cpaight/cpaightNAS/cpaight/data/Mchameleon/raw_data/mapping/SM.fasta outm=/home/cpaight/cpaightNAS/cpaight/data/herterotroph/mapped/MP7_S99_L002.fq outu=/home/cpaight/cpaightNAS/cpaight/data/herterotroph/unmapped/MP7_S99_L002.fq printunmappedcount=t
+Executing align2.BBMap [tipsearch=150, minhits=1, minratio=0.45, build=1, overwrite=true, fastareadlen=500, in=/home/cpaight/cpaightNAS/cpaight/data/herterotroph/rawreads/MP7_S99_L002_R1_001.fastq.gz, in2=/home/cpaight/cpaightNAS/cpaight/data/herterotroph/rawreads/MP7_S99_L002_R2_001.fastq.gz, unpigz=t, pigz=t, k=12, pairedonly=t, ref=/home/cpaight/cpaightNAS/cpaight/data/Mchameleon/raw_data/mapping/SM.fasta, outm=/home/cpaight/cpaightNAS/cpaight/data/herterotroph/mapped/MP7_S99_L002.fq, outu=/home/cpaight/cpaightNAS/cpaight/data/herterotroph/unmapped/MP7_S99_L002.fq, printunmappedcount=t]
+Version 38.18
+
+Set MINIMUM_ALIGNMENT_SCORE_RATIO to 0.450
+Retaining first best site only for ambiguous mappings.
+NOTE:	Ignoring reference file because it already appears to have been processed.
+NOTE:	If you wish to regenerate the index, please manually delete ref/genome/1/summary.txt
+Set genome to 1
+
+Loaded Reference:	0.767 seconds.
+Loading index for chunk 1-1, build 1
+Generated Index:	0.337 seconds.
+Analyzed Index:   	0.574 seconds.
+Started output stream:	0.028 seconds.
+Started output stream:	0.001 seconds.
+Cleared Memory:    	0.259 seconds.
+Processing reads in paired-ended mode.
+Started read stream.
+Started 36 mapping threads.
+Detecting finished threads: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35
+
+   ------------------   Results   ------------------   
+
+Genome:                	1
+Key Length:            	12
+Max Indel:             	16000
+Minimum Score Ratio:  	0.45
+Mapping Mode:         	normal
+Reads Used:           	61842952	(9338285752 bases)
+
+Mapping:          	5752.277 seconds.
+Reads/sec:       	10751.04
+kBases/sec:      	1623.41
+
+
+Pairing data:   	pct pairs	num pairs 	pct bases	   num bases
+
+mated pairs:     	  1.0693% 	   330648 	  1.0693% 	    99855696
+bad pairs:       	  0.0000% 	        0 	  0.0000% 	           0
+insert size avg: 	  221.54
+unmapped:        	 98.9307% 	 61181656 	 98.9307% 	  9238430056
+
+
+Read 1 data:      	pct reads	num reads 	pct bases	   num bases
+
+mapped:          	  1.0693% 	   330648 	  1.0693% 	    49927848
+unambiguous:     	  0.7248% 	   224105 	  0.7248% 	    33839855
+ambiguous:       	  0.3446% 	   106543 	  0.3446% 	    16087993
+low-Q discards:  	  0.0000% 	        0 	  0.0000% 	           0
+
+perfect best site:	  0.0162% 	     5002 	  0.0162% 	      755302
+semiperfect site:	  0.0214% 	     6602 	  0.0214% 	      996902
+rescued:         	  0.2123% 	    65650
+
+Match Rate:      	      NA 	       NA 	 21.0501% 	    40514506
+Error Rate:      	 33.3895% 	   324932 	 78.6204% 	   151318277
+Sub Rate:        	 33.3561% 	   324607 	  4.3910% 	     8451133
+Del Rate:        	  5.9544% 	    57946 	 74.0590% 	   142539176
+Ins Rate:        	  4.2507% 	    41366 	  0.1704% 	      327968
+N Rate:          	  3.8125% 	    37102 	  0.3295% 	      634241
+
+
+Read 2 data:      	pct reads	num reads 	pct bases	   num bases
+
+mapped:          	  1.0693% 	   330648 	  1.0693% 	    49927848
+unambiguous:     	  0.7338% 	   226901 	  0.7338% 	    34262051
+ambiguous:       	  0.3355% 	   103747 	  0.3355% 	    15665797
+low-Q discards:  	  0.0004% 	      129 	  0.0004% 	       19479
+
+perfect best site:	  0.0173% 	     5340 	  0.0173% 	      806340
+semiperfect site:	  0.0225% 	     6963 	  0.0225% 	     1051413
+rescued:         	  0.2130% 	    65877
+
+Match Rate:      	      NA 	       NA 	 25.1043% 	    40399445
+Error Rate:      	 34.2967% 	   323946 	 74.4416% 	   119796172
+Sub Rate:        	 34.2496% 	   323501 	  5.3007% 	     8530249
+Del Rate:        	  6.6417% 	    62733 	 68.9747% 	   110998528
+Ins Rate:        	  4.6489% 	    43911 	  0.1662% 	      267395
+N Rate:          	  4.6253% 	    43688 	  0.4541% 	      730759
+
+Total time:     	5754.396 seconds.
