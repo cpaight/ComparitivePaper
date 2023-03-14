@@ -2,14 +2,14 @@
 #uses bbmap to map reads to S. major nulcleotide transcriptome
 #unmapped reads are M. Mchameleon   
 
-for sample in $(cat /home/cpaight/cpaightNAS/cpaight/data/Mchameleon/jgi/samples)
+for sample in $(cat ~/data/Mchameleon/jgi/Mcsamples)
 do
 
-    bbmap.sh in=/home/cpaight/cpaightNAS/cpaight/data/Mchameleon/jgi/${sample}-RNA.fastq.gz \
+    bbmap.sh in=~/data/Mchameleon/jgi/${sample}-RNA.fastq.gz \
     unpigz=t pigz=t slow k=12 \
-    ref=/home/cpaight/cpaightNAS/cpaight/data/Mchameleon/jgi/smajor/Stomajnscriptome/transcripts.fasta \
-    outm=/home/cpaight/cpaightNAS/cpaight/data/Mchameleon/jgi/mapping/jgiSm8/${sample}_sm.fq \
-    outu=/home/cpaight/cpaightNAS/cpaight/data/Mchameleon/jgi/mapping/jgiMC8/${sample}_MC.fq \
+    ref=~/data/Mchameleon/jgi/smajor/Stomajnscriptome/transcripts.fasta \
+    outm=~/data/Mchameleon/jgi/mapping/jgiSm8/${sample}_sm.fq \
+    outu=~/data/Mchameleon/jgi/mapping/jgiMC8/${sample}_MC.fq \
     printunmappedcount=t covk=1 nfilter=10 interleaved=f maxindel=20 threads=24 minid=0.90 ambiguous=all maxsites2=20000 physcov=t \
 
 done
