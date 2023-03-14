@@ -1,11 +1,11 @@
-Command line: /usr/lib/spades/bin/spades.py	--rna	-t	16	--s1	/home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/MP3_S95_L002.fq	--s2	/home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/MP4_S96_L002.fq	--s3	/home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/MP5_S97_L002.fq	--s4	/home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/MP6_S98_L002.fq	--s5	/home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/MP7_S99_L002.fq	-o	/home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/assem	
+Command line: /usr/lib/spades/bin/spades.py	--rna	-t	16	--s1	~/data/Mpulex/unmapped/MP3_S95_L002.fq	--s2	~/data/Mpulex/unmapped/MP4_S96_L002.fq	--s3	~/data/Mpulex/unmapped/MP5_S97_L002.fq	--s4	~/data/Mpulex/unmapped/MP6_S98_L002.fq	--s5	~/data/Mpulex/unmapped/MP7_S99_L002.fq	-o	~/data/Mpulex/unmapped/assem	
 
 System information:
   SPAdes version: 3.13.1
   Python version: 3.10.6
   OS: Linux-5.15.0-58-generic-x86_64-with-glibc2.35
 
-Output dir: /home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/assem
+Output dir: ~/data/Mpulex/unmapped/assem
 Mode: ONLY assembling (without read error correction)
 Debug mode is turned OFF
 
@@ -16,31 +16,31 @@ Dataset parameters:
       left reads: not specified
       right reads: not specified
       interlaced reads: not specified
-      single reads: ['/home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/MP3_S95_L002.fq']
+      single reads: ['~/data/Mpulex/unmapped/MP3_S95_L002.fq']
       merged reads: not specified
     Library number: 2, library type: single
       left reads: not specified
       right reads: not specified
       interlaced reads: not specified
-      single reads: ['/home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/MP4_S96_L002.fq']
+      single reads: ['~/data/Mpulex/unmapped/MP4_S96_L002.fq']
       merged reads: not specified
     Library number: 3, library type: single
       left reads: not specified
       right reads: not specified
       interlaced reads: not specified
-      single reads: ['/home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/MP5_S97_L002.fq']
+      single reads: ['~/data/Mpulex/unmapped/MP5_S97_L002.fq']
       merged reads: not specified
     Library number: 4, library type: single
       left reads: not specified
       right reads: not specified
       interlaced reads: not specified
-      single reads: ['/home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/MP6_S98_L002.fq']
+      single reads: ['~/data/Mpulex/unmapped/MP6_S98_L002.fq']
       merged reads: not specified
     Library number: 5, library type: single
       left reads: not specified
       right reads: not specified
       interlaced reads: not specified
-      single reads: ['/home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/MP7_S99_L002.fq']
+      single reads: ['~/data/Mpulex/unmapped/MP7_S99_L002.fq']
       merged reads: not specified
 Assembly parameters:
   k: automatic selection based on read length
@@ -49,18 +49,18 @@ Assembly parameters:
   MismatchCorrector will be SKIPPED
   Coverage cutoff is turned OFF
 Other parameters:
-  Dir for temp files: /home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/assem/tmp
+  Dir for temp files: ~/data/Mpulex/unmapped/assem/tmp
   Threads: 16
   Memory limit (in Gb): 250
 
 
-======= SPAdes pipeline started. Log can be found here: /home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/assem/spades.log
+======= SPAdes pipeline started. Log can be found here: ~/data/Mpulex/unmapped/assem/spades.log
 
-/home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/MP3_S95_L002.fq: max reads length: 151
-/home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/MP4_S96_L002.fq: max reads length: 151
-/home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/MP5_S97_L002.fq: max reads length: 151
-/home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/MP6_S98_L002.fq: max reads length: 151
-/home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/MP7_S99_L002.fq: max reads length: 151
+~/data/Mpulex/unmapped/MP3_S95_L002.fq: max reads length: 151
+~/data/Mpulex/unmapped/MP4_S96_L002.fq: max reads length: 151
+~/data/Mpulex/unmapped/MP5_S97_L002.fq: max reads length: 151
+~/data/Mpulex/unmapped/MP6_S98_L002.fq: max reads length: 151
+~/data/Mpulex/unmapped/MP7_S99_L002.fq: max reads length: 151
 
 Reads length: 151
 
@@ -71,13 +71,13 @@ K values to be used: [49, 73]
 
 == Running assembler: K49
 
-  0:00:00.000     4M / 4M    INFO    General                 (main.cpp                  :  74)   Loaded config from /home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/assem/K49/configs/config.info
-  0:00:00.000     4M / 4M    INFO    General                 (main.cpp                  :  74)   Loaded config from /home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/assem/K49/configs/mda_mode.info
-  0:00:00.000     4M / 4M    INFO    General                 (main.cpp                  :  74)   Loaded config from /home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/assem/K49/configs/rna_mode.info
+  0:00:00.000     4M / 4M    INFO    General                 (main.cpp                  :  74)   Loaded config from ~/data/Mpulex/unmapped/assem/K49/configs/config.info
+  0:00:00.000     4M / 4M    INFO    General                 (main.cpp                  :  74)   Loaded config from ~/data/Mpulex/unmapped/assem/K49/configs/mda_mode.info
+  0:00:00.000     4M / 4M    INFO    General                 (main.cpp                  :  74)   Loaded config from ~/data/Mpulex/unmapped/assem/K49/configs/rna_mode.info
   0:00:00.000     4M / 4M    INFO    General                 (memory_limit.cpp          :  49)   Memory limit set to 250 Gb
   0:00:00.000     4M / 4M    INFO    General                 (main.cpp                  :  84)   Starting SPAdes, built from N/A, git revision N/A
   0:00:00.000     4M / 4M    INFO    General                 (main.cpp                  :  88)   Maximum k-mer length: 128
-  0:00:00.000     4M / 4M    INFO    General                 (main.cpp                  :  89)   Assembling dataset (/home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/assem/dataset.info) with K=49
+  0:00:00.000     4M / 4M    INFO    General                 (main.cpp                  :  89)   Assembling dataset (~/data/Mpulex/unmapped/assem/dataset.info) with K=49
   0:00:00.000     4M / 4M    INFO    General                 (main.cpp                  :  90)   Maximum # of threads to use (adjusted due to OMP capabilities): 16
   0:00:00.000     4M / 4M    INFO    General                 (launch.hpp                :  52)   SPAdes started
   0:00:00.000     4M / 4M    INFO    General                 (launch.hpp                :  59)   Starting from stage: construction
@@ -634,7 +634,7 @@ K values to be used: [49, 73]
   4:21:52.551     7G / 35G   INFO    General                 (simplification.cpp        : 470)   Counting average coverage
   4:21:52.956     7G / 35G   INFO    General                 (simplification.cpp        : 476)   Average coverage = 793.564
   4:21:52.956     7G / 35G   INFO   StageManager             (stage.cpp                 : 132)   STAGE == Contig Output
-  4:21:52.962     7G / 35G   INFO    General                 (contig_output.hpp         :  22)   Outputting contigs to /home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/assem//K49/simplified_contigs.fasta
+  4:21:52.962     7G / 35G   INFO    General                 (contig_output.hpp         :  22)   Outputting contigs to ~/data/Mpulex/unmapped/assem//K49/simplified_contigs.fasta
   4:21:55.536     7G / 35G   INFO    General                 (launch.hpp                : 151)   SPAdes finished
   4:22:07.973    64M / 35G   INFO    General                 (main.cpp                  : 109)   Assembling time: 4 hours 22 minutes 7 seconds
 Max read length detected as 151
@@ -642,13 +642,13 @@ Default k-mer sizes were set to [21, 33, 55, 77] because estimated read length (
 
 == Running assembler: K33
 
-  0:00:00.000     4M / 4M    INFO    General                 (main.cpp                  :  74)   Loaded config from /home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/assem/K33/configs/config.info
-  0:00:00.000     4M / 4M    INFO    General                 (main.cpp                  :  74)   Loaded config from /home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/assem/K33/configs/mda_mode.info
-  0:00:00.000     4M / 4M    INFO    General                 (main.cpp                  :  74)   Loaded config from /home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/assem/K33/configs/rna_mode.info
+  0:00:00.000     4M / 4M    INFO    General                 (main.cpp                  :  74)   Loaded config from ~/data/Mpulex/unmapped/assem/K33/configs/config.info
+  0:00:00.000     4M / 4M    INFO    General                 (main.cpp                  :  74)   Loaded config from ~/data/Mpulex/unmapped/assem/K33/configs/mda_mode.info
+  0:00:00.000     4M / 4M    INFO    General                 (main.cpp                  :  74)   Loaded config from ~/data/Mpulex/unmapped/assem/K33/configs/rna_mode.info
   0:00:00.000     4M / 4M    INFO    General                 (memory_limit.cpp          :  49)   Memory limit set to 250 Gb
   0:00:00.000     4M / 4M    INFO    General                 (main.cpp                  :  84)   Starting SPAdes, built from N/A, git revision N/A
   0:00:00.000     4M / 4M    INFO    General                 (main.cpp                  :  88)   Maximum k-mer length: 128
-  0:00:00.000     4M / 4M    INFO    General                 (main.cpp                  :  89)   Assembling dataset (/home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/assem/dataset.info) with K=33
+  0:00:00.000     4M / 4M    INFO    General                 (main.cpp                  :  89)   Assembling dataset (~/data/Mpulex/unmapped/assem/dataset.info) with K=33
   0:00:00.000     4M / 4M    INFO    General                 (main.cpp                  :  90)   Maximum # of threads to use (adjusted due to OMP capabilities): 16
   0:00:00.000     4M / 4M    INFO    General                 (launch.hpp                :  52)   SPAdes started
   0:00:00.000     4M / 4M    INFO    General                 (launch.hpp                :  59)   Starting from stage: construction
@@ -1104,19 +1104,19 @@ Default k-mer sizes were set to [21, 33, 55, 77] because estimated read length (
   4:07:26.515     8G / 34G   INFO    General                 (simplification.cpp        : 470)   Counting average coverage
   4:07:26.966     8G / 34G   INFO    General                 (simplification.cpp        : 476)   Average coverage = 791.424
   4:07:26.966     8G / 34G   INFO   StageManager             (stage.cpp                 : 132)   STAGE == Contig Output
-  4:07:26.966     8G / 34G   INFO    General                 (contig_output.hpp         :  22)   Outputting contigs to /home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/assem//K33/simplified_contigs.fasta
+  4:07:26.966     8G / 34G   INFO    General                 (contig_output.hpp         :  22)   Outputting contigs to ~/data/Mpulex/unmapped/assem//K33/simplified_contigs.fasta
   4:07:29.634     8G / 34G   INFO    General                 (launch.hpp                : 151)   SPAdes finished
   4:07:43.428    64M / 34G   INFO    General                 (main.cpp                  : 109)   Assembling time: 4 hours 7 minutes 43 seconds
 
 == Running assembler: K55
 
-  0:00:00.000     4M / 4M    INFO    General                 (main.cpp                  :  74)   Loaded config from /home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/assem/K55/configs/config.info
-  0:00:00.000     4M / 4M    INFO    General                 (main.cpp                  :  74)   Loaded config from /home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/assem/K55/configs/mda_mode.info
-  0:00:00.000     4M / 4M    INFO    General                 (main.cpp                  :  74)   Loaded config from /home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/assem/K55/configs/rna_mode.info
+  0:00:00.000     4M / 4M    INFO    General                 (main.cpp                  :  74)   Loaded config from ~/data/Mpulex/unmapped/assem/K55/configs/config.info
+  0:00:00.000     4M / 4M    INFO    General                 (main.cpp                  :  74)   Loaded config from ~/data/Mpulex/unmapped/assem/K55/configs/mda_mode.info
+  0:00:00.000     4M / 4M    INFO    General                 (main.cpp                  :  74)   Loaded config from ~/data/Mpulex/unmapped/assem/K55/configs/rna_mode.info
   0:00:00.000     4M / 4M    INFO    General                 (memory_limit.cpp          :  49)   Memory limit set to 250 Gb
   0:00:00.000     4M / 4M    INFO    General                 (main.cpp                  :  84)   Starting SPAdes, built from N/A, git revision N/A
   0:00:00.000     4M / 4M    INFO    General                 (main.cpp                  :  88)   Maximum k-mer length: 128
-  0:00:00.000     4M / 4M    INFO    General                 (main.cpp                  :  89)   Assembling dataset (/home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/assem/dataset.info) with K=55
+  0:00:00.000     4M / 4M    INFO    General                 (main.cpp                  :  89)   Assembling dataset (~/data/Mpulex/unmapped/assem/dataset.info) with K=55
   0:00:00.000     4M / 4M    INFO    General                 (main.cpp                  :  90)   Maximum # of threads to use (adjusted due to OMP capabilities): 16
   0:00:00.000     4M / 4M    INFO    General                 (launch.hpp                :  52)   SPAdes started
   0:00:00.000     4M / 4M    INFO    General                 (launch.hpp                :  59)   Starting from stage: construction
@@ -1572,19 +1572,19 @@ Default k-mer sizes were set to [21, 33, 55, 77] because estimated read length (
   4:19:34.920    31G / 53G   INFO    General                 (simplification.cpp        : 470)   Counting average coverage
   4:19:35.273    31G / 53G   INFO    General                 (simplification.cpp        : 476)   Average coverage = 736.79
   4:19:35.273    31G / 53G   INFO   StageManager             (stage.cpp                 : 132)   STAGE == Contig Output
-  4:19:35.273    31G / 53G   INFO    General                 (contig_output.hpp         :  22)   Outputting contigs to /home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/assem//K55/simplified_contigs.fasta
+  4:19:35.273    31G / 53G   INFO    General                 (contig_output.hpp         :  22)   Outputting contigs to ~/data/Mpulex/unmapped/assem//K55/simplified_contigs.fasta
   4:19:37.663    31G / 53G   INFO    General                 (launch.hpp                : 151)   SPAdes finished
   4:23:28.138    64M / 53G   INFO    General                 (main.cpp                  : 109)   Assembling time: 4 hours 23 minutes 28 seconds
 
 == Running assembler: K77
 
-  0:00:00.000     4M / 4M    INFO    General                 (main.cpp                  :  74)   Loaded config from /home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/assem/K77/configs/config.info
-  0:00:00.000     4M / 4M    INFO    General                 (main.cpp                  :  74)   Loaded config from /home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/assem/K77/configs/mda_mode.info
-  0:00:00.000     4M / 4M    INFO    General                 (main.cpp                  :  74)   Loaded config from /home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/assem/K77/configs/rna_mode.info
+  0:00:00.000     4M / 4M    INFO    General                 (main.cpp                  :  74)   Loaded config from ~/data/Mpulex/unmapped/assem/K77/configs/config.info
+  0:00:00.000     4M / 4M    INFO    General                 (main.cpp                  :  74)   Loaded config from ~/data/Mpulex/unmapped/assem/K77/configs/mda_mode.info
+  0:00:00.000     4M / 4M    INFO    General                 (main.cpp                  :  74)   Loaded config from ~/data/Mpulex/unmapped/assem/K77/configs/rna_mode.info
   0:00:00.000     4M / 4M    INFO    General                 (memory_limit.cpp          :  49)   Memory limit set to 250 Gb
   0:00:00.000     4M / 4M    INFO    General                 (main.cpp                  :  84)   Starting SPAdes, built from N/A, git revision N/A
   0:00:00.000     4M / 4M    INFO    General                 (main.cpp                  :  88)   Maximum k-mer length: 128
-  0:00:00.000     4M / 4M    INFO    General                 (main.cpp                  :  89)   Assembling dataset (/home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/assem/dataset.info) with K=77
+  0:00:00.000     4M / 4M    INFO    General                 (main.cpp                  :  89)   Assembling dataset (~/data/Mpulex/unmapped/assem/dataset.info) with K=77
   0:00:00.000     4M / 4M    INFO    General                 (main.cpp                  :  90)   Maximum # of threads to use (adjusted due to OMP capabilities): 16
   0:00:00.000     4M / 4M    INFO    General                 (launch.hpp                :  52)   SPAdes started
   0:00:00.000     4M / 4M    INFO    General                 (launch.hpp                :  59)   Starting from stage: construction
@@ -2044,10 +2044,10 @@ Default k-mer sizes were set to [21, 33, 55, 77] because estimated read length (
   5:10:07.666    21G / 52G   INFO    General                 (mismatch_shall_not_pass.hp: 290)   All edges processed
   5:10:10.244    21G / 52G   INFO    General                 (mismatch_correction.cpp   :  27)   Corrected 1738 nucleotides
   5:10:10.245    21G / 52G   INFO   StageManager             (stage.cpp                 : 132)   STAGE == Contig Output
-  5:10:10.245    21G / 52G   INFO    General                 (contig_output_stage.cpp   :  45)   Writing GFA to /home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/assem//K77/assembly_graph_with_scaffolds.gfa
-  5:10:11.322    21G / 52G   INFO    General                 (contig_output.hpp         :  22)   Outputting contigs to /home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/assem//K77/before_rr.fasta
-  5:10:13.087    21G / 52G   INFO    General                 (contig_output_stage.cpp   :  56)   Outputting FastG graph to /home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/assem//K77/assembly_graph.fastg
-  5:10:18.411    21G / 52G   INFO    General                 (contig_output.hpp         :  22)   Outputting contigs to /home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/assem//K77/final_contigs.fasta
+  5:10:10.245    21G / 52G   INFO    General                 (contig_output_stage.cpp   :  45)   Writing GFA to ~/data/Mpulex/unmapped/assem//K77/assembly_graph_with_scaffolds.gfa
+  5:10:11.322    21G / 52G   INFO    General                 (contig_output.hpp         :  22)   Outputting contigs to ~/data/Mpulex/unmapped/assem//K77/before_rr.fasta
+  5:10:13.087    21G / 52G   INFO    General                 (contig_output_stage.cpp   :  56)   Outputting FastG graph to ~/data/Mpulex/unmapped/assem//K77/assembly_graph.fastg
+  5:10:18.411    21G / 52G   INFO    General                 (contig_output.hpp         :  22)   Outputting contigs to ~/data/Mpulex/unmapped/assem//K77/final_contigs.fasta
   5:10:20.189    21G / 52G   INFO   StageManager             (stage.cpp                 : 132)   STAGE == Paired Information Counting
   5:10:29.095    21G / 52G   INFO    General                 (graph_pack.hpp            : 109)   Normalizing k-mer map. Total 109125528 kmers to process
   5:12:23.917    21G / 52G   INFO    General                 (graph_pack.hpp            : 111)   Normalizing done
@@ -2216,24 +2216,24 @@ Default k-mer sizes were set to [21, 33, 55, 77] because estimated read length (
   9:07:46.498    72G / 72G   INFO    General                 (launcher.cpp              : 281)   Length cutoff: 149
   9:07:46.662    72G / 72G   INFO    General                 (launcher.cpp              : 534)   ExSPAnder repeat resolving tool finished
   9:08:19.906    24G / 72G   INFO   StageManager             (stage.cpp                 : 132)   STAGE == Contig Output
-  9:08:19.906    24G / 72G   INFO    General                 (contig_output_stage.cpp   :  45)   Writing GFA to /home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/assem//K77/assembly_graph_with_scaffolds.gfa
-  9:08:21.000    24G / 72G   INFO    General                 (contig_output.hpp         :  22)   Outputting contigs to /home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/assem//K77/before_rr.fasta
-  9:08:22.807    24G / 72G   INFO    General                 (contig_output_stage.cpp   :  56)   Outputting FastG graph to /home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/assem//K77/assembly_graph.fastg
-  9:08:27.682    24G / 72G   INFO    General                 (contig_output_stage.cpp   :  20)   Outputting FastG paths to /home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/assem//K77/transcripts.paths
+  9:08:19.906    24G / 72G   INFO    General                 (contig_output_stage.cpp   :  45)   Writing GFA to ~/data/Mpulex/unmapped/assem//K77/assembly_graph_with_scaffolds.gfa
+  9:08:21.000    24G / 72G   INFO    General                 (contig_output.hpp         :  22)   Outputting contigs to ~/data/Mpulex/unmapped/assem//K77/before_rr.fasta
+  9:08:22.807    24G / 72G   INFO    General                 (contig_output_stage.cpp   :  56)   Outputting FastG graph to ~/data/Mpulex/unmapped/assem//K77/assembly_graph.fastg
+  9:08:27.682    24G / 72G   INFO    General                 (contig_output_stage.cpp   :  20)   Outputting FastG paths to ~/data/Mpulex/unmapped/assem//K77/transcripts.paths
   9:08:36.010    24G / 72G   INFO    General                 (launch.hpp                : 151)   SPAdes finished
   9:10:26.653    68M / 72G   INFO    General                 (main.cpp                  : 109)   Assembling time: 9 hours 10 minutes 26 seconds
 
 ===== Assembling finished. Used k-mer sizes: 49, 33, 55, 77 
 
- * Assembled transcripts are in /home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/assem/transcripts.fasta
- * Paths in the assembly graph corresponding to the transcripts are in /home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/assem/transcripts.paths
- * Hard filtered transcripts are in /home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/assem/hard_filtered_transcripts.fasta
- * Soft filtered transcripts are in /home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/assem/soft_filtered_transcripts.fasta
- * Assembly graph is in /home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/assem/assembly_graph.fastg
- * Assembly graph in GFA format is in /home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/assem/assembly_graph_with_scaffolds.gfa
+ * Assembled transcripts are in ~/data/Mpulex/unmapped/assem/transcripts.fasta
+ * Paths in the assembly graph corresponding to the transcripts are in ~/data/Mpulex/unmapped/assem/transcripts.paths
+ * Hard filtered transcripts are in ~/data/Mpulex/unmapped/assem/hard_filtered_transcripts.fasta
+ * Soft filtered transcripts are in ~/data/Mpulex/unmapped/assem/soft_filtered_transcripts.fasta
+ * Assembly graph is in ~/data/Mpulex/unmapped/assem/assembly_graph.fastg
+ * Assembly graph in GFA format is in ~/data/Mpulex/unmapped/assem/assembly_graph_with_scaffolds.gfa
 
 ======= SPAdes pipeline finished.
 
-SPAdes log can be found here: /home/cpaight/cpaightNAS/cpaight/data/Mpulex/unmapped/assem/spades.log
+SPAdes log can be found here: ~/data/Mpulex/unmapped/assem/spades.log
 
 Thank you for using SPAdes!
