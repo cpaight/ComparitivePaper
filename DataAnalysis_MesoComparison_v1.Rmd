@@ -1,0 +1,366 @@
+---
+title: "Mesodinium comparison analysis"
+author: "Holly Moeller"
+date: "12/29/2020"
+output: html_document
+---
+
+
+```{r setup, include=FALSE}
+# LOAD RELEVANT PACKAGES
+require(Rmisc) #has summarySE function, which is quite useful
+require(sciplot) #has bargraph.CI function
+require(pracma)
+
+
+# IMPORT DATA
+Cfix.mult <- 0.06332817 # The multiplier 0.06332817 converts from electrons per chlorophyll molecule per second into pg C per pg chlorophyll-a per hour
+
+fire <- read.csv('/Users/hollyvm/GoogleSync/Mesodinium/MesoComparativeTranscriptomes/WellFedStudies - FIReData.csv')
+fire$ETR.C <- fire$ETR*Cfix.mult
+head(fire)
+
+
+dat <- read.csv('/Users/hollyvm/GoogleSync/Mesodinium/MesoComparativeTranscriptomes/WellFedStudies - PhysiolData.csv')
+#dat <- dat[dat$OldData!='Y',]
+head(dat)
+str(dat)
+
+
+gene.dat <- read.csv('/Users/hollyvm/GoogleSync/Mesodinium/MesoComparativeTranscriptomes/Meso_GeneExpression.csv')
+
+
+# SET PLOTTING PARAMETERS (COLOURS)
+Acol <- 'red' # colour to plot rep A data
+Bcol <- 'blue' # colour to plot rep B data
+Ccol <- 'green' # colour to plot rep C data
+Fedcol <- 'black'
+Starvedcol <- 'gray80'
+Cryptocol <- 'gray50'
+
+rubrumcol <- 'firebrick'
+RScol <- 'lightcoral'
+chamaeleoncol <- 'seagreen'
+chamaeleoncol <- 'turquoise3'
+#preycolvec <- c(CMcol,HPcol,RScol,SMcol)
+
+
+
+
+
+alphaY <- 1		# transparencies for feeding treatments
+alphaN <- .1
+CM.Y <- rgb(39/255,123/255,69/255,alphaY)  # used digital colour meter to determine RGB values for colours chosen above
+CM.N <- rgb(39/255,123/255,69/255,alphaN)
+HP.Y <- rgb(24/255,186/255,194/255,alphaY)
+HP.N <- rgb(24/255,186/255,194/255,alphaN)
+RS.Y <- rgb(234/255,105/255,109/255,alphaY)
+RS.N <- rgb(234/255,105/255,109/255,alphaN)
+SM.Y <- rgb(160/255,17/255,27/255,alphaY)
+SM.N <- rgb(160/255,17/255,27/255,alphaN)
+
+preycolvec2 <- c(CM.N,CM.Y,HP.N,HP.Y,RS.N,RS.Y,SM.N,SM.Y)
+
+```
+
+
+
+```{r PlotChrisGeneChart, fig.height=5, fig.width=5.5}
+par(mar=c(4,4,1,1))
+
+pulexcol <- rgb(52/255,101/255,164/255)
+chamaelcol <- rgb(80/255,147/255,137/255)
+rubrumtempcol <- rgb(234/255,117/255,2/255)
+rubrumpolarcol <- rgb(214/255,46/255,78/255)
+
+perox.x <- c(1:9)
+FA.x <- c(1:9)
+AA.x <- c(1:15)
+
+perox.y <- rep(16,length(perox.x))
+FA.y <- rep(9, length(FA.x))
+AA.y <- rep(2, length(AA.x))
+
+plot(perox.x,perox.y,xlim=c(-5,20),ylim=c(-3,19),xaxt='n',yaxt='n',xlab='',ylab='',type='n')
+points(perox.x,perox.y,pch=22,cex=5,lwd=2,bg=c('white',pulexcol)[factor(t(gene.dat[2,2:10]),levels=c("0","1"))])
+points(perox.x,perox.y-1,pch=22,cex=5,lwd=2,bg=c('white',chamaelcol)[factor(t(gene.dat[3,2:10]),levels=c("0","1"))])
+points(perox.x,perox.y-2,pch=22,cex=5,lwd=2,bg=c('white',rubrumtempcol)[factor(t(gene.dat[4,2:10]),levels=c("0","1"))])
+points(perox.x,perox.y-3,pch=22,cex=5,lwd=2,bg=c('white',rubrumpolarcol)[factor(t(gene.dat[5,2:10]),levels=c("0","1"))])
+text(perox.x-.3,perox.y+.6,colnames(gene.dat)[2:10],srt=45,pos=4)
+text(rep(min(perox.x)-.3,4),c(min(perox.y),min(perox.y)-1,min(perox.y)-2,min(perox.y)-3),c('M. pulex','M. chamaeleon','M. rubrum (temperate)','M. rubrum (polar)'),pos=2)
+text(min(perox.x)-5,min(perox.y)+2,'Peroxisome',cex=1.8,col='gray50',pos=4)
+
+points(FA.x,FA.y,pch=22,cex=5,lwd=2,bg=c('white',pulexcol)[factor(t(gene.dat[2,11:19]),levels=c("0","1"))])
+points(FA.x,FA.y-1,pch=22,cex=5,lwd=2,bg=c('white',chamaelcol)[factor(t(gene.dat[3,11:19]),levels=c("0","1"))])
+points(FA.x,FA.y-2,pch=22,cex=5,lwd=2,bg=c('white',rubrumtempcol)[factor(t(gene.dat[4,11:19]),levels=c("0","1"))])
+points(FA.x,FA.y-3,pch=22,cex=5,lwd=2,bg=c('white',rubrumpolarcol)[factor(t(gene.dat[5,11:19]),levels=c("0","1"))])
+text(FA.x-.3,FA.y+.6,colnames(gene.dat)[11:19],srt=45,pos=4)
+text(rep(min(FA.x)-.3,4),c(min(FA.y),min(FA.y)-1,min(FA.y)-2,min(FA.y)-3),c('M. pulex','M. chamaeleon','M. rubrum (temperate)','M. rubrum (polar)'),pos=2)
+text(min(FA.x)-5,min(FA.y)+2.1,'Fatty Acid Oxidation',cex=1.8,col='gray50',pos=4)
+
+
+points(AA.x,AA.y,pch=22,cex=5,lwd=2,bg=c('white',pulexcol)[factor(t(gene.dat[2,20:34]),levels=c("0","1"))])
+points(AA.x,AA.y-1,pch=22,cex=5,lwd=2,bg=c('white',chamaelcol)[factor(t(gene.dat[3,20:34]),levels=c("0","1"))])
+points(AA.x,AA.y-2,pch=22,cex=5,lwd=2,bg=c('white',rubrumtempcol)[factor(t(gene.dat[4,20:34]),levels=c("0","1"))])
+points(AA.x,AA.y-3,pch=22,cex=5,lwd=2,bg=c('white',rubrumpolarcol)[factor(t(gene.dat[5,20:34]),levels=c("0","1"))])
+text(AA.x-.3,AA.y+.6,colnames(gene.dat)[20:34],srt=45,pos=4)
+text(rep(min(AA.x)-.3,4),c(min(AA.y),min(AA.y)-1,min(AA.y)-2,min(AA.y)-3),c('M. pulex','M. chamaeleon','M. rubrum (temperate)','M. rubrum (polar)'),pos=2)
+text(min(AA.x)-5,min(AA.y)+1.6,'Amino Acid Biosynthesis',cex=1.8,col='gray50',pos=4)
+
+
+
+```
+
+
+```{r,fig.height=2.8,fig.width=4}
+par(bg='black',mar=c(0,0,0,0))
+plot(c(1:25),c(1:25),type='n',xaxt='n',yaxt='n',xlab='',ylab='',xlim=c(0,22),ylim=c(0,15))
+
+mpul.col <- rgb(253/255,234/255,218/255)
+mpul.out <- rgb(204/255,189/255,82/255)
+mcham.col <- rgb(219/255,238/255,244/255)
+mcham.out <- rgb(49/255,133/255,156/255)
+mrub.col <- rgb(242/255,220/255,219/255)
+mrub.out <- rgb(192/255,80/255,77/255)
+
+mpul.x <- 2
+points(rep(mpul.x,14),c(1:14),pch=22,cex=4,col=mpul.out,bg=mpul.col,lwd=2)
+points(rep(mpul.x,9)+1,c(1:9),pch=22,cex=4,col=mpul.out,bg=mpul.col,lwd=2)
+points(rep(mpul.x,8)+2,c(1:8),pch=22,cex=4,col=mpul.out,bg=mpul.col,lwd=2)
+
+
+mcham.x <- 10
+points(rep(mcham.x,13),c(1:13),pch=22,cex=4,col=mcham.out,bg=mcham.col,lwd=2)
+points(rep(mcham.x,5)+1,c(1:5),pch=22,cex=4,col=mcham.out,bg=mcham.col,lwd=2)
+points(rep(mcham.x,5)+2,c(1:5),pch=22,cex=4,col=mcham.out,bg=mcham.col,lwd=2)
+
+
+mrub.x <- 18
+points(rep(mrub.x,6),c(1:6),pch=22,cex=4,col=mrub.out,bg=mrub.col,lwd=2)
+points(rep(mrub.x,1)+1,c(1:1),pch=22,cex=4,col=mrub.out,bg=mrub.col,lwd=2)
+points(rep(mrub.x,2)+2,c(1:2),pch=22,cex=4,col=mrub.out,bg=mrub.col,lwd=2)
+
+#abline(h=0,lwd=2)
+
+```
+
+```{r,fig.height=2.8,fig.width=4}
+par(bg='black',mar=c(0,0,0,0))
+plot(c(1:25),c(1:25),type='n',xaxt='n',yaxt='n',xlab='',ylab='',xlim=c(0,22),ylim=c(0,15))
+
+mpul.col <- rgb(253/255,234/255,218/255)
+mpul.out <- rgb(204/255,189/255,82/255)
+mcham.col <- rgb(219/255,238/255,244/255)
+mcham.out <- rgb(49/255,133/255,156/255)
+mrub.col <- rgb(242/255,220/255,219/255)
+mrub.out <- rgb(192/255,80/255,77/255)
+
+mpul.x <- 2
+points(rep(mpul.x,14),c(1:14),pch=21,cex=4,col=mpul.out,bg=mpul.col,lwd=2)
+points(rep(mpul.x,9)+1,c(1:9),pch=22,cex=4,col=mpul.out,bg=mpul.col,lwd=2)
+points(rep(mpul.x,8)+2,c(1:8),pch=23,cex=3.5,col=mpul.out,bg=mpul.col,lwd=2)
+
+
+mcham.x <- 10
+points(rep(mcham.x,13),c(1:13),pch=21,cex=4,col=mcham.out,bg=mcham.col,lwd=2)
+points(rep(mcham.x,5)+1,c(1:5),pch=22,cex=4,col=mcham.out,bg=mcham.col,lwd=2)
+points(rep(mcham.x,5)+2,c(1:5),pch=23,cex=3.5,col=mcham.out,bg=mcham.col,lwd=2)
+
+
+mrub.x <- 18
+points(rep(mrub.x,6),c(1:6),pch=21,cex=4,col=mrub.out,bg=mrub.col,lwd=2)
+points(rep(mrub.x,1)+1,c(1:1),pch=22,cex=4,col=mrub.out,bg=mrub.col,lwd=2)
+points(rep(mrub.x,2)+2,c(1:2),pch=23,cex=3.5,col=mrub.out,bg=mrub.col,lwd=2)
+
+legend(16,13,pch=c(21,21,22,22,23),legend=c('Amino Acid','','FA Ox','','Perox'),pt.bg='white',col='gray80',lwd=c(2,0,2,0,2),lty=NaN,pt.cex=c(4,0,4,0,3.5))
+#abline(h=0,lwd=2)
+
+
+```
+
+
+```{r PlotChrisGeneChart, fig.height=5, fig.width=5.5}
+par(mar=c(4,4,1,1))
+
+pulexcol <- rgb(52/255,101/255,164/255)
+chamaelcol <- rgb(80/255,147/255,137/255)
+rubrumtempcol <- rgb(234/255,117/255,2/255)
+rubrumpolarcol <- rgb(214/255,46/255,78/255)
+
+perox.x <- c(1:9)
+FA.x <- c(1:9)
+AA.x <- c(1:15)
+
+perox.y <- rep(16,length(perox.x))
+FA.y <- rep(9, length(FA.x))
+AA.y <- rep(2, length(AA.x))
+
+plot(perox.x,perox.y,xlim=c(-5,20),ylim=c(-3,19),xaxt='n',yaxt='n',xlab='',ylab='',type='n')
+points(perox.x,perox.y,pch=22,cex=5,lwd=2,bg=c('white',pulexcol)[factor(t(gene.dat[2,2:10]),levels=c("0","1"))])
+points(perox.x,perox.y-1,pch=22,cex=5,lwd=2,bg=c('white',chamaelcol)[factor(t(gene.dat[3,2:10]),levels=c("0","1"))])
+points(perox.x,perox.y-2,pch=22,cex=5,lwd=2,bg=c('white',rubrumtempcol)[factor(t(gene.dat[4,2:10]),levels=c("0","1"))])
+points(perox.x,perox.y-3,pch=22,cex=5,lwd=2,bg=c('white',rubrumpolarcol)[factor(t(gene.dat[5,2:10]),levels=c("0","1"))])
+text(perox.x-.3,perox.y+.6,colnames(gene.dat)[2:10],srt=45,pos=4)
+text(rep(min(perox.x)-.3,4),c(min(perox.y),min(perox.y)-1,min(perox.y)-2,min(perox.y)-3),c('M. pulex','M. chamaeleon','M. rubrum (temperate)','M. rubrum (polar)'),pos=2)
+text(min(perox.x)-5,min(perox.y)+2,'Peroxisome',cex=1.8,col='gray50',pos=4)
+
+points(FA.x,FA.y,pch=22,cex=5,lwd=2,bg=c('white',pulexcol)[factor(t(gene.dat[2,11:19]),levels=c("0","1"))])
+points(FA.x,FA.y-1,pch=22,cex=5,lwd=2,bg=c('white',chamaelcol)[factor(t(gene.dat[3,11:19]),levels=c("0","1"))])
+points(FA.x,FA.y-2,pch=22,cex=5,lwd=2,bg=c('white',rubrumtempcol)[factor(t(gene.dat[4,11:19]),levels=c("0","1"))])
+points(FA.x,FA.y-3,pch=22,cex=5,lwd=2,bg=c('white',rubrumpolarcol)[factor(t(gene.dat[5,11:19]),levels=c("0","1"))])
+text(FA.x-.3,FA.y+.6,colnames(gene.dat)[11:19],srt=45,pos=4)
+text(rep(min(FA.x)-.3,4),c(min(FA.y),min(FA.y)-1,min(FA.y)-2,min(FA.y)-3),c('M. pulex','M. chamaeleon','M. rubrum (temperate)','M. rubrum (polar)'),pos=2)
+text(min(FA.x)-5,min(FA.y)+2.1,'Fatty Acid Oxidation',cex=1.8,col='gray50',pos=4)
+
+
+points(AA.x,AA.y,pch=22,cex=5,lwd=2,bg=c('white',pulexcol)[factor(t(gene.dat[2,20:34]),levels=c("0","1"))])
+points(AA.x,AA.y-1,pch=22,cex=5,lwd=2,bg=c('white',chamaelcol)[factor(t(gene.dat[3,20:34]),levels=c("0","1"))])
+points(AA.x,AA.y-2,pch=22,cex=5,lwd=2,bg=c('white',rubrumtempcol)[factor(t(gene.dat[4,20:34]),levels=c("0","1"))])
+points(AA.x,AA.y-3,pch=22,cex=5,lwd=2,bg=c('white',rubrumpolarcol)[factor(t(gene.dat[5,20:34]),levels=c("0","1"))])
+text(AA.x-.3,AA.y+.6,colnames(gene.dat)[20:34],srt=45,pos=4)
+text(rep(min(AA.x)-.3,4),c(min(AA.y),min(AA.y)-1,min(AA.y)-2,min(AA.y)-3),c('Sp1','Sp2','Sp3','Sp4'),pos=2)
+text(min(AA.x)-1,min(AA.y)+1.6,'Amino Acid Biosynthesis',cex=1.8,col='gray50',pos=4)
+
+
+
+```
+
+
+
+
+```{r PlotPopulationTrajectories}
+
+mesodat <- dat[dat$Strain!='Prey',]
+plot(mesodat$Day,mesodat$MesoCount,las=1,xlab='Experimental Day', ylab= 'Mesodinium cells/mL', type = 'n')
+
+MCsumm <- summarySE(data=mesodat,'MesoCount', groupvars=c('Day','Species','Strain','Prey','Light'))
+plot(MCsumm$MesoCount~MCsumm$Day,pch=c(21,22,24)[MCsumm$Prey],bg=c(chamaeleoncol,rubrumcol)[MCsumm$Species],las=1,xlab='Experimental Day',ylab='M. chamaeleon cells/mL',ylim=c(min(MCsumm$MesoCount-MCsumm$se,na.rm=TRUE),max(MCsumm$MesoCount+MCsumm$se,na.rm=TRUE)),type='n',xlim=c(0,7),log='y')
+#abline(h=2000,lty=2)
+arrows(MCsumm$Day,MCsumm$MesoCount+MCsumm$se,MCsumm$Day,MCsumm$MesoCount-MCsumm$se,angle=90,length=0.05,code=3,col=c('gray50','black')[MCsumm$Species])
+
+treatset <- unique(mesodat$ExptID)
+MCsumm$ExptID <- paste(MCsumm$Species, MCsumm$Strain, MCsumm$Prey, MCsumm$Light, sep=' ')
+
+for(i in 1:length(treatset)){
+  hold <- MCsumm[MCsumm$ExptID==treatset[i],]
+    if(hold$Species[1]=='M chamaeleon'){coluse <- chamaeleoncol}
+    if(hold$Species[1]=='M rubrum'){coluse <- rubrumcol}
+  ltyuse <- 1
+    if(hold$Prey[1]=='GCEP01'){ltyuse <- 2}
+    if(hold$Strain[1]=='1803x1806'){ltyuse <- 2}
+    if(hold$Strain[1]=='20C3'){ltyuse <- 3}
+    lines(hold$Day,hold$MesoCount,col=coluse,lty=ltyuse,lwd=2)
+}
+
+points(MCsumm$MesoCount~MCsumm$Day,pch=c(21,22,24)[MCsumm$Prey],bg=c(chamaeleoncol,rubrumcol)[MCsumm$Species],cex=1.5)
+
+legend(x = 4.5, y = 2800, legend=c('MR2A1 + 194','MR2A1 + GCEP01','MC1802 + SM', 'MC03x06 + SM', 'MC20C3 + SM'),lty=c(1,2,1,2,3),col=c(rubrumcol,rubrumcol,rep(chamaeleoncol,3)),lwd=2)
+
+```
+
+
+
+```{r CalculateGrowthRates, fig.height = 3, fig.width = 7}
+growth <- as.data.frame(unique(dat$FlaskID))
+names(growth) <- 'FlaskID'
+growth$ExptID <- dat$ExptID[match(growth$FlaskID,dat$FlaskID)]
+growth$Species <- dat$Species[match(growth$FlaskID,dat$FlaskID)]
+growth$Strain <- dat$Strain[match(growth$FlaskID,dat$FlaskID)]
+growth$Prey <- dat$Prey[match(growth$FlaskID,dat$FlaskID)]
+growth$Light <- dat$Light[match(growth$FlaskID,dat$FlaskID)]
+growth$Rep <- dat$Rep[match(growth$FlaskID,dat$FlaskID)]
+growth$mu <- NA
+growth$R2 <- NA
+
+for(i in 1:dim(growth)[1]){
+  hold <- dat[dat$FlaskID==growth$FlaskID[i]&dat$Day < 10 & dat$Day > 0,]
+  if(hold$Strain[1]=='Prey'){
+    growth$mu[i] <- lm(log(hold$PreyCount)~hold$Day)$coef[2]
+    growth$R2[i] <-summary(lm(log(hold$PreyCount)~hold$Day))$r.squared
+  }else {
+    if(hold$Species[1]=='M rubrum'){
+      hold <- hold[hold$Day < 6,]
+      growth$mu[i] <-lm(log(hold$MesoCount)~hold$Day)$coef[2]
+      growth$R2[i] <-summary(lm(log(hold$MesoCount)~hold$Day))$r.squared
+    } else{
+      hold <- dat[dat$FlaskID==growth$FlaskID[i]&dat$Day < 10,]
+    growth$mu[i] <-lm(log(hold$MesoCount)~hold$Day)$coef[2]
+    growth$R2[i] <-summary(lm(log(hold$MesoCount)~hold$Day))$r.squared
+    }
+  }
+}
+
+bargraph.CI(ExptID,mu,data=growth,las=1,xlab='Experiment',ylab='Growth Rate (per day)')
+TukeyHSD(aov(mu~ExptID,data=growth))
+
+```
+
+
+```{r FIReAnalysis}
+
+# head(fire)
+pe.stats <- as.data.frame(unique(fire$FlaskID))
+names(pe.stats) <- 'FlaskID'
+pe.stats$Expt <- dat$Expt[match(pe.stats$FlaskID,dat$FlaskID)]
+pe.stats$Species <- fire$Species[match(pe.stats$FlaskID,fire$FlaskID)]
+pe.stats$Strain <- fire$Strain[match(pe.stats$FlaskID,fire$FlaskID)]
+pe.stats$Prey <- fire$Prey[match(pe.stats$FlaskID,fire$FlaskID)]
+pe.stats$Light <- fire$Light[match(pe.stats$FlaskID,fire$FlaskID)]
+pe.stats$Rep <- fire$Rep[match(pe.stats$FlaskID,fire$FlaskID)]
+pe.stats$Day <- fire$Day[match(pe.stats$FlaskID,fire$FlaskID)]
+pe.stats$Fv.Fm <- NA
+pe.stats$Pmax <- NA
+pe.stats$Pmax.err <- NA
+pe.stats$Pmax.p <- NA
+pe.stats$a <- NA
+pe.stats$a.err <- NA
+pe.stats$a.p <- NA
+
+PARset <- seq(from =0, to = 200, length.out = 100)  # Create a holding vector of light levels to use for plotting later
+
+for(i in 1:(dim(pe.stats)[1])){
+	if((i-1)%%30 == 0){   # plot results in 30-panel figures
+		par(mar=c(1,1,1,1),mfrow=c(5,6))
+	}
+	
+	subdat <- fire[fire$FlaskID==pe.stats$FlaskID[i],]   # Subset the data
+	
+	plot(subdat$PAR, subdat$ETR,xlim=c(0,200),ylim=c(0,max(fire$ETR))); text(max(PARset)*0.5,5,pe.stats$FlaskID[i])  # Plot the raw data
+	
+	pe.stats$Fv.Fm[i] <- subdat[subdat$PAR==0,]$Fv.Fm # Save FvFm
+	
+	P.est <- max(subdat$ETR)
+	a.est <- lm(subdat$ETR[1:5]~subdat$PAR[1:5])$coef[2]
+	nls.summ <- summary(nls(ETR ~ P * tanh(a * PAR / P), data= subdat, start = list(P = P.est, a = a.est)))   # Do curve fit
+	
+	pe.stats$Pmax[i] <- nls.summ$p[1,1]   # Save various statistical parameters
+	pe.stats$Pmax.err[i] <- nls.summ$p[1,2]
+	pe.stats$Pmax.p[i] <- nls.summ$p[1,4]
+	pe.stats$a[i] <- nls.summ$p[2,1]
+	pe.stats$a.err[i] <- nls.summ$p[2,2]
+	pe.stats$a.p[i] <- nls.summ$p[2,4]
+	
+	predictset <- pe.stats$Pmax[i]*tanh(pe.stats$a[i]*PARset/pe.stats$Pmax[i])  
+	lines(PARset,predictset, col='royalblue3')  # Overlay the curve fit
+}
+
+
+pe.stats$Ek <- pe.stats$Pmax / pe.stats$a
+pe.stats$P_I <- pe.stats$Pmax * tanh(pe.stats$a * 10 / pe.stats$Pmax)
+
+#### write.csv(pe.stats,'/Users/hollyvm/GoogleSync/Mesodinium/MesoComparativeTranscriptomes/pestats.csv')
+
+```
+
+
+```{r Chlorophyll, fig.height=3, fig.width=7}
+
+bargraph.CI(ExptID, Chlpcell, data = dat, las = 1, xlab = 'Experiment', ylab = 'Chlorophyll (pg/cell)')
+
+bargraph.CI(ExptID, P_I, data = dat, las = 1, xlab = 'Experiment', ylab = 'P_I (ETR at growth irradiance)')
+bargraph.CI(ExptID, Fv.Fm, data = dat, las = 1, xlab = 'Experiment', ylab = 'Fv/Fm')
+bargraph.CI(ExptID, Pmax, data = dat, las = 1, xlab = 'Experiment', ylab = 'Pmax')
+bargraph.CI(ExptID, Ek/2, data = dat, las = 1, xlab = 'Experiment', ylab = 'E_k/2 (approx half-sat')
+
+```
+
