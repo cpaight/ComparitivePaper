@@ -1,0 +1,459 @@
+---
+title: "Untitled"
+author: "cpaight"
+date: "4/14/2022"
+output: html_document
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r libraries}
+library(dplyr)
+library(ggplot2)
+library(tidyverse)
+library(janitor)
+library(scales)
+library(ggradar)
+```
+
+```{r import data}
+#format detail User_ko_definition.txt
+#sed -r 's/.+(K[0-9]+).+(K[0-9]+).+/\1/g' user_ko_definition.txt > allK3.txt
+#sed -i -r 's/.+(K[0-9]+).+/\1/' allK3.txt
+#grep 'K' allK3.txt > McK.txt
+#sort McK.txt | uniq >MckUniq.txt
+#format brite.txt
+#sed -i -r 's/(M[0-9]+).+(\(.+\))$/\1\t\2/' Mc_brite.txt
+#grep -E 'M[0-9]+' McComplete.txt > MchameleonMap.txt
+#sed -i -r 's/^\s+//' MchameleonMap.txt
+#sed -i -r 's/(.+)/\1\t1/' MchameleonMap.txt
+setwd("~/Documents/ComparitivePaperWork/CompletePathways/matrix")
+pMrubrumMap <- read.delim("~/Documents/ComparitivePaperWork/CompletePathways/matrix/pMrubrumMap.txt", stringsAsFactors=FALSE)
+MpulexMap <- read.delim("~/Documents/ComparitivePaperWork/CompletePathways/matrix/MpulexMap.txt", stringsAsFactors=FALSE)
+MchameleonMap <- read.delim("~/Documents/ComparitivePaperWork/CompletePathways/matrix/MchameleonMap.txt", stringsAsFactors=FALSE)
+tMrubrumMap <- read.delim("~/Documents/ComparitivePaperWork/CompletePathways/matrix/tMrubrumMap.txt", stringsAsFactors=FALSE)
+KeggTable <- read.delim2("~/Documents/ComparitivePaperWork/CompletePathways/matrix/KeggTable.txt", stringsAsFactors=FALSE)
+```
+```{r drop if only 1 of 2}
+MpulexMap[MpulexMap$MPCompletness == '(1 block missing 1/2)', "MP"] <- 0
+MchameleonMap[MchameleonMap$MCCompletness == '(1 block missing 1/2)', "MC"] <- 0
+tMrubrumMap[tMrubrumMap$tMRCompletness == '(1 block missing 1/2)', "tMR"] <- 0
+pMrubrumMap[pMrubrumMap$pMRCompletness == '(1 block missing 1/2)', "pMR"] <- 0
+```
+```{r merge to one table}
+Speciesmap=merge(MpulexMap, MchameleonMap,by=c('Map'), all=TRUE)
+Speciesmap=merge(Speciesmap, tMrubrumMap,by=c('Map'), all=TRUE)
+Speciesmap=merge(Speciesmap, pMrubrumMap,by=c('Map'), all=TRUE)
+CompletePathway4SpeciesTable=merge(KeggTable, Speciesmap, by=c('Map'))
+```
+
+```{r drop empty pathways}
+CompletePathway4SpeciesTable1 <- CompletePathway4SpeciesTable %>% rowwise() %>% mutate(sum = sum(MP,MC,tMR, pMR, na.rm=TRUE)) %>% filter(sum >0)
+PathwaysforGraph <- CompletePathway4SpeciesTable1[,c(1:4,6,8,10,12)]
+PathwaysforGraph[is.na(PathwaysforGraph)] <- 0
+PathwaysforGraph$total <- 1
+PathwaySummary <- PathwaysforGraph %>% group_by(Catagory) %>% summarise_if(is.numeric, sum, na.rm=TRUE)
+PathwaySummary <- PathwaySummary[-2,]
+
+PathwaySummary4graph <- PathwaySummary %>%  pivot_longer(-1, names_to = "species", values_to = "count")
+#write_csv(PathwaysforGraph, file='CompletePathwaysMesodinium.csv', sep='\t', quote=F, row.names=F)
+```
+
+```{r simple shape graph}
+PathwaySummary4graph<-PathwaySummary4graph[!(PathwaySummary4graph$Catagory==" Biosynthesis of terpenoids and polyketides"),]
+PathwaySummary4graph$species <- factor(PathwaySummary4graph$species,
+    levels = c("MP", "MC", "tMR", "pMR"),ordered = TRUE)
+cp <- ggplot(PathwaySummary4graph, aes(x=species, y=count, color=species))+geom_point(aes(shape=Catagory), size=4, alpha=1, position=position_jitter(w=0.3, h=0))+ theme_bw()
+plot(cp)
+PathwaySummary4graphOrder <- transform(PathwaySummary4graph, Catagory = reorder(Catagory, -count))
+arch <- ggplot(PathwaySummary4graphOrder, aes(x=Catagory, y=count, group=species, color=species))+geom_line(aes(color=species))+geom_point(aes(shape=species))+ theme_bw()+ theme(axis.text.x = element_text(angle = 45, hjust=1))
+plot(arch)
+
+sparch <- ggplot(PathwaySummary4graphOrder, aes(x=species, y=count, group=Catagory))+geom_line()+geom_point()+ theme_bw()+ theme(axis.text.x = element_text(angle = 45, hjust=1))
+plot(sparch)
+```
+
+```{r reshape date frame to long format}
+PathwaysforGraph1 <- PathwaysforGraph[,c(2,5:8)]
+LongPathTable <- PathwaysforGraph1 %>%  pivot_longer(-c(1:2), names_to = "species", values_to = "count")
+widePathTable <- as.data.frame(t(PathwaysforGraph1))
+#widePathTable <- PathwaysforGraph1 %>%  pivot_wider_spec(names_from = c(Catagory), values_from= c(Specific,MP, MC, tMR, pMR))
+#widePathTable <- widePathTable[c(2,1,3:6),]
+widePathTable <- widePathTable %>%row_to_names(row_number = 1) %>% clean_names()
+widePathTable <- widePathTable %>% select(sort(names(.)))
+```
+
+```{r PlotChrisGeneChart, fig.height=11, fig.width=8.5}
+gene.dat <- widePathTable
+par(mfrow= c(3,2))
+#mar=c(4,4,2,2)
+MP <- rgb(52/255,101/255,164/255)
+MC <- rgb(80/255,147/255,137/255)
+tMR <- rgb(234/255,117/255,2/255)
+pMR <- rgb(214/255,46/255,78/255)
+
+pulexcol <- rgb(52/255,101/255,164/255)
+chamaelcol <- rgb(80/255,147/255,137/255)
+rubrumtempcol <- rgb(234/255,117/255,2/255)
+rubrumpolarcol <- rgb(214/255,46/255,78/255)
+
+Carbohydrate_metabolism.x <- c(1:18)
+FA.x <- c(1:11)
+AA.x <- c(1:8)
+
+Carbohydrate_metabolism.y <- rep(16,length(Carbohydrate_metabolism.x))
+FA.y <- rep(9, length(FA.x))
+AA.y <- rep(2, length(AA.x))
+
+plot(Carbohydrate_metabolism.x,Carbohydrate_metabolism.y,xlim=c(-9,20),ylim=c(-3,19),xaxt='n',yaxt='n',xlab='',ylab='')
+#,type='n'
+points(Carbohydrate_metabolism.x,Carbohydrate_metabolism.y,pch=22,cex=3,lwd=2,bg=c('white',MP)[factor(t(gene.dat[1,10:27]),levels=c("0","1"))])
+points(Carbohydrate_metabolism.x,Carbohydrate_metabolism.y-1,pch=22,cex=3,lwd=2,bg=c('white',MC)[factor(t(gene.dat[2,10:27]),levels=c("0","1"))])
+points(Carbohydrate_metabolism.x,Carbohydrate_metabolism.y-2,pch=22,cex=3,lwd=2,bg=c('white',tMR)[factor(t(gene.dat[3,10:27]),levels=c("0","1"))])
+points(Carbohydrate_metabolism.x,Carbohydrate_metabolism.y-3,pch=22,cex=3,lwd=2,bg=c('white',pMR)[factor(t(gene.dat[4,10:27]),levels=c("0","1"))])
+#text(Carbohydrate_metabolism.x-.3,Carbohydrate_metabolism.y+.6,colnames(gene.dat)[1:10],srt=45,pos=4)
+text(rep(min(Carbohydrate_metabolism.x)-.3,4),c(min(Carbohydrate_metabolism.y),min(Carbohydrate_metabolism.y)-1,min(Carbohydrate_metabolism.y)-2,min(Carbohydrate_metabolism.y)-3),c('M. pulex','M. chamaeleon','M. rubrum (temperate)','M. rubrum (polar)'),pos=2)
+text(min(Carbohydrate_metabolism.x)-5,min(Carbohydrate_metabolism.y)+2,'Carbohydrate_metabolism',cex=1.8,col='gray50',pos=4)
+
+points(FA.x,FA.y,pch=22,cex=3,lwd=2,bg=c('white',MP)[factor(t(gene.dat[1,34:44]),levels=c("0","1"))])
+points(FA.x,FA.y-1,pch=22,cex=3,lwd=2,bg=c('white',MC)[factor(t(gene.dat[2,34:44]),levels=c("0","1"))])
+points(FA.x,FA.y-2,pch=22,cex=3,lwd=2,bg=c('white',tMR)[factor(t(gene.dat[3,34:44]),levels=c("0","1"))])
+points(FA.x,FA.y-3,pch=22,cex=3,lwd=2,bg=c('white',pMR)[factor(t(gene.dat[4,34:44]),levels=c("0","1"))])
+#text(FA.x-.3,FA.y+.6,colnames(gene.dat)[11:19],srt=45,pos=4)
+text(rep(min(FA.x)-.3,4),c(min(FA.y),min(FA.y)-1,min(FA.y)-2,min(FA.y)-3),c('M. pulex','M. chamaeleon','M. rubrum (temperate)','M. rubrum (polar)'),pos=2)
+text(min(FA.x)-5,min(FA.y)+2.1,'Lipid Metabolism',cex=1.8,col='gray50',pos=4)
+
+
+points(AA.x,AA.y,pch=22,cex=3,lwd=2,bg=c('white',MP)[factor(t(gene.dat[1,1:8]),levels=c("0","1"))])
+points(AA.x,AA.y-1,pch=22,cex=3,lwd=2,bg=c('white',MC)[factor(t(gene.dat[2,1:8]),levels=c("0","1"))])
+points(AA.x,AA.y-2,pch=22,cex=3,lwd=2,bg=c('white',tMR)[factor(t(gene.dat[3,1:8]),levels=c("0","1"))])
+points(AA.x,AA.y-3,pch=22,cex=3,lwd=2,bg=c('white',pMR)[factor(t(gene.dat[4,1:8]),levels=c("0","1"))])
+#text(AA.x-.3,AA.y+.6,colnames(gene.dat)[20:34],srt=45,pos=4)
+text(rep(min(AA.x)-.3,4),c(min(AA.y),min(AA.y)-1,min(AA.y)-2,min(AA.y)-3),c('M. pulex','M. chamaeleon','M. rubrum (temperate)','M. rubrum (polar)'),pos=2)
+text(min(AA.x)-5,min(AA.y)+1.6,'Amino Acid Biosynthesis',cex=1.8,col='gray50',pos=4)
+
+cofactor.x <- c(1:5)
+energy.x <- c(1:6)
+#AA.x <- c(1:15)
+
+cofactor.y <- rep(16,length(cofactor.x))
+energy.y <- rep(9, length(energy.x))
+#AA.y <- rep(2, length(AA.x))
+
+plot(cofactor.x,cofactor.y,xlim=c(-5,20),ylim=c(-3,19),xaxt='n',yaxt='n',xlab='',ylab='')
+#,type='n'
+points(cofactor.x,cofactor.y,pch=22,cex=3,lwd=2,bg=c('white',pulexcol)[factor(t(gene.dat[1,45:49]),levels=c("0","1"))])
+points(cofactor.x,cofactor.y-1,pch=22,cex=3,lwd=2,bg=c('white',chamaelcol)[factor(t(gene.dat[2,45:49]),levels=c("0","1"))])
+points(cofactor.x,cofactor.y-2,pch=22,cex=3,lwd=2,bg=c('white',rubrumtempcol)[factor(t(gene.dat[3,45:49]),levels=c("0","1"))])
+points(cofactor.x,cofactor.y-3,pch=22,cex=3,lwd=2,bg=c('white',rubrumpolarcol)[factor(t(gene.dat[4,45:49]),levels=c("0","1"))])
+#text(cofactor.x-.3,cofactor.y+.6,colnames(gene.dat)[2:10],srt=45,pos=4)
+text(rep(min(cofactor.x)-.3,4),c(min(cofactor.y),min(cofactor.y)-1,min(cofactor.y)-2,min(cofactor.y)-3),c('M. pulex','M. chamaeleon','M. rubrum (temperate)','M. rubrum (polar)'),pos=2)
+text(min(cofactor.x)-5,min(cofactor.y)+2,'Cofactor and Vitamin',cex=1.8,col='gray50',pos=4)
+
+
+points(energy.x,energy.y,pch=22,cex=3,lwd=1,bg=c('white',MP)[factor(t(gene.dat[1,28:33]),levels=c("0","1"))])
+points(energy.x,energy.y-1,pch=22,cex=3,lwd=2,bg=c('white',MC)[factor(t(gene.dat[2,28:33]),levels=c("0","1"))])
+points(energy.x,energy.y-2,pch=22,cex=3,lwd=2,bg=c('white',tMR)[factor(t(gene.dat[3,28:33]),levels=c("0","1"))])
+points(energy.x,energy.y-3,pch=22,cex=3,lwd=2,bg=c('white',pMR)[factor(t(gene.dat[4,28:33]),levels=c("0","1"))])
+#text(energy.x-.3,energy.y+.6,colnames(gene.dat)[11:19],srt=45,pos=4)
+text(rep(min(energy.x)-.3,4),c(min(energy.y),min(energy.y)-1,min(energy.y)-2,min(energy.y)-3),c('M. pulex','M. chamaeleon','M. rubrum (temperate)','M. rubrum (polar)'),pos=2)
+text(min(energy.x)-5,min(energy.y)+2.1,'Energy',cex=1.8,col='gray50',pos=4)
+
+```
+```{r PlotChrisGeneChartrd2, fig.height=5, fig.width=5.5}
+par(mar=c(4,4,1,1))
+
+pulexcol <- rgb(52/255,101/255,164/255)
+chamaelcol <- rgb(80/255,147/255,137/255)
+rubrumtempcol <- rgb(234/255,117/255,2/255)
+rubrumpolarcol <- rgb(214/255,46/255,78/255)
+
+cofactor.x <- c(1:5)
+energy.x <- c(1:6)
+#AA.x <- c(1:15)
+
+cofactor.y <- rep(16,length(cofactor.x))
+energy.y <- rep(9, length(energy.x))
+#AA.y <- rep(2, length(AA.x))
+
+plot(cofactor.x,cofactor.y,xlim=c(-5,20),ylim=c(-3,19),xaxt='n',yaxt='n',xlab='',ylab='',type='n')
+points(cofactor.x,cofactor.y,pch=22,cex=3,lwd=2,bg=c('white',pulexcol)[factor(t(gene.dat[1,45:49]),levels=c("0","1"))])
+points(cofactor.x,cofactor.y-1,pch=22,cex=3,lwd=2,bg=c('white',chamaelcol)[factor(t(gene.dat[2,45:49]),levels=c("0","1"))])
+points(cofactor.x,cofactor.y-2,pch=22,cex=3,lwd=2,bg=c('white',rubrumtempcol)[factor(t(gene.dat[3,45:49]),levels=c("0","1"))])
+points(cofactor.x,cofactor.y-3,pch=22,cex=3,lwd=2,bg=c('white',rubrumpolarcol)[factor(t(gene.dat[4,45:49]),levels=c("0","1"))])
+#text(cofactor.x-.3,cofactor.y+.6,colnames(gene.dat)[2:10],srt=45,pos=4)
+text(rep(min(cofactor.x)-.3,4),c(min(cofactor.y),min(cofactor.y)-1,min(cofactor.y)-2,min(cofactor.y)-3),c('M. pulex','M. chamaeleon','M. rubrum (temperate)','M. rubrum (polar)'),pos=2)
+text(min(cofactor.x)-5,min(cofactor.y)+2,'Cofactor and Vitamin',cex=1.8,col='gray50',pos=4)
+
+
+points(energy.x,energy.y,pch=22,cex=3,lwd=2,bg=c('white',MP)[factor(t(gene.dat[1,28:33]),levels=c("0","1"))])
+points(energy.x,energy.y-1,pch=22,cex=3,lwd=2,bg=c('white',MC)[factor(t(gene.dat[2,28:33]),levels=c("0","1"))])
+points(energy.x,energy.y-2,pch=22,cex=3,lwd=2,bg=c('white',tMR)[factor(t(gene.dat[3,28:33]),levels=c("0","1"))])
+points(energy.x,energy.y-3,pch=22,cex=3,lwd=2,bg=c('white',pMR)[factor(t(gene.dat[4,28:33]),levels=c("0","1"))])
+#text(energy.x-.3,energy.y+.6,colnames(gene.dat)[11:19],srt=45,pos=4)
+text(rep(min(energy.x)-.3,4),c(min(energy.y),min(energy.y)-1,min(energy.y)-2,min(energy.y)-3),c('M. pulex','M. chamaeleon','M. rubrum (temperate)','M. rubrum (polar)'),pos=2)
+text(min(energy.x)-5,min(energy.y)+2.1,'Energy',cex=1.8,col='gray50',pos=4)
+
+
+#points(AA.x,AA.y,pch=22,cex=5,lwd=2,bg=c('white',pulexcol)[factor(t(gene.dat[2,20:34]),levels=c("0","1"))])
+#points(AA.x,AA.y-1,pch=22,cex=5,lwd=2,bg=c('white',chamaelcol)[factor(t(gene.dat[3,20:34]),levels=c("0","1"))])
+#points(AA.x,AA.y-2,pch=22,cex=5,lwd=2,bg=c('white',rubrumtempcol)[factor(t(gene.dat[4,20:34]),levels=c("0","1"))])
+#points(AA.x,AA.y-3,pch=22,cex=5,lwd=2,bg=c('white',rubrumpolarcol)[factor(t(gene.dat[5,20:34]),levels=c("0","1"))])
+#text(AA.x-.3,AA.y+.6,colnames(gene.dat)[20:34],srt=45,pos=4)
+#text(rep(min(AA.x)-.3,4),c(min(AA.y),min(AA.y)-1,min(AA.y)-2,min(AA.y)-3),c('Sp1','Sp2','Sp3','Sp4'),pos=2)
+#text(min(AA.x)-1,min(AA.y)+1.6,'Amino Acid Biosynthesis',cex=1.8,col='gray50',pos=4)
+
+
+
+```
+
+```{python format KeggPathway into Broadest catagories, include=FALSE}
+#download htext kegg map from https://www.kegg.jp/brite/ko00001
+#remove empty B lines grep -v -E 'B$'
+#renmae KEGGDB.txt
+KEGG = open("KEGGDB.txt", "a")
+file1 = open('/home/chris/Documents/ComparitivePaperWork/KEGG.txt', 'r')
+for line in file1:
+    if line.startswith('A'):
+        A =line.rstrip('\n')
+    elif line.startswith('B'):
+        B =line.rstrip('\n')
+    elif line.startswith('C'):
+        C =line.rstrip('\n')
+    elif line.startswith('D'):
+        D=line.rstrip('\n')
+        KEGG.write(A+'\t'+B+'\t'+C+'\t'+D+'\n')
+    else:
+        continue
+#trim line markers
+#sed -i 's/^A//' KEGGDB.txt 
+#sed -r 's/\t[B-D][[:space:]]+/\t/g' KEGGDB.txt >KeggDB.txt
+#separate knums
+#sed -i -r 's/(\tK[0-9]+)[[:space:]]/\1\t/' KeggDB.txt
+#rename column 
+#global  category        pathway knum gene
+```
+
+```{r import KeggDB}
+KeggDB <- read.delim("~/Documents/ComparitivePaperWork/KeggDB.txt", stringsAsFactors=FALSE)
+#format annotated kegg files to just unique knum
+MchameleonKnum <- read.table("~/Documents/ComparitivePaperWork/CompletePathways/matrix/ko_definitionfiles/MCfirstUniq.txt", quote="\"", comment.char="", stringsAsFactors=FALSE)
+Mpulexknum <- read.table("~/Documents/ComparitivePaperWork/CompletePathways/matrix/ko_definitionfiles/MPfirstUniq.txt", quote="\"", comment.char="", stringsAsFactors=FALSE)
+tMrubrumKnum <- read.table("~/Documents/ComparitivePaperWork/CompletePathways/matrix/ko_definitionfiles/tMRfirstUniq.txt", quote="\"", comment.char="", stringsAsFactors=FALSE)
+pMrubrumKnum <- read.table("~/Documents/ComparitivePaperWork/CompletePathways/matrix/ko_definitionfiles/pMRfirstUniq.txt", quote="\"", comment.char="", stringsAsFactors=FALSE)
+```
+```{r format k files}
+MchameleonKnum$Mchameleon <- 1
+Mpulexknum$Mpulex <- 1
+tMrubrumKnum$tMrubrum <- 1
+pMrubrumKnum$pMrubrum <- 1
+MchameleonKnum = rename(MchameleonKnum, "knum"="V1")
+Mpulexknum = rename(Mpulexknum, "knum"="V1")
+tMrubrumKnum = rename(tMrubrumKnum, "knum"="V1")
+pMrubrumKnum = rename(pMrubrumKnum, "knum"="V1")
+```
+```{r merge knum}
+MchameleonKnum1 <- distinct(MchameleonKnum)
+Mpulexknum1 <- distinct(Mpulexknum)
+tMrubrumKnum1 <- distinct(tMrubrumKnum)
+pMrubrumKnum1 <- distinct(pMrubrumKnum)
+speciesKnum <- merge(Mpulexknum1, MchameleonKnum1, by=c('knum'), all = TRUE)
+speciesKnum <- merge(speciesKnum, tMrubrumKnum1, by=c('knum'), all = TRUE)
+speciesKnum <- merge(speciesKnum, pMrubrumKnum1, by=c('knum'), all = TRUE)
+names(speciesKnum)[names(speciesKnum) == 'Mchameleon'] <- 'Mchamaeleon'
+```
+
+```{r merge annotations filter clean}
+annotatedKnum <- merge(KeggDB, speciesKnum, by=c('knum'), all.y = TRUE)
+annotatedKnum[is.na(annotatedKnum)] <- 0
+annotatedKnum1<-subset(annotatedKnum, annotatedKnum$global!=0)
+annoKnumAll <- annotatedKnum1 %>% group_by(pathway) %>% summarise_if(is.numeric, sum, na.rm=TRUE)
+annoKnumCatagory <- annotatedKnum1 %>% group_by(catagory) %>% summarise_if(is.numeric, sum, na.rm=TRUE)
+annoKnumCatagory <- annoKnumCatagory[-c(12:13),]
+#annoKnumCatagory$total <- apply(annoKnumCatagory[,-1], 1, max)
+test <- annoKnumCatagory[,-1]/do.call(pmax, annoKnumCatagory[,-1])
+annoKnumCatagoryGraph <- cbind(catagory = annoKnumCatagory$catagory, test)
+annoBrite <- subset(annotatedKnum, annotatedKnum$global=='09180 Brite Hierarchies')
+annoMetab <- subset(annotatedKnum, annotatedKnum$global=='09100 Metabolism')
+annoCellSignal <- subset(annoBrite, annoBrite$catagory=='09183 Protein families: signaling and cellular processes')
+annoGenetic <- subset(annoBrite, annoBrite$catagory=='09182 Protein families: genetic information processing')
+annoBriteSummary <- annoBrite %>% group_by(pathway) %>% summarise_if(is.numeric, sum, na.rm=TRUE)
+annoBriteGeneticSummary <- annoGenetic %>% group_by(pathway) %>% summarise_if(is.numeric, sum, na.rm=TRUE)
+annoBriteCellSignalSummary <- annoCellSignal %>% group_by(pathway) %>% summarise_if(is.numeric, sum, na.rm=TRUE)
+
+```
+```{r total graph}
+annoKnumCatagoryGraph1 <-  annoKnumCatagoryGraph %>%  pivot_longer(-1, names_to = "species", values_to = "count")
+annoKnumCatagoryGraph1$species <- factor(annoKnumCatagoryGraph1$species,
+    levels = c("Mpulex", "Mchamaeleon", "tMrubrum", "pMrubrum"),ordered = TRUE)
+tp <- ggplot(annoKnumCatagoryGraph1, aes(x=species, y=count, color=species))+geom_point(shape=20, size=4, alpha=1, position=position_jitter(w=0.3, h=0))+ theme_bw()
+plot(tp)
+#annoKnumCatagoryGraphOrder <- transform(annoKnumCatagoryGraph1, Catagory = reorder(pathway, -count))
+tarch <- ggplot(annoKnumCatagoryGraph1, aes(x=catagory, y=count, group=species, color=species))+geom_line(aes(color=species))+geom_point(aes(shape=species))+ theme_bw()+ theme(axis.text.x = element_text(angle = 45, hjust=1))
+plot(tarch)
+march <- ggplot(annoKnumCatagoryGraph1, aes(x=species, y=count, group=catagory))+geom_line()+ theme_bw()+ theme(axis.text.x = element_text(angle = 45, hjust=1))
+plot(march)
+```
+
+```{r genetic graphs}
+annoBriteGeneticGraph <-  annoBriteGeneticSummary %>%  pivot_longer(-1, names_to = "species", values_to = "count")
+annoBriteGeneticGraph$species <- factor(annoBriteGeneticGraph$species,
+    levels = c("Mpulex", "Mchamaeleon", "tMrubrum", "pMrubrum"),ordered = TRUE)
+gp <- ggplot(annoBriteGeneticGraph, aes(x=species, y=count, color=species))+geom_point(aes(shape=pathway), size=4, alpha=1, position=position_jitter(w=0.3, h=0))+ theme_bw()
+plot(gp)
+annoBriteGeneticGraphOrder <- transform(annoBriteGeneticGraph, Catagory = reorder(pathway, -count))
+garch <- ggplot(annoBriteGeneticGraphOrder, aes(x=Catagory, y=count, group=species, color=species))+geom_line(aes(color=species))+geom_point(aes(shape=species))+ theme_bw()+ theme(axis.text.x = element_text(angle = 45, hjust=1))
+plot(garch)
+ggarch <- ggplot(annoBriteGeneticGraphOrder, aes(x=species, y=count, group=Catagory))+geom_line()+geom_point()+ theme_bw()+ theme(axis.text.x = element_text(angle = 45, hjust=1))
+plot(ggarch)
+```
+```{r cellular processing graphs}
+annoBriteCellSignalSummaryGraph <-  annoBriteCellSignalSummary %>%  pivot_longer(-1, names_to = "species", values_to = "count")
+annoBriteCellSignalSummaryGraph$species <- factor(annoBriteCellSignalSummaryGraph$species,
+    levels = c("Mpulex", "Mchamaeleon", "tMrubrum", "pMrubrum"),ordered = TRUE)
+xp <- ggplot(annoBriteCellSignalSummaryGraph, aes(x=species, y=count, color=species))+geom_point(aes(shape=pathway), size=4, alpha=1, position=position_jitter(w=0.3, h=0))+ theme_bw()
+plot(xp)
+annoBriteCellSignalSummaryGraphOrder <- transform(annoBriteCellSignalSummaryGraph, Catagory = reorder(pathway, -count))
+xarch <- ggplot(annoBriteCellSignalSummaryGraphOrder, aes(x=Catagory, y=count, group=species, color=species))+geom_line(aes(color=species))+geom_point(aes(shape=species))+ theme_bw()+ theme(axis.text.x = element_text(angle = 45, hjust=1))
+plot(xarch)
+xxarch <- ggplot(annoBriteCellSignalSummaryGraphOrder, aes(x=species, y=count, group=Catagory))+geom_line()+geom_point()+ theme_bw()+ theme(axis.text.x = element_text(angle = 45, hjust=1))
+plot(xxarch)
+```
+```{r radarplots GIP}
+annoGeneticRadar <-  annoBriteGeneticGraph %>%  pivot_wider(names_from = "pathway", values_from = "count")
+annoGeneticRadar1 <- annoGeneticRadar %>% remove_rownames %>% column_to_rownames(var="species")
+#reg exp gsub ^[0-9]+ =any number, \\s=space, (.+)=anything between pattern, \\[=excape [, \\1=replace with first ()
+colnames(annoGeneticRadar1) <- gsub('^[0-9]+\\s(.+)\\s\\[.+\\]', '\\1', colnames(annoGeneticRadar1))
+test <- annoGeneticRadar1[,-1]/do.call(pmax, annoGeneticRadar1[,-1])
+annoGeneticRadar1 <- cbind(species = annoGeneticRadar$species, test)
+welp <- ggradar(annoGeneticRadar1, base.size = 10, group.line.width=0.5,group.point.size=0.5, legend.position="bottom",legend.text.size=10,axis.label.size=2.5,plot.title='Genetic Information Processing')+ theme(plot.title = element_text(size = 14), plot.margin = margin(0, 2, 0, 2, 'cm'))+coord_cartesian(clip = "off")
+plot(welp)
+
+```
+```{r radarplots Cellular}
+annoCellSignalRadar <-  annoBriteCellSignalSummaryGraph %>%  pivot_wider(names_from = "pathway", values_from = "count")
+annoCellSignalRadar1 <- annoCellSignalRadar %>% remove_rownames %>% column_to_rownames(var="species")
+#reg exp gsub ^[0-9]+ =any number, \\s=space, (.+)=anything between pattern, \\[=excape [, \\1=replace with first ()
+colnames(annoCellSignalRadar1) <- gsub('^[0-9]+\\s(.+)\\s\\[.+\\]', '\\1', colnames(annoCellSignalRadar1))
+test <- annoCellSignalRadar1[,-1]/do.call(pmax, annoCellSignalRadar1[,-1])
+test1 <- test[colSums(test) >= 0.15]
+annoCellSignalRadar1 <- cbind(species = annoCellSignalRadar$species, test1)
+welp2 <- ggradar(annoCellSignalRadar1, base.size = 10, group.line.width=0.5,group.point.size=0.5, legend.position="bottom",legend.text.size=10,axis.label.size=2.5,plot.title='Cellular Signalling')+ theme(plot.title = element_text(size = 14), plot.margin = margin(0, 2, 0, 2, 'cm'))+coord_cartesian(clip = "off")
+plot(welp2)
+```
+```{r metabolic pathways radar}
+annoMetabSummary <- annoMetab %>% group_by(catagory) %>% summarise_if(is.numeric, sum, na.rm=TRUE)
+#drop other not found row
+annoMetabSummary <- annoMetabSummary[-12,]
+annoMetabSummarylong <-  annoMetabSummary %>%  pivot_longer(-1, names_to = "species", values_to = "count")
+annoMetabSummarywide <-  annoMetabSummarylong %>%  pivot_wider(names_from = "catagory", values_from = "count")
+annoMetabSummarywide1 <- annoMetabSummarywide %>% remove_rownames %>% column_to_rownames(var="species")
+#reg exp gsub ^[0-9]+ =any number, \\s=space, (.+)=anything between pattern, \\[=excape [, \\1=replace with first ()
+colnames(annoMetabSummarywide1) <- gsub('^[0-9]+\\s(.+)', '\\1', colnames(annoMetabSummarywide1))
+test <- annoMetabSummarywide1[,-1]/do.call(pmax, annoMetabSummarywide1[,-1])
+
+annoMetabSummarywide1 <- cbind(species = annoMetabSummarywide$species, test)
+welp3 <- ggradar(annoMetabSummarywide1, base.size = 10, group.line.width=0.5,group.point.size=0.5, legend.position="bottom",legend.text.size=10,axis.label.size=2.5,plot.title='Metabolism')+ theme(plot.title = element_text(size = 14), plot.margin = margin(0, 2, 0, 2, 'cm'))+coord_cartesian(clip = "off")
+plot(welp3)
+```
+```{r complete pathways radar}
+PathwaySummary1 <- PathwaySummary %>%mutate_at(vars(MP:pMR),list(All_by_total=~./total))
+PathwaySummary1 <- PathwaySummary1[,c(1,8:11)]
+colnames(PathwaySummary1) <- gsub('_All_by_total', '', colnames(PathwaySummary1))
+df_transpose = t(PathwaySummary1)
+df_transpose <- df_transpose %>% row_to_names(row_number = 1)
+df_transpose <- cbind(species = rownames(df_transpose), df_transpose)
+df_transpose <- as_data_frame(df_transpose)
+df2 = df_transpose %>% mutate(across(.cols=2:7, .fns=as.numeric))
+df2[1,1] <- 'Mpulex'
+df2[2,1] <- "Mchamaeleon"
+df2[3,1] <- "tMrubrum"
+df2[4,1] <-"pMrubrum"
+df2$species <- factor(df2$species, levels = c("Mpulex", "Mchamaeleon", "tMrubrum", "pMrubrum"),ordered = TRUE)
+welp4 <- ggradar(df2, base.size = 16, group.line.width=0.5,group.point.size=0.5, legend.position="bottom",legend.text.size=12,axis.label.size=4,plot.title='Complete Pathways', gridline.mid.colour='grey', background.circle.colour = 'white')+ theme(plot.title = element_text(size = 18), plot.margin = margin(0, 2, 0, 2, 'cm'))+coord_cartesian(clip = "off")
+plot(welp4)
+```
+```{r radar format correction factor rd2}
+#annotatedKnum
+annotatedKnum$total <- 1
+annoBrite <- subset(annotatedKnum, annotatedKnum$global=='09180 Brite Hierarchies')
+annoMetab <- subset(annotatedKnum, annotatedKnum$global=='09100 Metabolism')
+annoCellSignal <- subset(annoBrite, annoBrite$catagory=='09183 Protein families: signaling and cellular processes')
+annoGenetic <- subset(annoBrite, annoBrite$catagory=='09182 Protein families: genetic information processing')
+annoBriteSummary <- annoBrite %>% group_by(pathway) %>% summarise_if(is.numeric, sum, na.rm=TRUE)
+annoBriteGeneticSummary <- annoGenetic %>% group_by(pathway) %>% summarise_if(is.numeric, sum, na.rm=TRUE)
+annoBriteCellSignalSummary <- annoCellSignal %>% group_by(pathway) %>% summarise_if(is.numeric, sum, na.rm=TRUE)
+annoMetabSummary <- annoMetab %>% group_by(catagory) %>% summarise_if(is.numeric, sum, na.rm=TRUE)
+```
+```{r radar genetic rd2}
+annoBriteGeneticSummary1 <- annoBriteGeneticSummary %>%mutate_at(vars(Mpulex:pMrubrum),list(All_by_total=~./total))
+annoBriteGeneticSummary1 <- annoBriteGeneticSummary1[,c(1,7:10)]
+colnames(annoBriteGeneticSummary1) <- gsub('_All_by_total', '', colnames(annoBriteGeneticSummary1))
+df_transpose = t(annoBriteGeneticSummary1)
+df_transpose <- df_transpose %>% row_to_names(row_number = 1)
+df_transpose <- cbind(species = rownames(df_transpose), df_transpose)
+df_transpose <- as_data_frame(df_transpose)
+#df_transpose <- df_transpose[,c(-7)]
+df2 = df_transpose %>% mutate(across(.cols=2:15, .fns=as.numeric))
+df2$species <- factor(df2$species, levels = c("Mpulex", "Mchamaeleon", "tMrubrum", "pMrubrum"),ordered = TRUE)
+#reg exp gsub ^[0-9]+ =any number, \\s=space, (.+)=anything between pattern, \\[=excape [, \\1=replace with first ()
+df2 <- df2[,c(1,2,8,9,10,12,13,15)]
+colnames(df2) <- gsub('^[0-9]+\\s(.+)\\s\\[.+\\]', '\\1', colnames(df2))
+welp5 <- ggradar(df2, base.size = 8, group.line.width=0.5,group.point.size=0.5, legend.position="bottom",legend.text.size=12,axis.label.size=4,plot.title='Genetic Information Processing', gridline.mid.colour='grey', background.circle.colour = 'white')+ theme(plot.title = element_text(size = 18), plot.margin = margin(0, 2, 0, 2, 'cm'))+coord_cartesian(clip = "off")
+plot(welp5)
+
+```
+```{r radar cell signalling rd2}
+annoBriteCellSignalSummary2 <- subset(annoBriteCellSignalSummary, total>7)
+annoBriteCellSignalSummary1 <- annoBriteCellSignalSummary2 %>%mutate_at(vars(Mpulex:pMrubrum),list(All_by_total=~./total))
+annoBriteCellSignalSummary1 <- annoBriteCellSignalSummary1[,c(1,7:10)]
+colnames(annoBriteCellSignalSummary1) <- gsub('_All_by_total', '', colnames(annoBriteCellSignalSummary1))
+df_transpose = t(annoBriteCellSignalSummary1)
+df_transpose <- df_transpose %>% row_to_names(row_number = 1)
+df_transpose <- cbind(species = rownames(df_transpose), df_transpose)
+df_transpose <- as_data_frame(df_transpose)
+df2 = df_transpose %>% mutate(across(.cols=2:17, .fns=as.numeric))
+df2$species <- factor(df2$species, levels = c("Mpulex", "Mchamaeleon", "tMrubrum", "pMrubrum"),ordered = TRUE)
+#reg exp gsub ^[0-9]+ =any number, \\s=space, (.+)=anything between pattern, \\[=excape [, \\1=replace with first ()
+colnames(df2) <- gsub('^[0-9]+\\s(.+)\\s\\[.+\\]', '\\1', colnames(df2))
+df2 <- df2[,c(1,4,5,6,11,12,13,15,16)]
+
+welp6 <- ggradar(df2, base.size = 9, group.line.width=0.5,group.point.size=0.5, legend.position="bottom",legend.text.size=10,axis.label.size=2.5,plot.title='Cellular Signalling', gridline.mid.colour='grey', background.circle.colour = 'white')+ theme(plot.title = element_text(size = 14), plot.margin = margin(0, 2, 0, 2, 'cm'))+coord_cartesian(clip = "off")
+plot(welp6)
+
+
+```
+```{r radar metabolism rd2}
+annoMetabSummary
+annoMetabSummary <- annoMetabSummary[-12,]
+annoMetabSummary1 <- annoMetabSummary %>%mutate_at(vars(Mpulex:pMrubrum),list(All_by_total=~./total))
+annoMetabSummary1 <- annoMetabSummary1[,c(1,7:10)]
+colnames(annoMetabSummary1) <- gsub('_All_by_total', '', colnames(annoMetabSummary1))
+df_transpose = t(annoMetabSummary1)
+df_transpose <- df_transpose %>% row_to_names(row_number = 1)
+df_transpose <- cbind(species = rownames(df_transpose), df_transpose)
+df_transpose <- as_data_frame(df_transpose)
+df2 = df_transpose %>% mutate(across(.cols=2:12, .fns=as.numeric))
+df2$species <- factor(df2$species, levels = c("Mpulex", "Mchamaeleon", "tMrubrum", "pMrubrum"),ordered = TRUE)
+df2 <- df2[,c(1:6,9,11)]
+#fill <- c(0.1,0.3,0.7,0.7)
+#areas <- c(rgb(1, 0, 0, 0.25),
+#           rgb(0, 1, 0, 0.25),
+#           rgb(0, 0, 1, 0.25),
+#           rgb(0.5,0.5,0.5,0.25))
+#fill.c <- factor(fill.c, levels=c(0.4, 0.2, 0.8, 0.8))
+#reg exp gsub ^[0-9]+ =any number, \\s=space, (.+)=anything between pattern, \\[=excape [, \\1=replace with first ()
+colnames(df2) <- gsub('^[0-9]+\\s(.+)\\s\\[.+\\]', '\\1', colnames(df2))
+welp7 <- ggradar(df2, base.size = 8, group.line.width=0.5,group.point.size=0.5, legend.position="bottom",legend.text.size=10,axis.label.size=2.5,plot.title='Metababolism', gridline.mid.colour='grey', background.circle.colour = 'white')+ theme(plot.title = element_text(size = 14), plot.margin = margin(0, 2, 0, 2, 'cm'))+coord_cartesian(clip = "off")
+plot(welp7)
+
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+

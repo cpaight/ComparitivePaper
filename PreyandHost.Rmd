@@ -1,0 +1,212 @@
+---
+title: "PreyandHost"
+author: "cpaight"
+date: "2/8/2023"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r libraries}
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+```
+```{r setwd}
+setwd("~/Documents/ComparitivePaperWork/CompletePathways/totalspeciesK")
+files <- list.files(pattern = '*.txt')    
+            for(i in files) {
+            x <- read.table(i, header=TRUE, comment.char = "A", sep="\t")
+            assign(i,x)  
+            }
+```
+```{r merge the frames}
+Ktable<- merge(unique(GcryoKegg.txt), unique(MchameleonKnum.txt), by=c('knum'), all=T)
+Ktable<- merge(unique(Ktable), unique(Mpulexknum.txt), by=c('knum'), all=T)
+Ktable<- merge(unique(Ktable), pMrubrumKnum.txt, by=c('knum'), all=T)
+Ktable<- merge(unique(Ktable), SmajorKegg.txt, by=c('knum'), all=T)
+Ktable<- merge(unique(Ktable), TamphKegg.txt, by=c('knum'), all=T)
+Ktable<- merge(unique(Ktable), tMrubrumKnum.txt, by=c('knum'), all=T)
+#Mpulexknum.txt, pMrubrumKnum.txt, SmajorKegg.txt, TamphKegg.txt, tMrubrumKnum.txt)
+```
+```{python format KeggPathway into Broadest catagories, include=FALSE}
+#download htext kegg map from https://www.kegg.jp/brite/ko00001
+#remove empty B lines grep -v -E 'B$'
+#renmae KEGGDB.txt
+KEGG = open("KEGGDB.txt", "a")
+file1 = open('~/Documents/ComparitivePaperWork/KEGG.txt', 'r')
+for line in file1:
+    if line.startswith('A'):
+        A =line.rstrip('\n')
+    elif line.startswith('B'):
+        B =line.rstrip('\n')
+    elif line.startswith('C'):
+        C =line.rstrip('\n')
+    elif line.startswith('D'):
+        D=line.rstrip('\n')
+        KEGG.write(A+'\t'+B+'\t'+C+'\t'+D+'\n')
+    else:
+        continue
+#trim line markers
+#sed -i 's/^A//' KEGGDB.txt 
+#sed -r 's/\t[B-D][[:space:]]+/\t/g' KEGGDB.txt >KeggDB.txt
+#separate knums
+#sed -i -r 's/(\tK[0-9]+)[[:space:]]/\1\t/' KeggDB.txt
+#rename column 
+#global  category        pathway knum gene
+```
+
+```{r import KeggDB}
+KeggDB <- read.delim("~/Documents/ComparitivePaperWork/KeggDB.txt", stringsAsFactors=FALSE)
+```
+```{r merge knum and annotation}
+Ktable[is.na(Ktable)] <- 0
+anno <- merge(KeggDB, Ktable, by=c('knum'), all.y = T)
+#anno$pSmajor <- anno$Smajor
+anno <- anno[!is.na(anno$global),]
+```
+```{r format for graph}
+annodedup <- anno[,c(1:3,6:12)]
+annodedup<- annodedup[!duplicated(annodedup), ]
+PathSummary <- annodedup %>% group_by(catagory) %>% summarise_if(is.numeric, sum, na.rm=TRUE)
+#PathwaySummary <- PathwaySummary[-2,]
+PathSummary4graph <-PathSummary %>%  pivot_longer(-1, names_to = "species", values_to = "count")
+```
+```{r group prey and host}
+PathSummary4graph2<- PathSummary4graph %>% mutate(group = case_when(species=='Gcryo' | species=='Smajor' | species== 'Tamph'~ "Prey", species == 'Mchameleon' |  species == 	'tMrubrum' | species== 'Mpulex' | species == 'pMrubrum' ~ 'ciliate'))
+PathSummary4graph2<- PathSummary4graph2 %>% mutate(system = case_when(species=='Gcryo' | species=='pMrubrum' ~ "pMR", species == 'Mchameleon' | species == 'Smajor' ~ "MC", species == 	'tMrubrum' | species == 'Tamph' ~'tMR', species== 'Mpulex' ~ 'MP'))
+PathSummary4graph2$system <- factor(PathSummary4graph2$system,levels = c("MP", "MC", "tMR", "pMR"),ordered = TRUE)
+```
+```{r set colors}
+MP <- rgb(52/255,101/255,164/255)
+MC <- rgb(80/255,147/255,137/255)
+tMR <- rgb(234/255,117/255,2/255)
+pMR <- rgb(214/255,46/255,78/255)
+
+pulexcol <- rgb(52/255,101/255,164/255)
+chamaelcol <- rgb(80/255,147/255,137/255)
+rubrumtempcol <- rgb(234/255,117/255,2/255)
+rubrumpolarcol <- rgb(214/255,46/255,78/255)
+
+Carbohydrate_metabolism.x <- c(1:18)
+FA.x <- c(1:11)
+AA.x <- c(1:8)
+```
+```{r total graph}
+#remove uncatagorized annotations
+total<-PathSummary4graph2[(PathSummary4graph2$catagory!="	09194 Poorly characterized"),]
+total<-total[(total$catagory!="09112 Not included in regular maps"),] 
+total<-total[(total$catagory!="09185 Viral protein families"),]
+total<-total[(total$catagory!="09191 Unclassified: metabolism"),]
+total<-total[(total$catagory!="09191 Unclassified: metabolism"),]
+#create table to specify colors 
+color_table <- tibble(
+  system = c("MP", "MC", "tMR", "pMR"),
+  Color = c('#3465A4', '#509389', '#EA7502', '#D62E4E')
+  )
+#match factors to annotation table and color table
+total$system <- factor(total$system, levels = color_table$system)
+totalc <- total[(total$group=='ciliate'),]
+totalp <- total[(total$group=='Prey'),]
+totalc$system <- factor(totalc$system, levels = color_table$system)
+totalp$system <- factor(totalp$system, levels = color_table$system)
+#plots overlapping bar graph of meso/prey annotations
+p <- ggplot(NULL, aes(system, count)) + geom_bar(aes(fill=system), data = totalc, alpha = 1, stat='identity')+geom_bar(aes(fill=system), data = totalp, alpha = 0.5, stat='identity')+theme_minimal()+labs(x=expression(paste(italic("Mesodinium")~"species with prey")),y='Number of Unique Knum',title="Total metabolism")+theme(legend.position="none")+scale_fill_manual(values= color_table$Color)+theme(axis.line = element_line(color='black'),plot.background = element_blank(),panel.grid.major = element_blank(),panel.grid.minor = element_blank(),panel.border = element_blank())
+p
+```
+```{r carb bar plot}
+color_table <- tibble(
+  system = c("MP", "MC", "tMR", "pMR"),
+  Color = c('#3465A4', '#509389', '#EA7502', '#D62E4E')
+  )
+carb<-PathSummary4graph2[(PathSummary4graph2$catagory=="09101 Carbohydrate metabolism"),]
+carb$system <- factor(carb$system, levels = color_table$system)
+carbc <- carb[(carb$group=='ciliate'),]
+carbp <- carb[(carb$group=='Prey'),]
+carbc$system <- factor(carbc$system, levels = color_table$system)
+carbp$system <- factor(carbp$system, levels = color_table$system)
+p <- ggplot(NULL, aes(system, count)) + geom_bar(aes(fill=system), data = carbc, alpha = 1, stat='identity')+geom_bar(aes(fill=system), data = carbp, alpha = 0.5, stat='identity')+theme_minimal()+labs(x=expression(paste(italic("Mesodinium")~"species with prey")),y='Number of Unique Knum',title="Carbohydrate metabolism")+theme(legend.position="none")+scale_fill_manual(values= color_table$Color)+theme(axis.line = element_line(color='black'),plot.background = element_blank(),panel.grid.major = element_blank(),panel.grid.minor = element_blank(),panel.border = element_blank())
+p
+```
+```{r lipid plot}
+carb<-PathSummary4graph2[(PathSummary4graph2$catagory=="09103 Lipid metabolism"),]
+carb$system <- factor(carb$system, levels = color_table$system)
+lipc <- carb[(carb$group=='ciliate'),]
+lipp <- carb[(carb$group=='Prey'),]
+lipc$system <- factor(lipc$system, levels = color_table$system)
+lipp$system <- factor(lipp$system, levels = color_table$system)
+p <- ggplot(NULL, aes(system, count)) + geom_bar(aes(fill=system), data = lipc, alpha = 1, stat='identity')+geom_bar(aes(fill=system), data = lipp, alpha = 0.5, stat='identity')+theme_minimal()+labs(x=expression(paste(italic("Mesodinium")~"species with prey")),y='Number of Unique Knum',title="Lipid metabolism")+theme(legend.position="none")+scale_fill_manual(values= color_table$Color)+theme(axis.line = element_line(color='black'),plot.background = element_blank(),panel.grid.major = element_blank(),panel.grid.minor = element_blank(),panel.border = element_blank())
+p
+```
+```{r energy plot}
+carb<-PathSummary4graph2[(PathSummary4graph2$catagory=="09102 Energy metabolism"),]
+carb$system <- factor(carb$system, levels = color_table$system)
+carbc <- carb[(carb$group=='ciliate'),]
+carbp <- carb[(carb$group=='Prey'),]
+carbc$system <- factor(carbc$system, levels = color_table$system)
+carbp$system <- factor(carbp$system, levels = color_table$system)
+p <- ggplot(NULL, aes(system, count)) + geom_bar(aes(fill=system), data = carbc, alpha = 1, stat='identity')+geom_bar(aes(fill=system), data = carbp, alpha = 0.5, stat='identity')+theme_minimal()+labs(x=expression(paste(italic("Mesodinium")~"species with prey")),y='Number of Unique Knum',title="Energy metabolism")+theme(legend.position="none")+scale_fill_manual(values= color_table$Color)+theme(axis.line = element_line(color='black'),plot.background = element_blank(),panel.grid.major = element_blank(),panel.grid.minor = element_blank(),panel.border = element_blank())
+p
+```
+```{r nucleotide plot}
+#09104 Nucleotide metabolism
+carb<-PathSummary4graph2[(PathSummary4graph2$catagory=="09104 Nucleotide metabolism"),]
+carb$system <- factor(carb$system, levels = color_table$system)
+carbc <- carb[(carb$group=='ciliate'),]
+carbp <- carb[(carb$group=='Prey'),]
+carbc$system <- factor(carbc$system, levels = color_table$system)
+carbp$system <- factor(carbp$system, levels = color_table$system)
+p <- ggplot(NULL, aes(system, count)) + geom_bar(aes(fill=system), data = carbc, alpha = 1, stat='identity')+geom_bar(aes(fill=system), data = carbp, alpha = 0.5, stat='identity')+theme_minimal()+labs(x=expression(paste(italic("Mesodinium")~"species with prey")),y='Number of Unique Knum',title="Nucleotide metabolism")+theme(legend.position="none")+scale_fill_manual(values= color_table$Color)+theme(axis.line = element_line(color='black'),plot.background = element_blank(),panel.grid.major = element_blank(),panel.grid.minor = element_blank(),panel.border = element_blank())
+plot(p)
+```
+
+```{r amino acid plot}
+carb<-PathSummary4graph2[(PathSummary4graph2$catagory=="09105 Amino acid metabolism"),]
+carb$system <- factor(carb$system, levels = color_table$system)
+carbc <- carb[(carb$group=='ciliate'),]
+carbp <- carb[(carb$group=='Prey'),]
+carbc$system <- factor(carbc$system, levels = color_table$system)
+carbp$system <- factor(carbp$system, levels = color_table$system)
+p <- ggplot(NULL, aes(system, count)) + geom_bar(aes(fill=system), data = carbc, alpha = 1, stat='identity')+geom_bar(aes(fill=system), data = carbp, alpha = 0.5, stat='identity')+theme_minimal()+labs(x=expression(paste(italic("Mesodinium")~"species with prey")),y='Number of Unique Knum',title="Amino acid metabolism")+theme(legend.position="none")+scale_fill_manual(values= color_table$Color)+theme(axis.line = element_line(color='black'),plot.background = element_blank(),panel.grid.major = element_blank(),panel.grid.minor = element_blank(),panel.border = element_blank())
+plot(p)
+```
+```{r cofactors plot}
+#09108 Metabolism of cofactors and vitamins
+carb<-PathSummary4graph2[(PathSummary4graph2$catagory=="09108 Metabolism of cofactors and vitamins"),]
+carb$system <- factor(carb$system, levels = color_table$system)
+carbc <- carb[(carb$group=='ciliate'),]
+carbp <- carb[(carb$group=='Prey'),]
+carbc$system <- factor(carbc$system, levels = color_table$system)
+carbp$system <- factor(carbp$system, levels = color_table$system)
+p <- ggplot(NULL, aes(system, count)) + geom_bar(aes(fill=system), data = carbc, alpha = 1, stat='identity')+geom_bar(aes(fill=system), data = carbp, alpha = 0.5, stat='identity')+theme_minimal()+labs(x=expression(paste(italic("Mesodinium")~"species with prey")),y='Number of Unique Knum',title="Metabolism of cofactors and vitamins")+theme(legend.position="none")+scale_fill_manual(values= color_table$Color)+theme(axis.line = element_line(color='black'),plot.background = element_blank(),panel.grid.major = element_blank(),panel.grid.minor = element_blank(),panel.border = element_blank())
+plot(p)
+```
+```{r genetic information plot}
+#09182 Protein families: genetic information processing
+carb<-PathSummary4graph2[(PathSummary4graph2$catagory=="09182 Protein families: genetic information processing"),]
+carb$system <- factor(carb$system, levels = color_table$system)
+carbc <- carb[(carb$group=='ciliate'),]
+carbp <- carb[(carb$group=='Prey'),]
+carbc$system <- factor(carbc$system, levels = color_table$system)
+carbp$system <- factor(carbp$system, levels = color_table$system)
+p <- ggplot(NULL, aes(system, count)) + geom_bar(aes(fill=system), data = carbc, alpha = 1, stat='identity')+geom_bar(aes(fill=system), data = carbp, alpha = 0.5, stat='identity')+theme_minimal()+labs(x=expression(paste(italic("Mesodinium")~"species with prey")),y='Number of Unique Knum',title="Genetic Information Processing")+theme(legend.position="none")+scale_fill_manual(values= color_table$Color)+theme(axis.line = element_line(color='black'),plot.background = element_blank(),panel.grid.major = element_blank(),panel.grid.minor = element_blank(),panel.border = element_blank())
+plot(p)
+```
+```{r signaling and cellular processes plot}
+#09183 Protein families: signaling and cellular processes
+carb<-PathSummary4graph2[(PathSummary4graph2$catagory=="09183 Protein families: signaling and cellular processes"),]
+carb$system <- factor(carb$system, levels = color_table$system)
+carbc <- carb[(carb$group=='ciliate'),]
+carbp <- carb[(carb$group=='Prey'),]
+carbc$system <- factor(carbc$system, levels = color_table$system)
+carbp$system <- factor(carbp$system, levels = color_table$system)
+p <- ggplot(NULL, aes(system, count)) + geom_bar(aes(fill=system), data = carbc, alpha = 1, stat='identity')+geom_bar(aes(fill=system), data = carbp, alpha = 0.5, stat='identity')+theme_minimal()+labs(x=expression(paste(italic("Mesodinium")~"species with prey")),y='Number of Unique Knum',title="Signaling and Cellular Processes")+theme(legend.position="none")+scale_fill_manual(values= color_table$Color)+theme(axis.line = element_line(color='black'),plot.background = element_blank(),panel.grid.major = element_blank(),panel.grid.minor = element_blank(),panel.border = element_blank())
+plot(p)
+```
+```{r polar and prey only}
+polar <- anno[,c(1:6,9)]
+
+```
+## R Markdown
+
