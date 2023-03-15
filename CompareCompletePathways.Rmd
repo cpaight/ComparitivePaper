@@ -1,5 +1,5 @@
 ---
-title: "Untitled"
+title: "CompareCompletePathwyas"
 author: "cpaight"
 date: "4/14/2022"
 output: html_document
@@ -20,6 +20,7 @@ library(ggradar)
 
 ```{r import data}
 #format detail User_ko_definition.txt
+#import formated gene maps
 #sed -r 's/.+(K[0-9]+).+(K[0-9]+).+/\1/g' user_ko_definition.txt > allK3.txt
 #sed -i -r 's/.+(K[0-9]+).+/\1/' allK3.txt
 #grep 'K' allK3.txt > McK.txt
@@ -30,19 +31,21 @@ library(ggradar)
 #sed -i -r 's/^\s+//' MchameleonMap.txt
 #sed -i -r 's/(.+)/\1\t1/' MchameleonMap.txt
 setwd("~/Documents/ComparitivePaperWork/CompletePathways/matrix")
-pMrubrumMap <- read.delim("~/Documents/ComparitivePaperWork/CompletePathways/matrix/pMrubrumMap.txt", stringsAsFactors=FALSE)
-MpulexMap <- read.delim("~/Documents/ComparitivePaperWork/CompletePathways/matrix/MpulexMap.txt", stringsAsFactors=FALSE)
-MchameleonMap <- read.delim("~/Documents/ComparitivePaperWork/CompletePathways/matrix/MchameleonMap.txt", stringsAsFactors=FALSE)
-tMrubrumMap <- read.delim("~/Documents/ComparitivePaperWork/CompletePathways/matrix/tMrubrumMap.txt", stringsAsFactors=FALSE)
-KeggTable <- read.delim2("~/Documents/ComparitivePaperWork/CompletePathways/matrix/KeggTable.txt", stringsAsFactors=FALSE)
+pMrubrumMap <- read.delim("/pMrubrumMap.txt", stringsAsFactors=FALSE)
+MpulexMap <- read.delim("/MpulexMap.txt", stringsAsFactors=FALSE)
+MchameleonMap <- read.delim("/MchameleonMap.txt", stringsAsFactors=FALSE)
+tMrubrumMap <- read.delim("~/tMrubrumMap.txt", stringsAsFactors=FALSE)
+KeggTable <- read.delim2("/KeggTable.txt", stringsAsFactors=FALSE)
 ```
 ```{r drop if only 1 of 2}
+#drops pathways if only 1 gene present in two gen pathway
 MpulexMap[MpulexMap$MPCompletness == '(1 block missing 1/2)', "MP"] <- 0
 MchameleonMap[MchameleonMap$MCCompletness == '(1 block missing 1/2)', "MC"] <- 0
 tMrubrumMap[tMrubrumMap$tMRCompletness == '(1 block missing 1/2)', "tMR"] <- 0
 pMrubrumMap[pMrubrumMap$pMRCompletness == '(1 block missing 1/2)', "pMR"] <- 0
 ```
 ```{r merge to one table}
+#merges all 4 rubrum species gene tables
 Speciesmap=merge(MpulexMap, MchameleonMap,by=c('Map'), all=TRUE)
 Speciesmap=merge(Speciesmap, tMrubrumMap,by=c('Map'), all=TRUE)
 Speciesmap=merge(Speciesmap, pMrubrumMap,by=c('Map'), all=TRUE)
@@ -50,32 +53,35 @@ CompletePathway4SpeciesTable=merge(KeggTable, Speciesmap, by=c('Map'))
 ```
 
 ```{r drop empty pathways}
+#remove pathwyas not encoded by the genus Mesodinium
 CompletePathway4SpeciesTable1 <- CompletePathway4SpeciesTable %>% rowwise() %>% mutate(sum = sum(MP,MC,tMR, pMR, na.rm=TRUE)) %>% filter(sum >0)
 PathwaysforGraph <- CompletePathway4SpeciesTable1[,c(1:4,6,8,10,12)]
 PathwaysforGraph[is.na(PathwaysforGraph)] <- 0
 PathwaysforGraph$total <- 1
 PathwaySummary <- PathwaysforGraph %>% group_by(Catagory) %>% summarise_if(is.numeric, sum, na.rm=TRUE)
 PathwaySummary <- PathwaySummary[-2,]
-
+#formates cleaned pathwyas for ggplot
 PathwaySummary4graph <- PathwaySummary %>%  pivot_longer(-1, names_to = "species", values_to = "count")
 #write_csv(PathwaysforGraph, file='CompletePathwaysMesodinium.csv', sep='\t', quote=F, row.names=F)
 ```
 
 ```{r simple shape graph}
+#removes lines for Biosynthesis of terpenoids and polyketides
 PathwaySummary4graph<-PathwaySummary4graph[!(PathwaySummary4graph$Catagory==" Biosynthesis of terpenoids and polyketides"),]
 PathwaySummary4graph$species <- factor(PathwaySummary4graph$species,
     levels = c("MP", "MC", "tMR", "pMR"),ordered = TRUE)
+#plots a simple scatter plot colored by species shape by pathway
 cp <- ggplot(PathwaySummary4graph, aes(x=species, y=count, color=species))+geom_point(aes(shape=Catagory), size=4, alpha=1, position=position_jitter(w=0.3, h=0))+ theme_bw()
 plot(cp)
+#line plot of gene number by pathway lines color coded by species 
 PathwaySummary4graphOrder <- transform(PathwaySummary4graph, Catagory = reorder(Catagory, -count))
 arch <- ggplot(PathwaySummary4graphOrder, aes(x=Catagory, y=count, group=species, color=species))+geom_line(aes(color=species))+geom_point(aes(shape=species))+ theme_bw()+ theme(axis.text.x = element_text(angle = 45, hjust=1))
 plot(arch)
-
-sparch <- ggplot(PathwaySummary4graphOrder, aes(x=species, y=count, group=Catagory))+geom_line()+geom_point()+ theme_bw()+ theme(axis.text.x = element_text(angle = 45, hjust=1))
-plot(sparch)
 ```
 
 ```{r reshape date frame to long format}
+#foramts data frame wide for automatic box plot
+#groups data by kegg catogory
 PathwaysforGraph1 <- PathwaysforGraph[,c(2,5:8)]
 LongPathTable <- PathwaysforGraph1 %>%  pivot_longer(-c(1:2), names_to = "species", values_to = "count")
 widePathTable <- as.data.frame(t(PathwaysforGraph1))
