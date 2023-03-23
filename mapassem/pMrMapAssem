@@ -1,27 +1,32 @@
 #!/bin/sh 
 #maps reads to G. cryophila 
 #unmapped reads from M. rubrum assembeled 
-for sample in $(cat ~/data/Mchameleon/jgi/smajor/jgiMrubrum/Mesrubnscritpome_2_FD/Filtered_Raw_Data/samples)
+for sample in $(cat ~/data/Mrubrum/samples)
 do
 
-    bbmap.sh in=~/data/Mchameleon/jgi/smajor/jgiMrubrum/Mesrubnscritpome_2_FD/Filtered_Raw_Data/${sample}.filter-RNA.fastq.gz \
+    bbmap.sh in=~/data/Mrubrum/${sample}.fq.gz \
     unpigz=t pigz=t slow k=12 \
-    ref=~/data/Mchameleon/jgi/smajor/jgiMrubrum/T.amphioxeia.fasta \
-    outm=~/data/Mchameleon/jgi/smajor/jgiMrubrum/Mesrubnscritpome_2_FD/Filtered_Raw_Data/Tamp/${sample}_Tamp.fq \
-    outu=~/data/Mchameleon/jgi/smajor/jgiMrubrum/Mesrubnscritpome_2_FD/Filtered_Raw_Data/Mrubrum/${sample}_Mr.fq \
+    ref=~/data/Mrubrum/Gcryo.fasta \
+    outm=~/data/Gcryo/${sample}_Gcryo.fq \
+    outu=~/data/Mrubrum/${sample}_Mr.fq \
     printunmappedcount=t covk=1 nfilter=10 interleaved=f maxindel=20 threads=24 minid=0.90 ambiguous=all maxsites2=20000 physcov=t \
 
 done
 
-#assemble jgi M rubrum
+#assemble M rubrum
 spades.py --rna -t 16 \
---pe1-1 ~/data/genome/mrubgenomeRNA/mrub_rnaseq_1_S1_R1_001.fastq.gz \
---pe1-2 ~/data/genome/mrubgenomeRNA/mrub_rnaseq_1_S1_R2_001.fastq.gz \
---pe2-1 ~/data/genome/mrubgenomeRNA/mrub_rnaseq_2_S2_R1_001.fastq.gz \
---pe2-2 ~/data/genome/mrubgenomeRNA/mrub_rnaseq_2_S2_R2_001.fastq.gz \
--o ~/data/genome/mrubgenomeRNA/assembely
+--s1 ~/data/Mrubrum/SRR10126743_Mr.fq \
+--s1 ~/data/Mrubrum/SRR10126744_Mr.fq \
+--s1 ~/data/Mrubrum/SRR10126745_Mr.fq \
+--s1 ~/data/Mrubrum/SRR10126746_Mr.fq \
+--s1 ~/data/Mrubrum/SRR10126747_Mr.fq \
+--s1 ~/data/Mrubrum/SRR10126748_Mr.fq \
+--s1 ~/data/Mrubrum/SRR10126749_Mr.fq \
+--s1 ~/data/Mrubrum/SRR10126750_Mr.fq \
+--s1 ~/data/Mrubrum/SRR10126751_Mr.fq \
+-o ~/data/genome/Mrubrum/assembely
 
 #Transdecoder to predict reading frames
-TransDecoder.LongOrfs --genetic_code Mesodinium -t ~/data/genome/mrubgenomeRNA/assembely/transcripts.fasta
-TransDecoder.Predict --genetic_code Mesodinium -t ~/data/genome/mrubgenomeRNA/assembely/transcripts.fasta
+TransDecoder.LongOrfs --genetic_code Mesodinium -t ~/data/Mrubrum/assembely/transcripts.fasta
+TransDecoder.Predict --genetic_code Mesodinium -t ~/data/Mrubrum/assembely/transcripts.fasta
 
