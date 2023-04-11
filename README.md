@@ -34,4 +34,4 @@ datail annotaions was downloaded and formated
 
 #sed -i -r 's/(.+)/\1\t1/' MchameleonMap.txt
 
-Pathwya analysis was done in R with the included markdown documents
+Pathway analysis was done in R with the included markdown documents
